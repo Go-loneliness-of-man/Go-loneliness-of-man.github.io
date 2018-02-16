@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>锚点、hr和ul和ol元素、图片布局元素figure和figcaption、表格元素</title>
+  <meta charset="utf-8">
+  <link rel="stylesheet" href="../../样式表.css">
+  <style type="text/css">
+    body{
+          background:gray;
+          
+         }
+    #h1{
+          height:150px;
+        }
+  </style>
+</head>
+
+<body>
+  <div id="h1"><span class="smallh1">锚点、hr和ul和ol元素、图片布局元素figure和figcaption、表格元素</span></div>
+  <div id="body">
+    <h2>一、锚点</h2>
+      <p>
+        a元素可以链接到某一页面的指定位置，只需要在对应的位置用name或id属性创建锚点即可，创建锚点即用name或id属性标记一个元素，如果无元素可标， 可以这样写:&ltspan id="锚点名"&gt&lt/span&gt，也就是放入一个无内容的元素。
+      </p>
+    <h2>二、hr和ul和ol元素</h2>
+      <p>
+        hr可以在页面上添加一条分割线，像br一样它也是void元素。<br>
+        ul没什么可说的，ol元素有三个可选的属性:<br>
+      <ol>
+        <li>start,设置列表序号的开始数字，如&ltol start="3"&gt,则第一个列表项使用编号3。</li>
+        <li>reversed,倒序编号，没有属性值。</li>
+        <li>type，设置编号使用的字符，属性值:1、a、A、i、I，分别是数字、大小写英文字母、大小写的希腊字符。</li>
+      </ol>
+      另外，列表项li也有一个可选的属性可以强行设置某个列表项的编号:value。这个属性也会影响其后的列表项编号。<br>
+      </p>
+    <h2>三、图片布局元素figure和figcaption</h2>
+      <p>
+        figcaption可以在图片附近添加文字,figure用来包围图片和文字整体，以便对其进行设置，具体格式如下:<br>
+        <pre>
+          &ltfigure&gt
+            &ltfigcaption&gt文字&lt/figcaption&gt
+            &ltimg src="路径"&gt
+          &lt/figure&gt
+        </pre>
+      </p>
+    <h2>四、表格元素</h2>
+      <p>
+        表格元素:<br>
+        <ol>
+          <li>table,声明表格，块元素。</li>
+          <li>thead,标题行。</li>
+          <li>tbody,表格主体。</li>
+          <li>tfoot,表格表脚。</li>
+          <li>tr,一行单元格。</li>
+          <li>td,单个单元格。</li>
+          <li>th,标题行单元格。</li>
+          <li>col,一列。</li>
+          <li>colgroup,一组列。</li>
+          <li>caption,表格标题。</li>
+        </ol>
+        <span class="em">表格元素有很多，但大多是可选的，基本构成只有三个:table、tr、td。</span><br>
+        表格最简单的使用是这样的:
+        <pre>
+          &lt;table&gt;
+            &lt;tr&gt;&lt;td&gt;姓名&lt;/td&gt;&lt;td&gt;性别&lt;/td&gt;&lt;td&gt;年龄&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;黑无蛋&lt;/td&gt;&lt;td&gt;男&lt;/td&gt;&lt;td&gt;34&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td&gt;白又丹&lt;/td&gt;&lt;td&gt;女&lt;/td&gt;&lt;td&gt;22&lt;/td&gt;&lt;/tr&gt;
+          &lt;/table&gt;
+        </pre>
+        效果如下:
+        <table>
+          <tr><td>姓名</td><td>性别</td><td>年龄</td></tr>
+          <tr><td>黑无蛋</td><td>男</td><td>34</td></tr>
+          <tr><td>白又丹</td><td>女</td><td>22</td></tr>
+        </table>
+        要给表格加上边框就需要table元素的border属性，属性值就是数字，默认为0，如果设为1，效果如下:<br>
+        <table border="1">
+          <tr><td>姓名</td><td>性别</td><td>年龄</td></tr>
+          <tr><td>黑无蛋</td><td>男</td><td>34</td></tr>
+          <tr><td>白又丹</td><td>女</td><td>22</td></tr>
+        </table>
+        <hr>
+        <span class="em">标题行单元格th的作用:为表格增加顶部的表格分类，其中的字体加粗并且居中。</span>效果如下:
+        <table border="1" style="width:300px;">
+          <tr><th>标题</th><th>标题</th><th>标题</th></tr>
+          <tr><td>姓名</td><td>性别</td><td>年龄</td></tr>
+          <tr><td>黑无蛋</td><td>男</td><td>34</td></tr>
+          <tr><td>白又丹</td><td>女</td><td>22</td></tr>
+        </table>
+        另外的，td和th都是单元格，
+        <span class="em">都要用tr包起来</span>，它们各自还有一个合并属性:横向合并colspan,纵向合并rowspan。<br>
+        使用效果如下:
+        <table border="1" style="width:300px;">
+          <tr><th>标题</th><th>标题</th><th>标题</th></tr>
+          <tr><td>姓名</td><td>性别</td><td>年龄</td></tr>
+          <tr><td>黑无蛋</td><td>男</td><td>34</td></tr>
+          <tr><td>白又丹</td><td>女</td><td>22</td></tr>
+          <tr><td>人数</td><td colspan="2">两人</td></tr>
+        </table>
+        代码是这样的:&lt;td colspan="2"&gt;两人&lt;/td&gt;，2代表将后边的两个单元格合并。纵向合并的使用与其类似，只是换成th配合使用。<br>
+        <hr>
+        标题行（表头）thead:是和th配合使用的，作用很简单，只要用thead将th包进去，那么无论th在table源代码中的哪个位置，最终显示在页面中时都会出现在
+        表格的顶部。<br>
+        同样的，表脚tfoot和表格主体tbody的作用与用法也类似。这三个元素的作用是使表格结构更加清晰，便于增加样式。
+        <hr>
+        表格的标题caption,例子:&lt;caption&gt;这是标题&lt;/caption&gt;,效果如下:<br>
+        <table border="1" style="width:300px;">
+          <caption>这是标题</caption>
+          <tr><th>标题</th><th>标题</th><th>标题</th></tr>
+          <tr><td>姓名</td><td>性别</td><td>年龄</td></tr>
+          <tr><td>黑无蛋</td><td>男</td><td>34</td></tr>
+          <tr><td>白又丹</td><td>女</td><td>22</td></tr>
+          <tr><td>人数</td><td colspan="2">两人</td></tr>
+        </table>
+        caption在页面中显示的位置也是固定的，即它处在表格源代码的任意位置都不会对显示有影响。
+        <hr>
+        控制表格的列:colgroup和col,虽然单独使用colgroup也可以达到目的,但是将这俩配合使用更方便灵活。它们的使用类似于CSS，在表格中用colgroup把
+        col包围起来，然后利用style属性设置样式，用span属性选择列数，<span class="em">要注意的是span的属性值是选择“接下来的几列”</span>, 属性
+        值默认是1，下面是个例子:<br>
+        <pre>
+        &lt;caption&gt;
+          &lt;col&gt;
+          &lt;col style="color:blue" span:"2"&gt;
+        &lt;/caption&gt;
+        </pre>
+        第一个col默认选择了第一列，第二个col位于第二列，选择了第二、三列。
+      </p>
+  </div>
+</body>
+</html>

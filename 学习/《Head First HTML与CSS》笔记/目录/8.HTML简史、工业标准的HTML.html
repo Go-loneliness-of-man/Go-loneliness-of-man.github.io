@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>HTML简史、工业标准的HTML</title>
+    <meta charset="UTF-8">
+    <link type="text/css" rel="stylesheet" href="../样式表.css">
+    <style>
+      body{
+            background:#eacd76;
+           }
+    </style>
+  </head>
+  <body>
+    <div id="h1"><span class="smallh1">HTML简史、工业标准的HTML</span></div>
+    <div id="body">
+      <h2>HTML简史</h2>
+        <p>
+          HTML的发展历程大概可以简单的划分为五个阶段:HTML1.0~2.0、HTML3、HTML4、HTML4.01、HTML5。<br>
+          HTML1.0~2.0:这是最早的HTML，包含的内容很少，页面不好看，可以说没有人关心表现。<br>
+          HTML3:这时正处于漫长的“浏览器战争”，Netscape和Microsoft都在试图争霸浏览器世界。陷入这场争端的受害者是Web开发人员，这段时期，每个浏览器
+          公司都在不断增加自己的专用扩展包，试图保持领先地位，竞赛就此展开。那个时候，你通常必须写两个单独的Web页面，一个用于Netscape，另一个用于
+          Internet Explorer。<br>
+          HTML4:经过大概3年的漫长时间，出现了万维网协会（W3C）解救了广大Web开发人员，W3C旨在创建一个唯一的HTML标准，结束浏览器战争。它规定将HTML的
+          结构和表现分解到两种语言，于是有了HTML4.0和CSS。<br>
+          HTML4.01:1999年HTML4.01登场，成为接下来十年中HTML的“必备”版本，4.01与4.0相比没有什么大的变化，只是在一些方面做了些修补。<br>
+          HTML5:它支持4.01的大部分特性，并且还提供了一些新特性，可以体现Web的新发展，如支持类似博客的元素、新的视频和图形功能，一大堆用来构建Web应用
+          的功能，HTML5注定成为大家公认的标准。而且可以说自HTML5后应该不会再有新的标准了，因为W3C定义它是一个“活”的标准，它会经常根据需要进行更新变动，
+          并且它还会保持向后兼容性。HTML5还创造性的可以用来构建Web应用，用来交互，完成具体的工作，就像软件一样，而不再只是用来阅读。<br>
+          向后兼容性:如果标准有了一些改变，比如改变了某一个元素或属性的工作方式，那么浏览器会继续支持你使用的老方式，但同时也支持新的方式。
+        </p>
+      <h2>工业标准的HTML</h2>
+        <p>
+          <ol>
+          <li>首先要告诉浏览器你使用的是什么版本的HTML，这要使用doctype，要注意它不是元素。<br>
+          指定HTML5的doctype:&lt!doctype html&gt<br>
+          指定HTML4.01的doctype:&lt!DOCTYPE html POBLIC "-//W3C//DTD HTML 4.01//EN""http://www.w3.org/TR/html4/strict.dtd"&gt<br>
+          doctype定义要放在HTML文件的最上方，告诉浏览器文档的类型是什么。在4.01中PUBLIC指这个标准是公共可用的，第一个引号的内容说明使用的是4.01标准，
+          第二个引号的内容是指向标准的文件的URL。这看起来很繁琐，不过随着HTML5的到来得到了简化，没有了特定的版本号，也不用再指向某个标准，因为它已经是
+          默认的。<br></li>
+          <li>其次，为每个img元素增加alt属性，因为这对使用屏幕阅读器的视力障碍人群相当重要。<br></li>
+          <li>最后，为HTML指定字符编码。字符编码告诉浏览器页面使用了哪一种字符，像莫尔斯电码一样，它提供了一种方法可以在计算机上表示某种语言中所有字母、
+          数字、其它符号。如今已经统一使用Unicode字符编码，要在Web上使用它，就要用meta标记来指定:<br>
+          &ltmeta charset="utf-8"&gt<br>
+          utf-8是Unicode编码系列中的一个编码，它的u就是表示Unicode。Unicode是很多常用软件应用和操作系统都支持的一个字符集，这也是Web选择的编码，因为
+          它支持所有语言和多语种文档，还与ASCII兼容。<br></li>
+          </ol>
+          以上，就是一些对页面的稍微调整。这样做的好处是，与规范越接近，你的页面在实际中应用的就越好。
+        </p>
+    </div>
+  </body>
+</html>

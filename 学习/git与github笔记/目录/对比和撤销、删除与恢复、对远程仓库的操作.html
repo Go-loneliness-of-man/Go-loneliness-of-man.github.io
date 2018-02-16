@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>对比和撤销、删除与恢复、对远程仓库的操作</title>
+  <meta charset="utf-8">
+  <link type="text/css" rel="stylesheet" href="../../样式表.css">
+  <style type="text/css">
+    body{
+          background:gray;
+         }
+  </style>
+</head>
+
+<body>
+  <div id="h1"><span class="smallh1">对比和撤销、删除与恢复、对远程仓库的操作</span></div>
+  <div id="body">
+    <h2>一、对比和撤销</h2>
+      <p>
+        <details>
+          <summary>对比</summary>
+          当工作时，就可能造成三个区内的同一文件内容不同，这时候就要进行对比。命令如下:<br>
+          <span class="em">git diff</span>,工作区与暂存区的对比。<br>
+          效果如图:<br>
+          <img src="../示例/git diff示例.PNG"><br>
+          红笔圈起来的部分就是对内容进行对比的部分，红色的减号部分代表工作区比暂存区减少的内容，绿色的加号部分代表工作区比暂存区多出的内容。<br>
+          这是另外两个对比:<br>
+          <span class="em">git diff --cached(--staged)</span>，暂存区与版本库的对比<br>
+          <span class="em">git diff 分支名</span>，工作区与版本库的对比<br>
+        </details>
+        <details>
+        <summary>撤销</summary>
+        添加、提交实现文件在三个区中的一个方向的移动，而撤销实现文件向另一个方向的移动。<br>
+        <span class="em">git reset HEAD 文件名</span>，撤销添加，将文件从暂存区撤回工作区<br>
+        <span class="em">git checkout -- 文件名</span>，还原工作区，即将工作区文件还原回版本库的状态，但如果暂存区有文件，则是先还原为暂存区文件的状态，再次还原才可变回版本
+        库状态<br>
+        <span class="em">git commit -m "注释" --amend</span>,撤销上一次提交并进行这一次提交，可以理解为替换上一次提交。<br>
+        </details>
+      </p>
+    <h2>二、删除与恢复</h2>
+      <p>
+        <details>
+          <summary>删除</summary>
+          因为git存在三个区，因此删除操作也分多种情况。
+          <span class="em">git rm 文件名</span>，在工作区文件已删除的情况下，删除暂存区对应文件。<br>
+          如果工作区对应文件未删除，则该命令不起作用。<br>
+          <span class="em">git rm -f 文件名</span>，同时删除工作区和暂存区文件。<br>
+          <span class="em">git rm -r 文件夹名</span>，同时删除工作区和暂存区的文件夹。<br>
+          <span class="em">git rm --cached 文件名</span>，在工作区文件存在的情况下，只删除暂存区对应文件。<br>
+        </details>
+        <details>
+          <summary>恢复</summary>
+          因误操作删除文件或想使工作区的某个文件回退到版本库里从前的某个状态，就可以使用恢复操作。<br>
+          <span class="em">git checkout commitid 文件名</span>，将该文件回退到在对应commitid的版本下的状态。<br>
+          commitid可理解为版本库里每次提交的版本自动生成的对应的版本号，可用来指定版本库的每个状态,查看commitid的一种方法是查看历史提交记录git log，
+          如下图:<br>
+          <img src="../示例/git log示例.PNG"><br>
+          红笔划住的部分是commitid，蓝笔划住的部分是每次提交写的注释，所以注释能起辨识版本的作用，不要乱写。<br>
+          <span class="em">git reset --hard commitid</span>,将整个工作区还原回拥有对应commitid的版本的状态。<br>
+          同时，在git reset --hard命令后，还可直接使用HEAD^来恢复到当前版本库的上一个版本的状态，也可使用HEAD~~数字，来恢复到指定次数前版本库状态，
+          例如<span class="em">git reset --hard HEAD~~3</span>，指回退到当前版本的三次提交前的状态,另外，每次回退版本后都会显示该版本提交时的
+          注释以供辨识该版本。<br>
+          <span class="em">git reflog</span>,查看最近的还原操作，查询每次还原后的版本commitid。效果如下图:<br>
+          <img src="../示例/git reflog示例.PNG"><br>
+          冒号后的部分是对对应还原操作的解释。
+        </details>
+      </p>
+    <h3>三、对远程仓库的操作</h3>
+      <p>
+        <details>
+          <summary>管理远程仓库</summary>
+          <span class="em">git remote -v</span>，查看当前已添加的远程仓库的名字及地址。<br>
+          <span class="em">git remote add 仓库名 仓库地址</span>,添加并命名一个仓库。<br>
+          <span class="em">git remote rename 旧名字 新名字</span>，远程仓库的重命名。<br>
+          <span class="em">git remote rm 仓库名</span>,删除远程仓库。<br>
+          <span class="em">git push 仓库名 分支名</span>，向远程仓库输送文件。<br>
+        </details>
+        <details>
+          <summary>更新远程仓库</summary>
+          当在本地对远程仓库的同一文件进行修改后再进行提交时，会有因文件内容不同而产生冲突导致不能push的问题:<br>
+          <img src="../示例/git push冲突示例.PNG"><br>
+          这就需要将远程仓库拉取到本地进行对比、合并、取舍，所谓取舍就是手动删除掉冲突的部分。
+          <span class="em">git fetch</span>,拉取远程仓库<br>
+          <span class="em">git diff 本地分支名 仓库名/仓库分支名</span>,将本地文件与远程仓库文件进行对比。<br>
+          <span class="em">git merge 仓库名/仓库分支名</span>,将远程仓库文件与本地工作区文件进行合并。<br>
+          合并后就可以进行取舍。
+        </details>
+      </p>
+  </div>
+</body>
+
+</html>

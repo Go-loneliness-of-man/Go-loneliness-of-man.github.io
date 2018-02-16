@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title></title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="../../样式表.css">
+  <style>
+    body{
+          background:gray;
+         }
+  </style>
+</head>
+
+<body>
+  <div id="h1"><span class="smallh1">音频和视频、表单元素</span></div>
+  <div id="body">
+    <h2>一、音频和视频</h2>
+      <p>
+        <details>
+          <summary>概述</summary>
+          视频和音频分别是两个元素，video和audio。<br>
+          这里有两个概念:容器和编、解码器。<br>
+          音频文件和视频文件，都是容器文件。<br>
+          视频文件包含了音频轨道、视频轨道、一些元数据，当视频播放时，视频轨道和音频轨道是绑定在一起的。元数据包含了视频的封面、标题、子标题、字幕等信息。
+          主流的视频容器格式有:avi、flv、mp4、mkv、ogg、webm。<br>
+          编、解码器是一组算法，用来对音频、视频进行编码和解码。之所以这样做是因为原始媒体文件体积巨大，如果不进行编码在互联网上传输要耗费相当长的时间。<br>
+          主流的音频编、解码器:AAC、MPEG-3(对应mp3)、ogg Voribs<br>
+          主流的视频编、解码器:H.24、VP8、ogg Theora<br>
+          <table border="1">
+            <thead>
+              <caption>对应关系</caption>
+              <tr><th>容器格式</th><th>视频编码器</th><th>音频编码器</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>WebM</td><td>VP8</td><td>Vorbis</td></tr>
+              <tr><td>OGG</td><td>Theora</td><td>Vorbis</td></tr>
+              <tr><td>MPEG-4</td><td>H.264</td><td>AAC</td></tr>
+            </tbody>
+          </table>
+          目前来看，MP4基本受主流浏览器支持。
+        </details>
+        <table border="1">
+          <thead>
+            <caption>video</caption>
+            <tr><th>序号</th><th>属性名</th><th style="width:400px">作用</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>src</td><td>包含视频资源URL</td></tr>
+            <tr><td>2</td><td>width和height</td><td>宽度和高度</td></tr>
+            <tr><td>3</td><td>controls</td><td>显示播放控件，使视频可播放</td></tr>
+            <tr><td>4</td><td>preload</td><td>对视频预加载的设置，属性值有none、metadata、auto</td></tr>
+            <tr><td>5</td><td>autoplay</td><td>使打开页面时视频默认播放</td></tr>
+            <tr><td>6</td><td>loop</td><td>循环播放视频</td></tr>
+            <tr><td>7</td><td>muted</td><td>使视频默认静音</td></tr>
+            <tr><td>8</td><td>poster</td><td>指定视频封面图片</td></tr>
+          </tbody>
+        </table>
+        <table border="1">
+          <thead>
+            <caption>audio</caption>
+            <tr><th>序号</th><th>属性名</th><th>作用</th></tr>
+          </thead>
+            <tr><td>1</td><td>src</td><td>放置URL</td></tr>
+            <tr><td>2</td><td>controls、autoplay、preload</td><td>同video</td></tr>
+        </table>
+        <details>
+          <summary>video</summary>
+          用法:<br>
+          &ltvideo src="路径" poster="封面图片路径" controls width="900px" height="700px" preload="auto"&gt&lt/video&gt<br>
+          preload:不进行任何预加载none、只加载元数据和封面metadata、预先全部加载auto。<br>
+          必备属性是src、controls。
+        </details>
+        <details>
+          <summary>audio</summary>
+          与video类似。效果如下:<br>
+          <audio src="../毛不易《像我这样的人》.mp3" controls preload="auto" autoplay></audio>
+        </details>
+        使用H5原生的属性只能进行简单的设计，更多的设计要用到API，需要JS控制。
+        <details>
+          <summary>兼容多个浏览器</summary>
+          由于不同浏览器支持不同的容器格式，所以需要为一个视频用多个路径指定多个不同格式的资源。用法如下:<br>
+            <pre>
+              &ltvideo poster="封面图片路径" controls width="900px" height="700px" preload="auto"&gt
+                &ltsource src="资源路径"&gt
+                &ltsource src="资源路径"&gt
+                &ltsource src="资源路径"&gt
+            </pre>
+          要用到source元素，并且在video元素中去掉src属性，这样就可以为同一视频准备不同的格式，确保大多数浏览器都可以运行。
+        </details>
+      </p>
+    <h2>二、表单元素</h2>
+      <p>
+        <details>
+          <summary>1.</summary>
+          
+        </details>
+        <details>
+          <summary>2.</summary>
+          
+        </details>
+      </p>
+  </div>
+</body>
+
+</html>

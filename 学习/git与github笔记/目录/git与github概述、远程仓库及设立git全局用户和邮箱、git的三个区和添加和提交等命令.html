@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>git与github概述、远程仓库及设立git全局用户和邮箱、git的三个区和添加和提交等命令</title>
+  <meta charset="UTF-8">
+  <link type="text/css" rel="stylesheet" href="../../样式表.css">
+  <style type="text/css">
+    body{
+          background:gray;
+         }
+    #h1{
+          height:200px;
+        }
+  </style>
+</head>
+
+<body>
+  <div id="h1"><span class="smallh1">git与github概述、远程仓库及设立git全局用户和邮箱、git的三个区和添加和提交等命令</span></div>
+  <div id="body">
+    <h2>一、git与github概述</h2>
+      <p>
+        git是一个用来辅助开发的工具,具有版本控制功能,相当于创建一个历史记录,能够对文件进行还原。<br>
+        github是一个网站,它首先是一个社交平台,其上有很多世界一流的程序员活跃(号称全球最大的基友平台，男的多...);其次，上边有大量的开源项目，可供随
+        时查看共享;最后,它还能充当一个远程仓库。<br>
+        <details>
+          <summary>svn与git的区别</summary>
+          svn也是版本控制工具,但它是集成式的，而git是分布式的。<br>
+          集成式:在多人协作时，要准备一个中央服务器，每个人都要通过中央服务器来完成代码的获取和提交，代码的所有版本都存在中央服务器里，只有连接中央服
+          务器才能进行开发。如果连接不上，代码就不能进入版本库，不能进行保存。并且每两人间的交流都必须通过中央服务器实现。<br>
+          分布式:与svn相反,在与github的配合下，git的每台电脑都相当于svn的中央服务器，版本库在自己这里,因此不用担心连接不上的问题，易于操作，并且
+          交流也非常方便。
+        </details>
+      </p>
+    <h2>二、远程仓库及设立git全局用户和邮箱</h2>
+      <p>
+        <details>
+          <summary>1.创建远程仓库(在github网站上建立)</summary>
+          注意:创建时必须要勾选README这个说明文件，不然后边使用会有问题。(说明文件是用mark down写的)<br>
+          创建时最底部的两个选项，一个是选择忽略的文件类型，另一个是添加许可，两个都可以不选。
+        </details>
+        <details>
+          <summary>2.下载远程仓库</summary>
+          首先要在本地创建一个文件夹作为本地代码库，然后在git界面使用命令:<br>
+          <span class="em">git clone URL</span><br>
+          这样就将远程仓库克隆到了本地文件夹。
+        </details>
+        <details>
+          <summary>3.设置git全局用户和邮箱</summary>
+          首先要使用git对远程仓库进行操作必须要有全局用户及邮箱，其次当别人看到文件时也能够知道它是“谁”的。<br>
+          命令:<br>
+          <span class="em">git config --global user.name "用户名"</span><br>
+          <span class="em">git config --global uesr.email "邮箱"</span><br>
+          设置后,还可以使用<span class="em">git config --list</span>来查看当前用户名及邮箱和其它详细信息。
+        </details>
+      </p>
+    <h2>三、git的三个区和添加、提交等命令</h2>
+      <p>
+        <details>
+          <summary>1.git的三个区</summary>
+          分三个区:工作区、暂存区、版本库,三个区是独立的。<br>
+          工作区:指正在操作的所有文件。<br>
+          暂存区:暂时保存文件，预备进一步的操作。<br>
+          版本库:版本库就是成品的存放区。<br>
+          暂存区的几大好处:
+            <ol>
+              <li>作为过渡层</li>
+              <li>避免误操作</li>
+              <li>保护工作区和版本区</li>
+              <li>分支处理要用到</li>
+            </ol>
+        </details>
+        <details>
+          <summary>2.添加、提交、查看文件状态和提交记录</summary>
+          添加到暂存区:<span class="em">git add 文件名</span><br>
+          如果是添加工作区内所有文件，将文件名写为:".",即<span class="em">git add .</span><br>
+          提交到版本库:<span class="em">git commit -m "注释"</span><br>
+          commit时必须写注释。<br>
+          查看工作区和暂存区文件状态:<span class="em">git status -s</span><br>
+          会列出所有文件的状态,在每个文件最左侧有字母标记，未添加文件是？？，新的已添加文件是A。还有M表示修改过的文件，当M靠右一点时表示“修改过但未添
+          加”，靠左一点时表示“修改过并且已添加”，字母D表示被删除的文件。<br>
+          查看提交历史记录:<span class="em">git log</span>
+        </details>
+      </p>
+  </div>  
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+<html>
+<head>
+  <title>在学习过程中解决的麻烦</title>
+  <meta charset="utf-8">
+  <link type="text/css" rel="stylesheet" href="../样式表.css">
+  <style type="text/css">
+    body {
+            background-color: #bacac6;
+         }
+  </style>
+</head>
+<body>
+  <div id="h1"><span class="smallh1">在学习过程中解决的麻烦</span></div>
+  <div id="body">
+    <dl>
+      <dt>用编译器编写的HTML中的汉字在浏览器里显示乱码:</dt>
+        <dd>原因是HTML的编码方式与浏览器默认的编码方式不同，才出现乱码。
+            例如火狐浏览器采用utf-8，当其显示乱码时，只要将HTML也设置为utf-8形式即可，具体解决办法就是在head中添加这段代码即可:<br>
+            &ltcharset="utf-8"&gt
+        </dd>
+      <dt>利用CSS让文字沉在元素底部:</dt>
+        <dd>用span把文字选定，然后将其父元素设定为相对位置relative，span设定为绝对位置absolute，最后利用bottom:0;将文字沉到父元素的底部。</dd>
+    </dl>
+  </div>
+</body>
+</html>

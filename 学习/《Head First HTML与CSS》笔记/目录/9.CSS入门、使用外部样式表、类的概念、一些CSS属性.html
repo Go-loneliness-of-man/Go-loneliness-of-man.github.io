@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>CSS入门、使用外部样式表、类的概念、一些CSS属性</title>
+    <meta charset="utf-8">
+    <link type="text/css" rel="stylesheet" href="../样式表.css">
+    <style type="text/css">
+      body{
+            background:sandybrown;
+          }
+    </style>
+  </head>
+  <body>
+    <div id="h1"><span class="smallh1">CSS入门、使用外部样式表、类的概念、一些CSS属性</span></div>
+    <div id="body">
+      <h2>一、CSS入门</h2>
+        <p>
+          使用CSS通常有两种形式，一种是放在style元素中，另一种是引用外部css文件。<br>
+          css基本格式包括元素名、属性、样式，如下:<br>
+          元素名{ 属性:样式; }<br>
+          这个整体被称为一个css规则。rule<br>
+          1.其中元素名可以合并，只要将多个元素名一起写上，只要用逗号隔开即可，你也可以为一个元素制订多个CSS规则，一个元素名也可以被多次使用。<br>
+          2.元素的子集通常会继承父集的样式，不过有些样式是不会继承的。<br>
+          3.一种较好的组织规则的方法是，将具有相同属性的元素放在一起，这样可以省去在不同元素中重复相同属性的麻烦，而且还容易修改。（或者你还可以使用
+          “类”来管理它们）<br>
+          4.css总会使用对元素最特定的那个规则，例如在body下内嵌了一个p元素，若你对em另外写了一个新规则，则会使用这个更特定的规则而不是继承body的规
+          则。如果一个元素被多个规则设置了同一属性的不同样式，首先它会遵守最特定的那个规则，如果特定程度相同，则会使用顺序上位于最下方的规则。<br>
+          5.CSS注释/*内容*/。
+        </p>
+      <h2>二、使用外部样式表</h2>
+        <p>
+          老套而又简约，步骤如下:<br>
+          <ol>
+            <li>创建一个外部CSS文件</li>
+            <li>在要使用这个CSS规则的HTML文件中创建一个到这个CSS文件的链接</li>
+          </ol>
+          在创建CSS文件时要注意其中只包含CSS规则，并且文件后缀为.css。<br>
+          具体是这样写的:&ltlink type="text/css" rel="stylesheet" href="路径"&gt<br>
+          link元素用来链接外部信息，type属性说明了信息类型是“css”（HTML5中已省略这条）,rel属性指定了HTML与链接文件的关系——“stylesheet”，即样式
+          表，最后href包含了外部信息的路径。<br>
+        </p>
+      <h2>三、类的概念</h2>
+        <p>
+          为了更方便随意的掌控HTML的样式，可以使用类（class）。例如当你有多个元素，却需要给它们分别设置不同的样式时，就要用到类。<br>
+          使用类的方法是，利用class属性标记所有你想要归到一类的元素，标记时的属性值即类名。具有相同类名的元素存在于同一个类。这样，你就可以用以下方式
+          为特定元素设立规则:<br>
+          元素名.类名{ 属性:样式; }<br>
+          1.如果要为一个类中的所有元素设置相同的样式，直接省去元素名即可以。<br>
+          2.一个元素可以被放入多个类，只需要在标记时在每个类名间空开一个空格即可。<br>
+          3.你也可以通过使用类和元素名来为CSS精确定位某一个元素,以便为它设计专有的样式，但通常不用这么做，因为使用id属性可以更方便的指定一个特定元素
+          ，其实它就是用来唯一的标记某一个元素的。<br>
+        </p>
+      <h2>四、一些基本的CSS属性</h2>
+        <p>
+          1.background-color.页面背景色<br>
+          2.border.为元素设置边框并规定边框参数，例子:border:1px solid gray;<br>
+          依次是边框线粗细一像素，实线，灰色<br>
+          3.color.文本颜色<br>
+          4.border-bottom.只有下方的边框，表现是元素下方加了一条线，这条线会一直延伸到页面边缘，例子:border-bottom:1px solid blank;<br>
+          5.text-decoration.常用参数:overline、line-through、underline、none,依次是上划线、删除线、下划线、去除装饰（用于去除来自父元素的效果）。<br>
+          6.font-family.字体。<br>
+          7.font-weight.文本的粗细。<br>
+          8.font-size.字号的大小。<br>
+          9.font-style.用来设置斜体文本。<br>
+          10.margin-left和margin-right.元素的左右外边距。<br>
+          11.left.与margin作用相同，但需要position属性来事先设置位置。<br>
+          12.line-height.文本的行间距，有时行间距不够会限制字体大小的显示，这种情况下可以直接设置属性值为“1”，意思是元素的行高是它自己字体大小的1倍。<br>
+          13.padding.内边距，即元素边缘和它的内容之间的边距，例如边框内的边距。<br>
+          14.top.控制元素顶部的位置。<br>
+          15.text-align.一个经常用到的属性，用来设置块元素内所有内容的对齐方式，可继承。常用值:left: 左对齐,right: 右对齐,center: 居中。<br>
+          16.letter-spacing.设置字母的间距。<br>
+          17.list-style.用来改变列表中列表项的外观。有很多种用法。<br>
+          18.background-image.为文本设置一个图像背景。<br>
+          19.width.确定一个元素内容区的宽度。<br>
+          20.float.可以控制元素在页面的位置。常用值与text-align相同。<br>
+        </p>
+      </div>
+  </body>
+</html>

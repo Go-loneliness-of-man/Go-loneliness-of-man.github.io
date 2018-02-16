@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>文档元素、嵌入元素</title>
+  <meta charset="utf-8">
+  <link type="text/css" rel="stylesheet" href="../../样式表.css">
+  <style type="text/css">
+    body{
+          background:gray;
+         }
+  </style>
+</head>
+
+<body>
+  <div id="h1"><span class="smallh1">文档元素、嵌入元素</span></div>
+  <div id="body">
+    <h2>一、文档元素</h2>
+      <p>
+        文档元素是一堆基本没什么实际作用的元素，主要作用是便于管理页面结构，使编码语义化配合CSS使用,以下是主要的文档元素:
+        <table border="1">
+          <thead>
+            <caption>文档元素</caption>
+            <tr><th>序号</th><th>元素名</th><th style="width:700px">描述</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>h1~h6</td><td>分级表示标题，默认的字体加粗字号加大。</td></tr>
+            <tr><td>2</td><td>header</td><td>注意不是页面首部head，这个header只是body里的一个标签，意义是其内的内容是标题部分。</td></tr>
+            <tr><td>3</td><td>footer</td><td>页脚，用来写一些版权声明等等。</td></tr>
+            <tr><td>4</td><td>nav</td><td>表示导航元素，例如目录等。</td></tr>
+            <tr><td>5</td><td>section</td><td>重要概念或者小标题。</td></tr>
+            <tr><td>6</td><td>article</td><td>一段独立的内容，相当于一个内嵌的body,其内可含其它文档元素。</td></tr>
+            <tr><td>7</td><td>address</td><td>联系方式。</td></tr>
+            <tr><td>8</td><td>aside</td><td>注释栏，多放在页面的一侧，可有可无。</td></tr>
+            <tr><td>9</td><td>hgroup</td><td>组合标题，具体意义不明。</td></tr>
+            <tr><td>10</td><td>details</td><td>这是个有趣的元素，它能够创建一个可以展开的区域。</td></tr>
+            <tr><td>11</td><td>summary</td><td>details的配套子元素，是该元素内容的标题。</td></tr>
+          </tbody>
+        </table>
+        这些文档元素大多都只起划分结构的作用，其实也可以自己使用div和span来划分，但使用它们的好处是，这些文档元素是通用的，用它们写出来的页面更便
+        于其它编写人员看懂，也便于很久之后自己回头看懂页面结构。<br>
+        details和summary示例:
+        <pre>
+          &lt;details&gt;
+            &lt;summary&gt;123&lt;/summary&gt;
+            7437290356y7810258163475612309-5748124356789423650123465178654p89235t7te hbdfrawSFCBFE
+          &lt;/details&gt;
+        </pre>
+        在页面上的效果是这样的:<br>
+        <details>
+          <summary>123</summary>
+          7437290356y7810258163475612309-5748124356789423650123465178654p89235t7te hbdfrawSFCBFE
+        </details>
+        很有趣的元素。
+      <p>
+    <h2>二、嵌入元素</h2>
+      <p>
+        <table border="1">
+          <thead>
+            <caption>嵌入元素</caption>
+            <tr><th>序号</th><th>元素名</th><th>作用</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>img</td><td style="width:800px">在页面中嵌入图片，属性:src、alt、width、height、ismap、usemap。</td></tr>
+            <tr><td>2</td><td>map</td><td>创建分区响应图，通过图片热点进行超链接，内嵌area元素，需要使用img的usemap属性进行关联。</td></tr>
+            <tr><td>3</td><td>iframe</td><td>在当前页面创建一个区域，显示另一个页面。</td></tr>
+            <tr><td>4</td><td>embed</td><td>引用插件，例如flash等。</td></tr>
+            <tr><td>5</td><td>object</td><td>是个通用引用元素，可以引用插件、图片、音频等，但是HTML4的标准。</td></tr>
+            <tr><td>6</td><td>progress</td><td>创建一个进度条，需要通过javescript控制内部的值，否则值不变化。</td></tr>
+            <tr><td>7</td><td>meter</td><td>反映范围内值的状态，外观也是一个进度条，但设置了最大最小值，有颜色提示。</td></tr>
+          </tbody>
+        </table>
+        嵌入元素的主要功能是在HTML中插入一些外部资源。
+        <details>
+          <summary>1.img</summary>
+          属性:src、alt、width、height、ismap、usemap。<br>
+          src包含图片地址，alt是当图片无法显示时的注释。
+          ismap:可以显示图像每个位置的坐标，用法如下:<br>
+          <pre>
+            &lt;a href="本页面"&gt;&lt;img src="图片地址" ismap&gt;&lt;/a&gt;<br>
+          </pre>
+          效果如下:<br>
+          <a href="3.文档元素、嵌入元素.html"><img ismap src="../示例/如果你不介意的话.PNG"></a><br>
+          每次点击过后，图片被点击处的坐标会显示在页面URL栏末尾处。<br>
+          usemap:用来将图片与map元素关联。
+        </details>
+        <details>
+          <summary>2.map</summary>
+          作用是创建热点区域，即可以将图片划分为几个区域，每个区域都可以分别指定超链接。用法如下:<br>
+          <pre>
+          &lt;img src="图片地址" usemap="#m"&gt;
+          &lt;map name="m"&gt;
+            &lt;area shape="rect" coords="62,54,221,210" href="http://www.baidu.com" target="_blank"&gt;
+            &lt;area shape="circle" coords="300,420,500" href="http://Go-loneliness-of-man.github.io" target="_blank"&gt;
+          &lt;/map&gt;
+          </pre>
+          可以看出，还有一个与其配合的area元素来确定区域，最后实现的效果是这样的:<br>
+          <img src="../示例/如果你不介意的话.PNG" usemap="#m"><br>
+          <map name="m">
+            <area shape="rect" coords="62,54,221,210" href="http://www.baidu.com" target="_blank">
+            <area shape="circle" coords="350,120,100" href="http://Go-loneliness-of-man.github.io" target="_blank">
+          </map>
+          可以发现，左边有一块方形区域链接到百度首页，右边有一块圆形区域链接到博客首页。<br>
+          其中，area的shape属性确定形状，coords属性确定大小:<br>
+          <ol>
+            <li>rect,方形，coords="x1,y1,x2,y2",依次是图片左上角和右下角坐标。</li>
+            <li>circle，圆形,coords="x1,y1,r",圆形坐标和半径。</li>
+            <li>poligon，多边形，coords="x1,y1,x2,y2,x3...",多边形各顶点。</li>
+          </ol>
+        </details>
+        <details>
+          <summary>3.iframe</summary>
+          iframe可以在一个html文档里内嵌一个html文档，即在页面中内嵌一个页面。用法如下:<br>
+          <pre>
+            &lt;a href="http://www.baidu.com" target="1"&gt;百度&lt;/a&gt;&lt;br&gt;
+            &lt;a href="http://Go-loneliness-of-man.github.io target="1"&gt;博客&lt;/a&gt;&lt;br&gt;
+            &lt;iframe src="https://www.imooc.com/" width="900px" height="800px" name="1"&gt;&lt;/iframe&gt;
+          </pre>
+          效果如下:<br>
+          <a href="http://www.baidu.com" target="1">百度</a><br>
+          <a href="http://Go-loneliness-of-man.github.io" target="1">博客</a><br>
+          <iframe src="https://www.imooc.com/" width="1200px" height="500px" name="1"></iframe><br>
+          src指定此区域的初始链接页面，name属性为其它链接使用target属性指向此窗口创建条件。
+        </details>
+        <details>
+          <summary>4.embed</summary>
+          引用插件，例如一个flase视频，用法如下:<br>
+          <pre>
+          &lt;embed src="http://www.tudou.com/v/i4ZZvFwf;uI/&bid=-05&rpid=50797543&resourceId=50797543_05_05_99/v.swf" type="app
+          lication/x-shockwave-flash" width="900px" height="700px"&gt;&lt;/embed&gt;
+          </pre>
+          效果如下:<br>
+          <embed src="http://www.tudou.com/v/i4ZZvFwf;uI/&bid=-05&rpid=50797543&resourceId=50797543_05_05_99/v.swf" type="app
+          lication/x-shockwave-flash" width="900px"></embed><br>
+          type属性表示文件类型，src属性表示文件路径。由于H5已经可以结合JS编写越来越多的Web应用，所以将来引用的插件将越来越少。firefox不支持插件。
+        </details>
+        <details>
+          <summary>5.object</summary>
+          通用引用元素，HTML4的内容，在H5中已经被更多的语义化元素所分别代替。
+        </details>
+        <details>
+          <summary>6.progress</summary>
+          进度条，用法如下:<br>
+          &lt;progress value="40" max="100"&gt;&lt;/progress&gt;<br>
+          效果如下:<br>
+          <progress value="40" max="100"></progress><br>
+          value是当前值，max是最大值，现在只是一个样式，要使其真正起作用，需要编写JS来控制其内部的值。IE9不支持。
+        </details>
+        <details>
+          <summary>7.meter</summary>
+          用进度条表示范围值，类似于progress，用法如下:<br>
+          &ltmeter value="50" min="30" max="100" low="40" high="80"&gt&lt/meter&gt<br>
+          效果如下:<br>
+          <meter value="50" min="30" max="100" low="40" high="80"></meter><br>
+          min和max确定值的范围，若value值不在范围内则空白，low和high划定正常范围，若不在范围内则会变色。IE浏览器不支持该元素。
+        </details>
+      </pre>
+  </div>
+</body>
+
+</html>

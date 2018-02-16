@@ -1,0 +1,29 @@
+body{ 
+      position:relative;
+     }
+      #body{
+            font:17px/1.6em sans-serif;
+            margin:0px 10% 10px 2%;
+            padding:10px 10px 10px 10px;
+            border-left:3px solid rgb(111, 161, 195);
+            border-bottom:5px solid rgb(111, 161, 195);
+            }
+      #h1{
+            color:rgb(40,40,40);
+            border-bottom:5px solid firebrick;
+            background:url(背景/h1背景.PNG) no-repeat;
+            height:149px;
+            width:1340px;
+            font:40px sans-serif;
+            position:relative;
+            }
+            .smallh1{
+                        position:absolute;
+                        bottom:0;
+                        }
+      .em{
+            color:rgb(6, 197, 197);
+            }
+a:link { color: rgb(12, 9, 192); text-decoration: none; }
+a:visited { color: black; text-decoration: none; }
+a:hover { color: white; text-decoration: none; }
