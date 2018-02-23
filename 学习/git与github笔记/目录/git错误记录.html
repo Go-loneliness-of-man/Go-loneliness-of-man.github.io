@@ -29,8 +29,10 @@
         有三种情况:未add、未commit、远程仓库没有分支.<br>
       </details>
       <details>
-        <summary>4.</summary>
-
+        <summary>4.git push时提示“失败”且让你在命令行重新键入用户名和密码</summary>
+        在本地git仓库文件夹下搜索config文件(不搜索是看不到的)，打开后修改url选项:在http://后加上这个格式“用户名:密码@”即可，如下图:<br>
+        <img src="../示例/config文件.PNG" alt="修改示例"><br>
+        这样就可以正常push了。
       </details>
     </p>
   </div>
