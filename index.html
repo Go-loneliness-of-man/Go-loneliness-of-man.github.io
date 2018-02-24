@@ -7,14 +7,37 @@
   <style type="text/css">
     body{
           background:url(图片/右上角.PNG) no-repeat;          
-         }
+        }
+    div ul{
+            margin:0px;
+            padding:0px;
+            background:rgb(180,0,0);
+            width:83px;
+            border:3px solid black;
+            height:155px;
+          }
+    li{
+        background:rgb(200,0,0);
+        width:70px;
+        height:20px;
+        margin:10px 20px;
+        padding:6px;
+        border:3px solid black;
+      }
+    li:hover{
+              padding:15px;
+              background:rgb(250,0,0);
+            }
     a:link{ color:saddlebrown; text-decoration:none; }
-    a:visited{ color:red; text-decoration:none; }
+    a:visited{ color:gray; text-decoration:none; }
     a:hover{ color:white; text-decoration:none; }
     iframe{
-            margin-left:130px;
-            margin-top:-85px;
+            margin-left:124px;
+            margin-top:-162px;
+            border:3px solid black;
+            display:none;
           }
+    ul:hover iframe{ display:block; }
     .smallh1{
               font-size:40px;
               font-weight:bold;
@@ -33,14 +56,15 @@
   <div id="body">
     <h2>浏览项</h2>
       <p>
-        <ol>
+        <ul>
           <li><a href="学习/index.html"
                  target="1">学习笔记</a></li>
           <li><a href=""
                  target="1">随笔</a></li>
           <li></li>
-        </ol>
+        
         <iframe width="1200px" height="500px" name="1"></iframe>
+        </ul>
       </p>
   </div>
   
