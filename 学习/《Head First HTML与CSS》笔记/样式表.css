@@ -12,18 +12,17 @@ body{
             color:rgb(40,40,40);
             border-bottom:5px solid firebrick;
             background:url(背景/h1背景.PNG) no-repeat;
-            height:149px;
-            width:1340px;
+            height:138px;
             font:40px sans-serif;
-            position:relative;
             }
             .smallh1{
-                        position:absolute;
-                        bottom:0;
+                        display:inline-block;
+                        margin-top:98px;
+                        font:30px bold;
                         }
       .em{
-            color:rgb(6, 197, 197);
+            color:rgb(123, 231, 231);
             }
-a:link { color: rgb(12, 9, 192); text-decoration: none; }
-a:visited { color: black; text-decoration: none; }
-a:hover { color: white; text-decoration: none; }
+a:line { color: rgb(80,150,150); }
+a:visited { color: black; }
+a:hover { color: white; }
