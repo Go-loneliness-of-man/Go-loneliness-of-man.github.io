@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>表单元素</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="">
+  <style>
+    .listin{
+              border-left:8px dotted green;
+            }
+  </style>
+</head>
+
+<body>
+  <div id="h1"><span class="smallh1"></span></div>
+  <div id="body">
+    <h2>一、表单元素</h2>
+      <p>
+        表单元素是堆学起来令人崩溃的元素，我学了整整5天才弄完，因为元素和属性实在太多了.......
+        <table border="1">
+          <thead>
+            <caption>表单元素</caption>
+            <tr><th>序号</th><th style="width:100px">元素名</th></th><th style="width:1000px">描述</thwidth></tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>form</td><td>声明表单，属性:action、method、enctype、name、target、autocomplete、novalidata。</td></tr>
+            <tr><td>2</td><td>input</td><td>用户数据输入控件,属性:name、autofoucs、disabled、autocomplete、value、form、type</td></tr>
+            <tr><td>3</td><td>textarea</td><td>多行文本框，具有text的额外属性外，还有row、cols</td></tr>
+            <tr><td>4</td><td>select</td><td>下拉框列表,配合元素有option和optgroup，属性:size、multiple、autofocus、selected</td></tr>
+            <tr><td>5</td><td>button</td><td>添加按钮，功能有提交、重置、一般按钮。</td></tr>
+            <tr><td>6</td><td>fieldset</td><td>对表单元素进行分组，属性:name、disabled、form</td></tr>
+            <tr><td>7</td><td>label</td><td>将一个区域与一个input元素关联，提高用户体验</td></tr>
+            <tr><td>8</td><td>output</td><td>输出计算值，配合javescript使用</td></tr>
+          </tbody>
+        </table>
+        <details>
+          <summary>1.form</summary>
+          声明表单，是其它表单元素功能实现的基础。<br>
+          action:类似于href，链接到表单提交的页面，用法:action="页面链接"<br>
+          method:表单提交方式，有post和get两种，一般用get。<br>
+          enctype:定义浏览器发送给服务器的数据采用的编码格式，三种:application/x-www-form-urlencoded、multipart/form-data、text/plain。
+          第一种是默认属性值，不将文件上传到服务器，第二种可以，第三种是未规范的编码，不同浏览器不同，不建议使用。所以该属性一般使用第二个值。<br>
+          name:为表单定义名称，以便调用。<br>
+          target:设置表单提交的目标窗口，就像a元素一样<br>
+          autocomplete:设置表单是否记住用户数据，属性值有on和off。默认on<br>
+          novalidata:
+        </details>
+        <details>
+          <summary>2.input</summary>
+          表现就是用户数据输入框。效果如下:<br>
+          <form action="http://www.baidu.com">
+              <input name="qwer">
+          </form>
+          name:设置提交时input的名称，该名称会出现在提交后页面URL的末尾处。<br>
+          autofoucs:使页面打开时光标自动移动到该框上，没有属性值。<br>
+          disabled:禁用input。<br>
+          autocomplete:单独设置input元素是否记住用户数据。<br>
+          value:默认起始值。<br>
+          form:将表单外的元素与指定表单挂钩。要用到id属性，用法:form="表单id"<br>
+          <details>
+            <summary class="listin">type</summary>
+            type:默认情况下框内可以输入任何数据。而type可以对其进行设置，type具有很多属性值，并且每个属性值又会附带额外属性:<br>
+            <table border="1">
+              <thead>
+                <caption>type各种属性值</caption>
+                <tr><th>序号</th><th style="width:80px">属性名</th><th style="width:1000px">作用</th></tr>
+              </thead>
+              <tbody>
+                <tr><td>1</td><td>text</td><td>任意字符。同时为input提供了一系列额外属性:list、maxlength、pattern、placeholder、readonly、
+                disabled、size、value、required</td></tr>
+                <tr><td>2</td><td>password</td><td>密码框。额外属性与text一致</td></tr>
+                <tr><td>3</td><td>search</td><td>搜索框。额外属性与text一致</td></tr>
+                <tr><td>4</td><td>number、range</td><td>只能输入数字的框，确定数字的范围。额外属性:min、max、step，剩下的与text一致</td></tr>
+                <tr><td>5</td><td>date、month、time、week、datetime、datetime-local</td><td>能够选择日期和时间的控件。无额外属性</td></tr>
+                <tr><td>6</td><td>color</td><td>颜色选择按钮，无额外属性。</td></tr>
+                <tr><td>7</td><td>checkbox和radio</td><td>复选框和单选框。无额外属性。</td></tr>
+                <tr><td>8</td><td>submit、reset、button</td><td>与button元素相同，这三个值作用依次是提交、重置、普通按钮</td></tr>
+                <tr><td>9</td><td>image</td><td>图片提交按钮。无额外属性。</td></tr>
+                <tr><td>10</td><td>file</td><td>一个具有默认值的控件。无额外属性。</td></tr>
+                <tr><td>11</td><td>hidden</td><td>配合button使用，可以隐藏value值。无额外属性</td></tr>
+              </tbody>
+            </table>
+          </details>
+          <details>
+            <summary class="listin">1.text</summary>
+            maxlength:设置文本框可输入最大字符长度。<br>
+            size:设置文本框长度。<br>
+            value:初始值。<br>
+            readonly:只读，可以复制、提交，但是不能更改。效果如下:<br>
+            <form action="http://www.baidu.com">
+              <input type="text" readonly value="123">
+              <button>提交</button>
+            </form>
+            disabled:禁用。<br>
+            list:指定为文本框提供建议值的datalist元素，其值为datalist的id名。效果如下:<br>
+            <form>
+              <input type="text" list="list">
+            </form>
+            <datalist id="list">
+              <option value="1">苹果</option>
+              <option value="2" label="苹果">
+              <option value="3">
+            </datalist>
+            可以发现双击出现建议值列表，datalist的配套元素是option，用于添加建议值，option有两个属性值value和label，添加建
+            议值有3种写法，具体查看上方列表源代码。<br>
+            pattern:<br>
+            required:表明提交必须输入一个值，否则无法提交。<br>
+            placeholder:在框内显示一个淡灰色的输入提示。效果如下:<br>
+            <input type="text" placeholder="请输入字符"><br>
+          </details>
+          <details>
+            <summary class="listin">2.password</summary>
+            使输入字符全部变为星号，效果如下:<br>
+            <input type="password"><br>
+            额外属性与text一致。
+          </details>
+          <details>
+            <summary class="listin">3.search</summary>
+            一个搜索框，但只是样式，除火狐浏览器外，大多数浏览器会为搜索框出现个叉号。<br>
+            <input type="search"><br>
+            额外属性与text一致。
+          </details>
+          <details>
+            <summary class="listin">4.number和range</summary>
+            只限输入数字，有三个特定属性:max、min、step，最大值、最小值、步长，效果如下:<br>
+            <input type="number" min="10" max="30" step="5"><br>
+            额外属性与text一致。
+          </details>
+          <details>
+            <summary class="listin">5.data系列</summary>
+            用来让用户输入时间信息，date、month、time、week、datetime、datetime-local。效果依次如下:<br>
+            <input type="date"><br>
+            <input type="month"><br>
+            <input type="time"><br>
+            <input type="week"><br>
+            <input type="datetime"><br>
+            <input type="datetime-local"><br>
+            目前chrome和Opera浏览器支持，其它浏览器尚不明确。<br>
+          </details>
+          <details>
+            <summary class="listin">6.color</summary>
+            在浏览器里创建一个颜色选择按钮，效果如下:<br>
+            <input type="color" name="color">
+          </details>
+          <details>
+            <summary class="listin">7.checkbox和radio</summary>
+            复选框和单选框，其中单选框要注意分组时同一组的name要相同。各自效果如下:<br>
+            拳击<input type="checkbox" value="1">散打<input type="checkbox" value="2"><br>
+            男<input type="radio" name="first" value="3">女<input type="radio" name="first" value="4">
+          </details>
+          <details>
+            <summary class="listin">8.submit、reset、button</summary>
+            与button元素相同，这三个值作用依次是提交、重置、普通按钮。<br>
+            如果是submit，则还具有和button相同的属性。
+          </details>
+          <details>
+            <summary class="listin">9.image</summary>
+            图片提交按钮，效果如下:<br>
+            <form action="http://www.baidu.com">
+              <input type="image" src="../示例/这个世界只有强者和弱者.PNG">
+            </form><br>
+            点击后就会提交出去，同时在提交到的页面URL末尾，会显示图片被点击处的坐标。
+          </details>
+          <details>
+            <summary class="listin">10.email、tel、url</summary>
+            分别是供用户输入电子邮件、电话号码、URL的文本框。效果如下:<br>
+            <input type="email"><br>
+            <input type="tel"><br>
+            <input type="url"><br>
+          </details>
+          <details>
+            <summary class="listin">11.hidden</summary>
+            配合button使用，可以隐藏value值。效果如下:<br>
+            <form action="http://www.baidu.com">
+              <input type="hidden" value="19" name="hidden">
+              <button>提交(注意观察URL末尾)</button>
+            </form>
+          </details>
+          <details>
+            <summary class="listin">12.file上传</summary>
+            生成一个上传控件,效果如下:<br>
+            <input type="file" accept="image/gif,image/jpeg,image/png"><br>
+            其还有一个额外属性accept用于限制上传文件的类型。
+          </details>
+        </details>
+        <details>
+          <summary>3.textarea</summary>
+          多行文本框，效果如下:<br>
+          <textarea cols="60" rows="5">请输入您的建议</textarea><br>
+          除具有text的额外属性外，还有属性row设置初始显示行数和cols设置初始显示列数，行数和列数都是可以无限增大的。
+        </details>
+        <details>
+          <summary>4.select</summary>
+          下拉框列表,每个选项由option元素添加，效果如下:<br>
+          <form action="http://www.baidu.com">
+            <select name="学历">
+              <option value="1">高中</option>
+              <option value="2">大学</option>
+              <option value="3">研究生及以上</option>
+            </select>
+            <button>提交</button>
+          </form>
+          另外，它还可以在表单外部用form属性与某一表单挂钩。size属性可以设置它的下拉框高度。<br>
+          添加multiple属性时按下Ctrl键时多选，效果如下:<br>
+          <form action="http://www.baidu.com">
+            <select name="学历" multiple>
+              <option value="1">高中</option>
+              <option value="2">大学</option>
+              <option value="3">研究生及以上</option>
+            </select>
+            <button>提交</button>
+          </form>
+          还有，可以用optgroup元素为选项分组，效果如下:<br>
+          <form action="http://www.baidu.com">
+            <select name="学历">
+              <optgroup label="低学历">
+                <option value="1">高中</option>
+              </optgroup>
+              <optgroup label="本科及以上">
+                <option value="2">大学</option>
+                <option value="3">研究生及以上</option>
+              </optgroup>
+            </select>
+            <button>提交</button>
+          </form>
+          使用label属性来为optgroup分组设置名称。<br>
+          最后，它还有autofocus、required、selected(默认选定)属性。
+        </details>
+        <details>
+          <summary>5.button</summary>
+          添加一个表单按钮，按钮有各种用途。<br>
+          type:必要属性，属性值有submit、reset、button，功能分别是提交、重置、普通按钮。提交即跳转到表单的提交页面，重置是将表单内元素的值还原为
+          默认值，普通按钮本身没有任何作用，需要配合javescript使用。<br>
+          效果如下:<br>
+          <form action="http://www.baidu.com">
+            <fieldset>
+              <legend>注册信息</legend>
+              用户名<input name="qwer"><br>
+              密码<input name="password"><br>
+              <button type="submit">提交</button>
+              <button type="reset">重置</button>
+              </fieldse>
+          </form>
+          另外的，当type为submit时，button还可以有额外属性:<br>
+          form:指定按钮关联的表单。<br>
+          formaction:覆盖当前表单的action属性。<br>
+          formenctype:同上。<br>
+          formmethod:同上。<br>
+          formtarget:同上。<br>
+          formnovaildata:同上。<br>
+        </details>
+        <details>
+          <summary>6.fieldset</summary>
+          对表单内的元素进行分组，将其对应的元素包围即可。<br>
+          name、disabled、form等属性同上。<br>
+          &lt;legend&gt;:配套元素，为分组设置一个名称。效果如下:<br>
+          <form action="http://www.baidu.com">
+            <fieldset>
+              <legend>注册信息</legend>
+              用户名<input name="qwer"><br>
+              密码<input name="password"><br>
+            </fieldset>
+          </form>
+          这个样式可以利用CSS进行更改。
+        </details>
+        <details>
+          <summary>7.label</summary>
+          将一个区域与一个input元素关联，提高用户体验<br>
+          两种用法:<br>
+          1.连同input将一块区域用label包含，点击该区域任一位置，那么光标自动移动到input数据框内。<br>
+          2.将某一区域包围，不需要将input元素包含在内，使用label的for属性,用法:&lt;label for="指定input的id"&gt;被包围区域&lt;/label&gt;
+          &lt;input name="user" id=""&gt;<br>
+          效果如下:<br>
+          <form action="http://www.baidu.com">
+            <label for="qwer">用户名</label>
+            <input name="qwer" id="qwer">
+          </form>
+          点击用户名三个字时，光标移动到了框内。
+        </details>
+        <details>
+          <summary>8.output</summary>
+          输出计算值，配合javescript使用，效果如下:<br>
+          <form action="http://www.baidu.com" oninput="res.value=num1.valueAsNumber*num2.valueAsNumber">
+            <input type="number" id="num1">×<input type="number" id="num2">=<output for="num1 num2" name="res"></output>
+          </form>
+        </details>
+      </p>
+  </div>  
+</body>
+
+</html>
