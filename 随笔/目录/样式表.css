@@ -1,0 +1,32 @@
+html { background: rgb(210, 210, 210); }
+#body{
+      margin:1% 10% 5% 10%;
+      border:2px solid gray;
+      background: rgb(210,210,210);
+      background-size: contain;
+      font:17px '微软雅黑' sans-serif;
+      line-height:28px;
+      padding:20px;
+    }
+      #h1 {
+        color: rgb(40, 40, 40);
+        border-bottom: 5px solid firebrick;
+        height: 100px;
+        font: 40px sans-serif;
+      }
+
+      .smallh1 {
+        display: inline-block;
+        margin-top: 50px;
+        font: bold 30px;
+      }
+
+      .em {
+        color: rgb(248, 0, 0);
+        font-weight:blod;
+      }
+      .annotation{ background:yellow; }
+
+a:link { color: rgb(53, 13, 199); text-decoration: none; }
+a:visited{ color: black; text-decoration: none; }
+a:hover{ color: white; text-decoration: none; }
