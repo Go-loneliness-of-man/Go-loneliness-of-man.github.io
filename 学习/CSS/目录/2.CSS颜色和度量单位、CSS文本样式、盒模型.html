@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>CSS颜色和度量单位、CSS文本样式、盒模型</title>
+  <meta charset="UTF-8">
+  <style>
+    .listin{
+              border-left:8px dotted green;
+            }
+    #body p{ 
+              text-indent:2em;
+            }
+  </style>
+</head>
+
+<body>
+  <div id="h1"><span class="smallh1">CSS颜色和度量单位、CSS文本样式、盒模型</span></div>
+  <div id="body">
+    <h2>一、CSS颜色和度量单位</h2>
+      <p>
+        《Head First HTML与CSS》中已有很多相关的知识，这里只记载其中没有的内容。<br>
+        <details>
+          <summary>CSS颜色</summary>
+          十进制表示颜色的方式又分四种:rgb、rgba、hsl、hsla<br>
+          rgb:即红、绿、蓝混合，数值0~255。<br>
+          rgba:在rgb的基础上加了个表示透明度的选项,示例:rgba(0,128,128,0.4);,透明度为0.4<br>
+          hsl:HSL模型，即用色相(Hue)、饱和度(Saturation)、亮度(Lightness)来表示颜色，示例:hsl(122,100%,21%);<br>
+          hsla:同rgba，增加了透明度选项。<br>
+        </details>
+        <details>
+          <summary>CSS度量单位</summary>
+          度量单位分两种，绝对度量单位、相对度量单位。<br>
+          绝对长度单位:in(英寸)、cm(厘米)、mm(毫米)、pt(磅)、pc(派卡,相当于新四号铅字的尺寸)<br>
+          相对长度单位:em(父元素字号的倍数)、rem(根元素字号的倍数)、px(像素，取决于分辨率)、%(父元素字号的倍数)<br>
+        </details>
+      </p>
+    <h2>二、CSS文本样式</h2>
+      <p>
+        <details>
+          <summary>字体大小</summary>
+          font-size<br>
+          一些固定大小的属性值:<br>
+          xx-small、x-small、small、medium、large、x-large、xx-large<br>
+          相对大小值:<br>
+          smaller、larger
+        </details>
+        <details>
+          <summary>font简写</summary>
+          以font开头的属性，可以用font来统一设置其属性值。<br>
+          简写顺序:是否倾斜、是否加粗、字体大小/(行高)、字体家族。<br>
+        </details>
+        <details>
+          <summary>各种设置文本的CSS属性</summary>
+          <details>
+            <summary class="listin">1.text-decoration</summary>
+            为文本添加线条，属性值有none、underline、overline、line-through,依次是无线条、下划线、上划线、删除线。
+          </details>
+          <details>
+            <summary class="listin">2.text-shadow</summary>
+            设计艺术字，属性值依次填写，分别为水平偏移、垂直偏移、阴影模糊度、阴影颜色(可选)。例如:<br>text-shadow:5px 5px 3px red;
+          </details>
+          <details>
+            <summary class="listin">3.text-align</summary>
+            控制文本方位，属性值有left、right、center、justify、start、end,依次是左对齐、右对齐、水平垂直居中、两端对其、令文本处于开始边界、令
+            文本处于结束边界。其中，两端对齐不同于office中的对齐，其最后一排会左对齐，是一种不错的对齐方式。
+          </details>
+          <details>
+            <summary class="listin">4.white-space</summary>
+            处理空白符的处理方式，属性值有normal(默认)、nowrap、pre、pre-line、pre-wrap,依次是空白符压缩，文本自动换行、空白符压缩， 文本不换
+            行、空白符保留，遇到换行符换行、空白符压缩，遇到换行符或排满时换行、空白符保留，遇到换行符或排满时压缩。<br>
+            注意:空白符即空格，换行符不是指br元素，是指回车符。br元素是必换行的。
+          </details>
+          <details>
+            <summary class="listin">5.letter-spacing</summary>
+            设置每个字符间的间距,以像素为单位。<br>
+          </details>
+          <details>
+            <summary class="listin">6.word-spacing</summary>
+            设置英文单词间的间距。<br>
+          </details>
+          <details>
+            <summary class="listin">7.line-height</summary>
+            设置行高，可使用px，数字1、2、3等，百分数。其中数字和百分数代表的是字体本身高度的倍数。<br>
+          </details>
+          <details>
+            <summary class="listin">8.word-wrap</summary>
+            让过长的英文单词断开，属性值有normal和break-word,后者的作用是让页面中超出屏幕范围的单词断开。<br>
+          </details>
+          <details>
+            <summary class="listin">9.text-indent</summary>
+            设置段落首行缩进，可使用px也可使用em，一般使用em更方便。
+          </details>
+        </details>
+      </p>
+    <h2>三、盒模型</h2>
+      <p>
+        盒模型是CSS对元素的基本概念，每个元素在CSS中都是一个盒子，其大体分为块状盒子和内联盒子，细分有很多种。<br>
+        <details>
+          <summary>元素尺寸</summary>
+          这类属性大约有:width、height、min-width、min-height、max-width、max-height,依次是设置元素宽、高，元素最小宽、高，元素最大宽、高。
+          <br>
+          它们的属性值:这几个属性的属性值是通用的，auto、长度值、百分比。百分比是按父元素尺寸自动进行调整的，如果没有父元素则是按照屏幕尺寸调整。<br>
+          auto:自适应，根据元素的内容来调整大小，由内容来撑开盒子。<br>
+          其它的像border、padding、margin等在《Head First HTML和CSS》里有。
+        </details>
+        <details>
+          <summary>溢出</summary>
+          当内容超出盒子所能容纳范围时就会溢出，用overflow属性来设置其显示方式，加后缀“-x”或“-y”可以设置不同溢出方向的显示方式，有四个值:<br>
+          auto:如果溢出，显示滚动条。<br>
+          hidden:隐藏掉溢出的部分。<br>
+          scroll:一直显示滚动条<br>
+          visible:默认值，显示溢出值<br>
+          这个滚动条不是指窗口边出现滚动条，而是出现在元素内容区边界处。
+        </details>
+        <details>
+          <summary>元素可见性和盒模型</summary>
+          可用visibility属性设置,有三个属性:<br>
+          visible:默认值，可见。<br>
+          hedden:不可见，但会占据空间。<br>
+          collapes:如果不是表格，和hidden一样，如果是表格，不可见并且不占空间。<br>
+          也可以用display来实现，它有四个常用属性:none、block、inline、inline-block。其中，none为不可见并不占空间。<br>
+          display是设置盒模型类型的，上述四个值依次是隐藏、块级、内联、内联块级。<br>
+          块级和内联的主要区别是内联不能设置某些元素尺寸，<b style="color:red;">没有宽、高</b>,可以有内、外边距，但外边距在上下两个方向上无效
+          果。而像img这样的元素就是内联块级，可以设置块级的所有属性，却不换行。元素都有默认的盒子类型，但它们都可以用display属性改变。<br>
+        </details>
+        <details>
+          <summary>浮动</summary>
+          这涉及文档流概念，使用float属性将元素浮动起来，脱离原文档流漂到其上方成为另一个文档流，float有两个属性:left和right，分别是向右浮动和向左
+          浮动。<br>
+          浏览器是内容至上的，所以即使浮动元素将其下方的文档流元素遮挡，但这个元素只要还有没被遮挡的部分，即部分遮挡时，内容就会被转移到露出来的部分，
+          这个特性可以用来弄一些特效，例如文字环绕图片效果。<br>
+          由于浮动元素的存在，导致文档流中元素的布局顾虑较多，所以就有了可以清除浮动产生的负面因素的属性clear,它有四个属性值:<br>
+          none:默认值，两边都可以浮动。<br>
+          left:左边不可以浮动<br>
+          right:右边不可以有浮动<br>
+          both:元素的两边都不可以有浮动，最常用<br>
+        </details>
+      </p>
+  </div>  
+</body>
+
+</html>

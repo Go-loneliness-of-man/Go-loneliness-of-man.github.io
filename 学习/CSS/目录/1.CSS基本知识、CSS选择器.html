@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title></title>
+  <meta charset="UTF-8">
+  <style>
+  
+  </style>
+</head>
+
+<body>
+  <div id="h1"><span class="smallh1">CSS基本知识、CSS选择器</span></div>
+  <div id="body">
+    <h2>一、CSS基本知识</h2>
+      <p>
+        CSS有三种使用形式，外部引用、文档内嵌、元素内嵌，分别是利用link元素、style元素、style属性。<br>
+        优先级:<br>
+        由高到底依次是:元素内嵌、文档内嵌、外部引用。一般的，将link元素放在最上方。<br>
+        也可以使用强制最高优先级“!important”,只要在对应css属性后加上这段话，其优先级即最高。<br>
+        样式继承:<br>
+        样式继承只适用于元素的外观(文字、颜色、字体等)，如果要继承布局样式，就要将子元素的对应属性设置为inherit。
+      </p>
+    <h2>二、CSS选择器</h2>
+      <p>
+        大概分四个大类:基本选择器、复合选择器、伪元素选择器、伪类选择器。<br>
+        <details>
+          <summary>1.基本选择器</summary>
+          是一些使用简单且出现频率高的选择器。<br>
+          <span class="em">通用选择器</span>:“*”，选择所有元素。常用于初始化整个页面元素的默认内、外边距<br>
+          <span class="em">元素选择器</span>:用元素名来选择<br>
+          <span class="em">id选择器</span>:使用元素的id来选择，格式:#id名<br>
+          <span class="em">class选择器</span>:也叫类选择器，格式:.类名<br>
+          <span class="em">属性选择器</span>:根据元素具有的属性来选择,这个选择器有多种用法，格式:[属性名]、[属性名="属性值"]、[属性名^="属性值开头部分"]、[属性名$="属性
+          值结尾部分"]、[属性名*="属性值包含的指定字符"]、[属性名~="属性值"]<br>
+          它们的作用依次是:选择具有某个属性的所有元素、选择同时具有该属性和属性值的所有元素、选择具有该属性且属性值开头部分相同的元素、选择具有该属性
+          且属性值结尾部分相同的元素、选择具有该属性且属性值内包含指定字符的元素、选择具有该属性且属性值不止一个并且具有指定属性值的元素。<br>
+        </details>
+        <details>
+          <summary>2.复合选择器</summary>
+          <span class="em">分组选择器</span>:选择多个元素，格式:元素名，元素名，元素名...(每个用逗号隔开即可)<br>
+          <span class="em">子孙选择器</span>:选择某个元素的嵌套元素,格式:元素名 元素名 元素名...(每个用空格隔开)<br>
+          <span class="em">子选择器</span>:选择某个元素的所有子元素，格式:元素名 > 元素名<br>
+          <span class="em">相邻兄弟选择器</span>:选择该元素相邻的兄弟元素，格式:元素名+元素名<br>
+          <span class="em">普通兄弟选择器</span>:选择该元素的所有兄弟元素，格式:元素名~元素名<br>
+          复合选择器可以使用所有基本选择器进行组合。<br>
+        </details>
+        <details>
+          <summary>3.伪元素选择器</summary>
+          <span class="em">元素名::first-line</span>:选择当前层级下所有块级元素文本的首行<br>
+          <span class="em">元素名::first-letter</span>:选择当前层级下所有块级元素文本的首字母(其实对汉字也管用)<br>
+          <span class="em">元素名::before</span>:在该元素之前插入内容，要与content属性配合，用法,a::before{ content:'内容' }，即在a元素前
+          插入内容<br>
+          <span class="em">::after</span>:在该元素之后插入内容，用法同上。<br>
+          伪元素选择器也可用复合选择器组合，这样就能达到筛选的作用。<br>
+        </details>
+        <details>
+          <summary>4.伪类选择器</summary>
+          分四种类型:结构性伪类选择器、UI型伪类选择器、动态伪类选择器、其它伪类选择器。<br>
+          <details>
+            <summary class="listin">结构性伪类选择器</summary>
+            根据元素在文档中的位置来选择的选择器。<br>
+            <span class="em">:root</span>:根元素选择器，选择文档的根元素。<br>
+            <span class="em">父元素 > 子元素:first-child</span>:选择该元素指定种类的第一个子元素。<br>
+            <span class="em">父元素 > 子元素:last-child</span>:选择该元素指定种类的的最后一个子元素。<br>
+            <span class="em">父元素 > 子元素:only-child</span>:配合子元素选择器使用，选择只有一个子元素的那个元素的子元素。<br>
+            <span class="em">父元素 > 子元素:only-of-type</span>:配合子元素选择器使用，选择只有一个指定种类子元素的那个元素的该种类子元素。<br>
+            <span class="em">:nth-child(n)系列</span>:配合子元素选择器使用，选择某个(些)指定子元素。格式:<br>
+            父元素 > 子元素:nth-child(n){},选择第n个子元素。<br>
+            父元素 > 子元素:nth-last-child(n){},选择倒数第n个子元素。<br>
+            父元素 > 子元素:nth-of-type(n){},选择特定类型的第n子元素。<br>
+            父元素 > 子元素:nth-last-of-type(n){},选择特定类型的倒数第n个子元素。<br>
+          </details>
+          <details>
+            <summary class="listin">UI伪类选择器</summary>
+            主要用于表单元素。<br>
+            <span class="em">:enabled</span>:选择启用状态的元素。<br>
+            <span class="em">:disabled</span>:选择禁用状态的元素。<br>
+            <span class="em">:checked</span>:应用于复选框，选择复选框中处于“勾选”状态的框。<br>
+            <span class="em">:default</span>:应用于复选框，选择一组元素中被设置了“默认”的元素。<br>
+            <span class="em">:valid</span>:应用于具有required属性的文本框，设置其默认状态的样式。<br>
+            <span class="em">:invalid</span>:应用于具有required属性的文本框，设置其提示状态的样式。<br>
+            <span class="em">:required</span>:选择具有required属性的文本框。<br>
+            <span class="em">:optional</span>:选择不具有required属性的文本框。<br>
+          </details>
+          <details>
+            <summary class="listin">动态伪类选择器</summary>
+            根据元素的状态选择元素，即HTML的伪类。<br>
+            <span class="em">:link</span>:设置默认状态的超链接的样式。<br>
+            <span class="em">:visited</span>:设置已访问过的超链接的样式。<br>
+            <span class="em">:hover</span>:设置处于悬停状态的超链接的样式。<br>
+            <span class="em">:action</span>:设置点击超链接时超链接的样式。<br>
+            <span class="em">:focus</span>:设置超链接获得“焦点”时超链接的样式。<br>
+          </details>
+          <details>
+            <summary class="listin">其它伪类选择器</summary>
+            <span class="em">:not(选择器)</span>:否定选择器，反选，即()内选择器的补集。<br>
+            <span class="em">:empty</span>:选择没有任何内容的元素。<br>
+            <span class="em">:target</span>:设置该元素id被定位到时的样式，可用于查找某个元素。<br>
+            <span class="em">::selection</span>:伪元素选择器，设置文本在浏览器中被选中时的样式。<br>
+          </details>
+        </details>
+      </p>
+  </div>  
+</body>
+
+</html>

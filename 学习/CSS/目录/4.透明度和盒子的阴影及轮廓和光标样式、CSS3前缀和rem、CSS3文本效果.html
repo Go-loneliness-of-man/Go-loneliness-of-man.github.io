@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>透明度和盒子的阴影及轮廓和光标样式、CSS3前缀和rem、CSS3文本效果</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="">
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <div id="h1"><span class="smallh1">透明度和盒子的阴影及轮廓和光标样式、CSS3前缀和rem、CSS3文本效果</span></div>
+  <div id="body">
+    <h2>一、透明度和盒子的阴影及轮廓和光标样式</h2>
+      <P>
+        透明度很简单:
+        opacity,设置元素整体的不透明度，属性值从0~1，0不可见，1最不透明。<br>
+        <details>
+          <summary>阴影</summary>
+          box-shadow,六个属性值:<br>
+          hoffset:阴影水平偏移量，正值代表向右<br>
+          voffset:阴影垂直偏移量，正值代表向下<br>
+          blur:阴影的模糊度，默认为零<br>
+          spread:阴影延伸半径，相当于水平、垂直偏移量<br>
+          color:阴影颜色<br>
+          inset:将阴影设置为盒子的内部阴影<br>
+          设置时要按顺序依次设置，前四个都是长度值，后四个都是可选属性值，例子:box-shadow:10px 3px 4px 1px gray;
+        </details>
+        <details>
+          <summary>轮廓</summary>
+          outline,相当于在盒子的边框外再加一层边框。属性如下:<br>
+          outline:简写，像边框一样，依次是宽度、样式、颜色<br>
+          outline-offset:设置轮廓与盒子边框边缘的距离<br>
+        </details>
+        <details>
+          <sumary>光标样式</sumary>
+          cursor，可以设置鼠标在元素范围内显示的样式，属性值非常多,不同的属性值代表不同的鼠标样式。<br>
+        </details>
+      </P>
+    <h2>二、CSS3前缀和rem</h2>
+      <p>
+        <details>
+          <summary>CSS前缀</summary>
+          CSS属性的演变一般经历三个阶段:<br>
+          1.属性被提出,但未列入标准，浏览器厂商通过私有前缀来支持该属性。<br>
+          2.属性被列入标准，前缀变得可有可无。<br>
+          3.属性不再需要前缀，所有浏览器都广泛支持。<br>
+          当处于第三阶段时，CSS前缀便不再需要，浏览器会剔除掉它，使其失效。下面是几大浏览器厂商的前缀:<br>
+          Chrome、safari:-webkit-<br>
+          Opera:-o-<br>
+          Firefox:-moz-<br>
+          IE:-ms-<br>
+          对于没有被广泛支持的属性，一般的做法是，写上所有带前缀的该属性，最后再写一行不带前缀的该属性。
+        </details>
+        <details>
+          <summary>rem</summary>
+          长度单位rem，即根em，顾名思义，直接与根元素的挂钩，也就是与html元素的尺寸挂钩。<br>
+          使用rem有利于统一页面整体的风格，便于对大小进行计算。
+        </details>
+      </p>
+    <h2>三、CSS3文本效果</h2>
+      <p>
+        <details>
+          <summary>text-shadow</summary>
+          艺术字，前边已记过，属性值可正可负，并且属性值可以多重叠加，以下是一个例子:<br>
+          <span style="letter-spacing:10px;
+                       margin:30%;
+                       font-size:100px; 
+                       text-shadow:0px 0px 0 rgb(188,178,188),
+                                   1px 0px 0 rgb(173,163,173),
+                                   2px 0px 0 rgb(157,147,157),
+                                   3px 0px 0 rgb(142,132,142),
+                                   4px 0px 0 rgb(126,116,126),
+                                   5px 0px 0 rgb(111,101,111),
+                                   6px 0px 0 rgb(95,85,95),
+                                   7px 0px 0 rgb(79,69,79);">
+          刃舞</span>
+          <pre>
+          代码如下:text-shadow:0px 0px 0 rgb(188,178,188),
+                  1px 0px 0 rgb(173,163,173),
+                  2px 0px 0 rgb(157,147,157),
+                  3px 0px 0 rgb(142,132,142),
+                  4px 0px 0 rgb(126,116,126),
+                  5px 0px 0 rgb(111,101,111),
+                  6px 0px 0 rgb(95,85,95),
+                  7px 0px 0 rgb(79,69,79);
+          </pre>
+          这类艺术字在网上有大量现成制作好的效果，所以一般不必自己制作。<br>
+        </details>
+        <details>
+          <summary>text-overflow</summary>
+          文本裁剪，控制溢出部分的文本，可以使用其来实现一个省略号样式，要配合white-space的限制文本自动换行和overflow的隐藏溢出部分来使用，text-o
+          verflow有两个属性值:<br>
+          1.clip:默认值，裁剪掉溢出部分<br>
+          2.ellipsis:裁剪掉溢出文本，然后用省略号"..."表示有部分文本未显示<br>
+          具体效果如下:<br>
+          <div style="background:silver;
+                      width:100px;
+                      white-space:nowrap;
+                      text-overflow:ellipsis;
+                      overflow:hidden;">文本裁剪，控制溢出部分的文本，可以使用其来实现一个省略号样式，要配合white-space来限</div>
+          代码如下:<br>
+          <pre>
+            background:silver;
+            width:100px;
+            white-space:nowrap;
+            text-overflow:ellipsis;
+            overflow:hidden;
+          </pre>
+        </details>
+        <details>
+          <summary>text-stroke</summary>
+          是个比较好看的属性，相当于给文字加个表框，使用格式是,-webkit-text-stroke:长度值 颜色值;<br>
+          效果:<br>
+          <span style="margin:30%;
+                       font-size:70px;
+                       -webkit-text-stroke:3px yellow;">刃舞</span><br>
+          如你所见，目前它还未被完全纳入标准，需要加前缀-webkit-
+        </details>
+      </p>
+  </div>
+</body>
+
+</html>

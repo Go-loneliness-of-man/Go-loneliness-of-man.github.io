@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title></title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="">
+  <style>
+  html{ 
+        height:200%;
+        background-image:linear-gradient(rgb(0,0,0),rgba(206, 8, 8,0.96) 199%);
+        color:rgb(150,150,150);
+      }
+  #kuai1{
+          margin:25px 0px 0px 20px;
+          width:576px;
+          border:5px solid black;
+          border-bottom-left-radius:250px;
+          border-top-right-radius:280px;
+          height:280px;
+          background:repeating-radial-gradient(circle 80px,gray,black);
+          display:inline-block;
+        }
+  #radius1{
+            height:310px;
+            width:310px;
+            border-radius:155px;
+            background:black;
+            position:absolute;
+            top:25px;
+            left:165px;
+          }
+  #kuai2{
+          margin:25px 0px 0px 120px;
+          width:576px;
+          border:5px solid black;
+          border-top-left-radius:280px;
+          border-bottom-right-radius:250px;
+          height:280px;
+          background:repeating-radial-gradient(circle 80px,gray,black);
+          display:inline-block;
+        }
+  #radius2{
+            height:310px;
+            width:310px;
+            border-radius:155px;
+            background:black;
+            position:absolute;
+            top:25px;
+            left:878px;
+          }
+  </style>
+</head>
+
+<body>
+  <div id="h1"><span class="smallh1"></span></div>
+  <div id="body">
+    <div id=kuai1></div><div id="radius1"></div>
+    <div id="kuai2"></div><div id="radius2"></div>
+    <h2>一、CSS背景渐变效果</h2>
+      <p>
+        CSS背景渐变主要有两种方式:线性渐变、径向(放射性)渐变。<br>
+        <details>
+          <summary>线性渐变</summary>
+          从一点向另一点进行渐变，
+          background-image:linear-gradient(rgb(0,0,0),rgba(206, 8, 8,0.96) 199%);
+
+          background: black;
+          background-image:linear-gradient(rgba(206, 8, 8,0.6),rgba(206,8,8,0.1));
+        </details>
+        <details>
+          <summary>径向渐变</summary>
+
+        </details>
+      </p>
+  </div>  
+</body>
+
+</html>
+
+由Web采用rgb颜色模式进行推测，经过一些实验验证，得出以下结论:<br>
+线性渐变的原理是使上一个颜色的亮度逐渐降低，下一个颜色亮度逐渐升高来达到的，其亮度变化速率由所有颜色亮度决定，因此在配置颜色时，亮度高的色彩由于亮度大可
+其亮度的变化范围大所以占据的空间更大(如红色、绿色等)，而亮度低的色彩由于亮度小其亮度的可变化范围小因此占据空间小(比如黑色、灰色等)。这样会使亮度低的色彩
+与亮度高的色彩搭配起来进行线性渐变时的空间分配变得难以控制<br>
+可使用百分比来调整空间的分配，但这是个很奇怪的调整方式，目前通过实验推测到的是:<br>
+1.若是给低亮度颜色强行加上大的空间,那么由于亮度变化范围不足以填充掉全部空间，浏览器会自动以纯色填充，直到空间小到可以进行渐变为止。<br>
+2.在给除第一个外的颜色设定百分比时，其所占空间范围与亮度设置成反比，百分数越大其占据空间反而越小。<br>

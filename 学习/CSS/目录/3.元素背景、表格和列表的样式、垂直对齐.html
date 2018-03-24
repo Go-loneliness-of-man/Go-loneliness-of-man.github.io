@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>元素背景、表格和列表的样式、垂直对齐</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="">
+  <style>
+    .listin{ border-left:8px dotted green; }
+    table{
+            width:300px;
+            height:150px;
+            border:2px solid yellow;
+            text-align:center;
+            border-collapse:collapse;
+          }
+    tbody tr td{
+                  border:2px solid yellow;
+                }
+    th{
+        empty-cells:hide;
+      }
+    ol{
+        list-style-type:circle;
+      }
+  </style>
+</head>
+
+<body>
+  <div id="h1"><span class="smallh1">元素背景、表格和列表的样式、垂直对齐</span></div>
+  <div id="body">
+    <h2>一、元素背景</h2>
+      <p>
+        设置元素背景的属性主要就是background系列，它们有很多，如下:
+        <details>
+          <summary class="listin">1.background-color</summary>
+          设置背景颜色，属性值主要分两种:<br>
+          颜色、transparent(透明)<br>
+          颜色即CSS中设置颜色的值，设置透明可以透出其父元素或下方的背景。<br>
+        </details>
+        <details>
+          <summary class="listin">2.background-image</summary>
+          将一个图片作为元素的背景,属性值有两种:<br>
+          none、url(图片路径)<br>
+          前者即默认值，有时也可以用来清除父元素的背景图片。url是指定到一个图片。
+        </details>
+        <details>
+          <summary class="listin">3.background-repeat</summary>
+          设置背景图片的平铺方式,属性值有:<br>
+          repeat、repeat-x、repeat-y、no-repeat<br>
+          依次是水平垂直平铺、水平平铺、垂直平铺、不重复。
+        </details>
+        <details>
+          <summary class="listin">4.background-size</summary>
+          设置背景图片的显示尺寸,属性值有:<br>
+          auto:默认值，图片的原本尺寸<br>
+          cover:等比例放缩图片，用一张图片完全覆盖元素空间，图片可能会部分超出元素范围，超出部分不显示<br>
+          contain:等比例放缩图片，当图片一边接触元素边界时停止放缩，然后重复，覆盖元素空间<br>
+          长度值:用长度值控制图片的大小，依次是长度、高度<br>
+          百分数:占据元素空间范围的百分数，常用值是100%<br>
+        </details>
+        <details>
+          <summary class="listin">5.background-position</summary>
+          设置图片在元素中的位置,属性值有:<br>
+          top、left、right、top、<br>
+          bottom:使用这个属性值时要注意，元素要有足够的高度才有效果。<br>
+          center:居中<br>
+          有些属性值是可以组合的，例如top right是右上。
+        </details>
+        <details>
+          <summary class="listin">6.background-attachment</summary>
+          设置背景图片的固定对象，属性值有:<br>
+          scroll:背景固定于页面，随页面滚动<br>
+          fixed:背景固定于浏览器窗口，不随页面滚动，俗称水印效果<br>
+        </details>
+        <details>
+          <summary class="listin">7.background-clip</summary>
+          剪裁背景，属性值与background-origin一样，但作用不一样:<br>
+          border-box:剪裁掉边框外的背景<br>
+          padding-box:剪裁掉内边距外的背景<br>
+          content-box:裁剪掉内容区外的背景<br>
+        </details>
+        <details>
+          <summary class="listin">8.background-origin</summary>
+          确定背景的显示范围，属性值有:<br>
+          border-box:在边框及以内范围显示<br>
+          padding-box:默认值，在内边距及以内范围显示<br>
+          content-box:只在内容区显示<br>
+        </details>
+        <details>
+          <summary class="listin">9.background</summary>
+          简写，属性值要按一定顺序写:<br>
+          color、image、repeat、attachment、position/size、origin、clip
+        </details>
+      </p>
+    <h2>二、表格、列表的样式</h2>
+      <p>
+        有些通用属性(如宽高、边框、文本样式、对齐方式等)对表格和列表适用，有些属性则对其不适用，而表格和列表也各自有其专有的CSS属性。<br>
+        专有属性:<br>
+        <details>
+          <summary>表格</summary>
+          <table border="10">
+            <thead>
+              <caption>户口</caption>
+              <tr><th>姓名</th><th></th><th>年龄</th></tr>
+            </thead>
+            <tbody>
+              <tr><td>张三</td><td>男</td><td>21</td></tr>
+              <tr><td>李四</td><td>男</td><td>31</td></tr>
+            </tbody>
+          </table>
+          border-collapse:控制单元格的边框，两个属性值:<br>
+          separate,默认值，单元格边框独立。<br>
+          collapse,单元格边框合并,即单元格边框变成了一条线,就像上文表格的td一样。<br>
+          <br>
+          border-spacing:设置单元格边框的宽度，使用长度值。在单元格独立状态下有效<br>
+          <br>
+          caption-side:设置表格标题的位置，两个值，top和bottom，默认top<br>
+          <br>
+          empty-cells:设置无内容的单元格边框的有无，两个值，show和hide，默认show<br>
+          <br>
+          table-layout:设置表格长度是否自适应，两个值，auto和fixed，默认auto会使内容尽量显示在一行，而fixed不会，它默认使单元格长度相同。<br>
+          <br>
+          经验:表格的边框分table本身的外部边框和每个单元格自身的边框。<br>
+        </details>
+        <details>
+          <summary>列表</summary>
+          主要设置列表项前方标记的样式。
+          <ol>
+            <li>一</li>
+            <li>二</li>
+            <li>三</li>
+            <li>四</li>
+          </ol>
+          list-style-type,设置列表项前方标记的样式，属性值有以下:<br>
+          none无、disc实心圆、circle空心圆、square实心方块、decimal数字(默认)、lower-roman小写罗马数字、upper-roman大写罗马、lower-alpha
+          小写英文字母、upper-alpha大写英文字母。<br>
+          <br>
+          list-type-position:设置标记的位置，两个值，outside(默认)和inside，分别是位于列表盒子外部和内部<br>
+          <br>
+          list-type-image:是否使用外部图片标记，两个值，none和url(路径)<br>
+          <br>
+          list-type:简写，顺序是style、position、image
+        </details>
+      </p>
+    <h2>三、垂直对齐</h2>
+      vertical-align,使用对象是表格内的文本或表格外的内联元素，分两种使用环境，表格内和其它。<br>
+      <details>
+        <summary>表格内</summary>
+        四个属性值:baseline、top、middle、bottom。其中第一个是与基线对齐<br>
+      </details>
+      <details>
+        <summary>其它</summary>
+        在其它元素中，它是使用长度值或百分数来进行设置的，正数代表向上，负数代表向下。<br>
+        比如在一个块元素中使一个内联元素沉到底部:<br>
+        <div style="width:150px; height:100px; background:yellow;"><span style="background:red; vertical-align:-70px; 
+          margin:20%">内联</span></div>
+        并且，这个移动是不受父级块元素范围限制的。
+      </details>
+      这个属性还可以设置文本的上标和下标，分别是super和sub属性值，作用是下标和上标，如100<span style="vertical-align:super">3</span>
+  </div>
+</body>
+
+</html>

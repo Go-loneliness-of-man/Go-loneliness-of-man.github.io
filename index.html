@@ -6,8 +6,8 @@
   <meta charset="utf-8">
   <style type="text/css">
     body{
-          background:url(图片/右上角.PNG) no-repeat;
-        }
+          background:url(图片/右上角.PNG) no-repeat;      
+        }                                                /*页面整体背景*/
     div ul{
             margin:0px;
             padding:0px;
@@ -15,32 +15,58 @@
             width:83px;
             border:3px solid black ;
             border-radius:8px;
-            height:155px;
-          }
+            height:155px;                                              
+          }                                               /*ul列表整体样式*/
     li{
-        background:rgb(200,0,0);
+        background:rgb(255,0,0);
         width:70px;
         height:20px;
         margin:10px 20px;
         padding:6px;
         border:3px solid black;
-        border-radius:10px;
+        border-radius:10px;                               /*列表项样式*/
       }
     li:hover{
-              padding:15px;
+              width:80px;
               background:rgb(250,0,0);
-            }
+              font-size:20px;
+            }                                              /*列表项在指针悬停状态下的样式*/
     a:link{ color:saddlebrown; text-decoration:none; }
     a:visited{ color:gray; text-decoration:none; }
-    a:hover{ color:white; text-decoration:none; }
-    iframe{
-            margin-left:123px;
-            margin-top:-162px;
+    a:hover{ color:white; text-decoration:none; }         /*定制a元素样式*/
+    #study:hover iframe{ display:block; }
+    #study:hover{ padding:5px 10px 15px 10px; }                       /*指定学习笔记选项的细节样式*/
+    #study2{
+            position:absolute;
+            top:155px;
+            left:134px;
             border:3px solid black;
             border-radius:10px;
             display:none;
-          }
-    ul:hover iframe{ display:block; }
+          }                                                  /*学习笔记选项的样式*/
+    #artical:hover iframe{ display:block; }
+    #artical:hover{ 
+                    width:70px;
+                    padding:5px 0px 15px 30px;
+                  }                                                     /*指定随笔选项的细节样式*/
+    #artical2{
+                position:absolute;
+                top:155px;
+                left:134px;
+                border:3px solid black;
+                border-radius:10px;
+                display:none;
+              }                                               /*随笔选项样式*/
+    #time:hover iframe{ display:block; }
+    #time:hover{ padding:5px 10px 15px 10px; }                          /*指定岁月如梭选项的细节样式*/
+    #time2{
+            position:absolute;
+            top:155px;
+            left:134px;
+            border:3px solid black;
+            border-radius:10px;
+            display:none;
+          }                                                    /*岁月如梭选项样式*/
     .smallh1{
               font-size:40px;
               font-weight:bold;
@@ -60,13 +86,15 @@
     <h2>浏览项</h2>
       <p>
         <ul>
-          <li><a href="学习/index.html"
-                 target="1">学习笔记</a></li>
-          <li><a href="随笔/index.html"
-                 target="1">随笔</a></li>
-          <li><a href="珍惜时间.html"
-                 target="1">岁月如梭</a></li>
-        <iframe width="1200px" height="500px" name="1"></iframe>
+          <li id="study">
+              <span style="color:gray;">学习笔记</span>
+              <iframe id="study2" width="1200px" height="500px" src="学习/index.html"></iframe></li>
+          <li id="artical">
+                <span style="color:gray;">随笔</span>
+                <iframe id="artical2" width="1200px" height="500px" src="随笔/index.html"></iframe></li>
+          <li id="time">
+                <span style="color:gray;">岁月如梭</span>
+                <iframe id="time2" width="1200px" height="500px" src="珍惜时间.html"></iframe></li>
         </ul>
       </p>
   </div>
