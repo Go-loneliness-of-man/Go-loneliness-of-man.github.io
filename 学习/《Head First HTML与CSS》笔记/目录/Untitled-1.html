@@ -1,35 +1,91 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>特定性的计算方法、</title>
-    <meta charset="utf-8">
-    <link type="text/css" rel="stylesheet" href="../样式表.css">
-    <style type="text/css">
-      body{
-            background:rgb(212,143,122);
-           }
-    </style>
-  </head>
-  <body>
-    <div id="h1"><span class="smallh1">"特定性的计算方法、</span></div>
-    <div id="body">
-      <h2>一、特定性的计算方法</h2>
-        <p>CSS是层叠样式表，浏览器在显示页面的每个元素前会把所有对这个元素有定义的样式表都找出来，然后进行特定性的计算，最后决定对这个元素使用哪种样
-        式，特定性的计算方法可以按照它包含的id、类或伪类、元素名来进行分值计算:<br>
-        <span class="em">id名100分，类或伪类10分，元素名1分。</span><br>
-        由此可见，使用id名是最特定的，其次是类或伪类，然后是子孙选择器，最后是单个元素名。如果没有为元素设定样式，则会使用浏览器默认的样式。<br>
-        还有一种情况是，如果在一个样式表下加上<span class="em">!important;</span>这行，其下方的规则的特定性最高。像这样:<br>
-        <pre>
-        h1{
-            color:red;
-            !important;
-            color:green;
-           }
-        </pre>
-      <h2>二、浏览器显示页面的方式</h2>
-        <p>
-          
-        </p>
-    </div>
-  </body>
+
+<head>
+  <title>特定性的计算方法、</title>
+  <meta charset="utf-8">
+  <link type="text/css" rel="stylesheet" href="../样式表.css">
+  <style type="text/css">
+    body{
+          background:rgb(212,143,122);
+         }
+  </style>
+</head>
+
+<body>
+  <div id="h1"><span class="smallh1">特定性的计算方法、</span></div>
+  <div id="body">
+    <ol id="sidenav">
+      <span>目录</span>
+      <li>
+        <a href="1、学习方法、Web页面的显示、简单的HTML.html">学习方法、Web页面的显示、简单的HTML</a>
+      </li>
+      <li>
+        <a href="2、HTML与标记、元素、CSS、style元素.html">HTML与标记、元素、CSS、style元素</a>
+      </li>
+      <li>
+        <a href="3、元素的属性、超文本、组织网站、相对地址.html">元素的属性、超文本、组织网站、相对地址</li>
+      <li>
+        <a href="4、引用、块元素与内联元素、void元素、列表.html">引用、块元素与内联元素、void元素、列表</a>
+      </li>
+      <li>
+        <a href="5.字符实体、将网站发布到Web上、URL——统一资源定位符、两种路径的使用.html">字符实体、将网站发布到Web上、URL——统一资源定位符、两种路径的使用</a>
+      </li>
+      <li>
+        <a href="6.title属性和id属性、target属性、几个新标记.html">6.title属性和id属性、target属性、几个新标记</a>
+      </li>
+      <li>
+        <a href="7.浏览器中的图像、img元素、缩略图、一些图像编辑软件的知识.html">浏览器中的图像、img元素、缩略图、一些图像编辑软件的知识</a>
+      </li>
+      <li>
+        <a href="8.HTML简史、工业标准的HTML.html">HTML简史、工业标准的HTML</a>
+      </li>
+      <li>
+        <a href="9.CSS入门、使用外部样式表、类的概念、一些CSS属性.html">CSS入门、使用外部样式表、类的概念、一些CSS属性</a>
+      </li>
+      <li>
+        <a href="10.字体.html">字体</a>
+      </li>
+      <li>
+        <a href="11.Web中的颜色、用CSS指定颜色、关于文本装饰.html">Web中的颜色、用CSS指定颜色、关于文本装饰</a>
+      </li>
+      <li>
+        <a href="12.盒模型、元素的背景、边距、边框、利用id为CSS定位元素、使用多个样式表、对不同设备使用不同样式表.html">盒模型、元素的背景、边距、边框、利用id为CSS定位元素、使用多个样式表、对不同设备使用不同样式表</a>
+      </li>
+      <li>
+        <a href="13.使用div元素建立逻辑分区、更小巧的逻辑分区span、子孙选择器、CSS属性的简写、伪类.html">使用div元素建立逻辑分区、更小巧的逻辑分区span、子孙选择器、CSS属性的简写、伪类</a>
+      </li>
+      <li>
+        <a href=""></a>
+      </li>
+      <li>
+        <a href=""></a>
+      </li>
+      <li>
+        <a href=""></a>
+      </li>
+      <li>
+        <a href="学习过程中解决的麻烦.html">学习过程中解决的麻烦</a>
+      </li>
+    </ol>
+    <h2>一、特定性的计算方法</h2>
+      <p>CSS是层叠样式表，浏览器在显示页面的每个元素前会把所有对这个元素有定义的样式表都找出来，然后进行特定性的计算，最后决定对这个元素使用哪种样
+      式，特定性的计算方法可以按照它包含的id、类或伪类、元素名来进行分值计算:<br>
+      <span class="em">id名100分，类或伪类10分，元素名1分。</span><br>
+      由此可见，使用id名是最特定的，其次是类或伪类，然后是子孙选择器，最后是单个元素名。如果没有为元素设定样式，则会使用浏览器默认的样式。<br>
+      还有一种情况是，如果在一个样式表下加上<span class="em">!important;</span>这行，其下方的规则的特定性最高。像这样:<br>
+      <pre>
+      h1{
+          color:red;
+          !important;
+          color:green;
+         }
+      </pre>
+    <h2>二、浏览器显示页面的方式</h2>
+      <p>
+        
+      </p>
+  </div>
+</body>
+
 </html>

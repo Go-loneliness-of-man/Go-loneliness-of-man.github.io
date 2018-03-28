@@ -1,6 +1,9 @@
-﻿      #body{
-            font:17px/1.6em sans-serif;
-            margin:0px 10% 10px 2%;
+﻿@font-face{
+                  font-family:'微软雅黑';
+                  src:url(../../微软雅黑.ttf);
+            }
+#body{
+            font:17px/1.6em '微软雅黑' sans-serif;
             padding:10px 10px 10px 10px;
             border-left:3px solid rgb(111, 161, 195);
             border-bottom:5px solid rgb(111, 161, 195);
@@ -8,7 +11,7 @@
       #h1{
             color:rgb(40,40,40);
             border-bottom:5px solid firebrick;
-            background:url(h1背景.PNG) no-repeat;
+            background:url(背景/h1背景.PNG) no-repeat;
             height:138px;
             font:40px sans-serif;
             }
@@ -20,6 +23,18 @@
       .em{
             color:rgb(123, 231, 231);
             }
-a:link { color: rgb(3, 104, 104); text-decoration:none; }
+#body #sidenav{     
+                  width:240px;
+                  float:right;
+                  margin:10px 0px 0px 20px;
+                  line-height:25px;
+                  border:2px solid gray;
+                  padding:2px 10px 10px 40px; 
+            }
+            #sidenav span {
+                              font-size:30px;
+                              line-height: 50px;
+                        }
+a:link { color: rgb(67, 21, 231); text-decoration: none; }
 a:visited { color: black; text-decoration: none; }
 a:hover { color: white; text-decoration: none; }

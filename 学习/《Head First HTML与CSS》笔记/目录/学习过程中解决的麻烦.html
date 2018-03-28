@@ -1,4 +1,4 @@
-<html>
+<!DOCTYPE html>
 <head>
   <title>在学习过程中解决的麻烦</title>
   <meta charset="utf-8">
@@ -9,18 +9,74 @@
          }
   </style>
 </head>
+
 <body>
   <div id="h1"><span class="smallh1">在学习过程中解决的麻烦</span></div>
   <div id="body">
-    <dl>
-      <dt>用编译器编写的HTML中的汉字在浏览器里显示乱码:</dt>
-        <dd>原因是HTML的编码方式与浏览器默认的编码方式不同，才出现乱码。
-            例如火狐浏览器采用utf-8，当其显示乱码时，只要将HTML也设置为utf-8形式即可，具体解决办法就是在head中添加这段代码即可:<br>
-            &ltcharset="utf-8"&gt
-        </dd>
-      <dt>利用CSS让文字沉在元素底部:</dt>
-        <dd>用span把文字选定，然后将其父元素设定为相对位置relative，span设定为绝对位置absolute，最后利用bottom:0;将文字沉到父元素的底部。</dd>
-    </dl>
+    <ol id="sidenav">
+      <span>目录</span>
+      <li>
+        <a href="1、学习方法、Web页面的显示、简单的HTML.html">学习方法、Web页面的显示、简单的HTML</a>
+      </li>
+      <li>
+        <a href="2、HTML与标记、元素、CSS、style元素.html">HTML与标记、元素、CSS、style元素</a>
+      </li>
+      <li>
+        <a href="3、元素的属性、超文本、组织网站、相对地址.html">元素的属性、超文本、组织网站、相对地址</li>
+      <li>
+        <a href="4、引用、块元素与内联元素、void元素、列表.html">引用、块元素与内联元素、void元素、列表</a>
+      </li>
+      <li>
+        <a href="5.字符实体、将网站发布到Web上、URL——统一资源定位符、两种路径的使用.html">字符实体、将网站发布到Web上、URL——统一资源定位符、两种路径的使用</a>
+      </li>
+      <li>
+        <a href="6.title属性和id属性、target属性、几个新标记.html">6.title属性和id属性、target属性、几个新标记</a>
+      </li>
+      <li>
+        <a href="7.浏览器中的图像、img元素、缩略图、一些图像编辑软件的知识.html">浏览器中的图像、img元素、缩略图、一些图像编辑软件的知识</a>
+      </li>
+      <li>
+        <a href="8.HTML简史、工业标准的HTML.html">HTML简史、工业标准的HTML</a>
+      </li>
+      <li>
+        <a href="9.CSS入门、使用外部样式表、类的概念、一些CSS属性.html">CSS入门、使用外部样式表、类的概念、一些CSS属性</a>
+      </li>
+      <li>
+        <a href="10.字体.html">字体</a>
+      </li>
+      <li>
+        <a href="11.Web中的颜色、用CSS指定颜色、关于文本装饰.html">Web中的颜色、用CSS指定颜色、关于文本装饰</a>
+      </li>
+      <li>
+        <a href="12.盒模型、元素的背景、边距、边框、利用id为CSS定位元素、使用多个样式表、对不同设备使用不同样式表.html">盒模型、元素的背景、边距、边框、利用id为CSS定位元素、使用多个样式表、对不同设备使用不同样式表</a>
+      </li>
+      <li>
+        <a href="13.使用div元素建立逻辑分区、更小巧的逻辑分区span、子孙选择器、CSS属性的简写、伪类.html">使用div元素建立逻辑分区、更小巧的逻辑分区span、子孙选择器、CSS属性的简写、伪类</a>
+      </li>
+      <li>
+        <a href=""></a>
+      </li>
+      <li>
+        <a href=""></a>
+      </li>
+      <li>
+        <a href=""></a>
+      </li>
+      <li>
+        <a href="学习过程中解决的麻烦.html">学习过程中解决的麻烦</a>
+      </li>
+    </ol>
+    <details>
+      <summary>用编译器编写的HTML中的汉字在浏览器里显示乱码:</summary>
+      原因是HTML的编码方式与浏览器默认的编码方式不同，才出现乱码。
+      例如火狐浏览器采用utf-8，当其显示乱码时，只要将HTML也设置为utf-8形式即可，具体解决办法就是在head中添加这段代码即可:<br>
+      &ltmeta charset="utf-8"&gt
+    </details>
+    <details>
+      <summary>利用CSS让文字沉在元素底部:</summary>
+      用span把文字选定，然后将其父元素设定为相对位置relative，span设定为绝对位置absolute，最后利用bottom:0;将文字沉到父元素的底部。
+    </details>
   </div>
 </body>
+
 </html>

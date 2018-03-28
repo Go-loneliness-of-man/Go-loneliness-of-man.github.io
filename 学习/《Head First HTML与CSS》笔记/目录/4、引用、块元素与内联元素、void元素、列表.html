@@ -1,18 +1,74 @@
+<!DOCTYPE html>
 <html>
-  <head>
-    <title>引用、块元素与内联元素、void元素、列表</title>
-    <meta charset="utf-8">
-    <link type="text/css" rel="stylesheet" href="../样式表.css">
-    <style type="text/css">
-      body{
-            background-color: #ff1545;
-           }
-  </style>
-  </head>
-  <body>
-    <div id="h1"><span class="smallh1">引用、块元素与内联元素、viod元素、列表</span></div>
-    <div id="body">
-      <h2>一、引用——q元素与blockquote元素</h2>
+
+<head>
+  <title>引用、块元素与内联元素、void元素、列表</title>
+  <meta charset="utf-8">
+  <link type="text/css" rel="stylesheet" href="../样式表.css">
+  <style type="text/css">
+    body{
+          background-color: #ff1545;
+         }
+</style>
+</head>
+
+<body>
+  <div id="h1"><span class="smallh1">引用、块元素与内联元素、viod元素、列表</span></div>
+  <div id="body">
+    <ol id="sidenav">
+      <span>目录</span>
+      <li>
+        <a href="1、学习方法、Web页面的显示、简单的HTML.html">学习方法、Web页面的显示、简单的HTML</a>
+      </li>
+      <li>
+        <a href="2、HTML与标记、元素、CSS、style元素.html">HTML与标记、元素、CSS、style元素</a>
+      </li>
+      <li>
+        <a href="3、元素的属性、超文本、组织网站、相对地址.html">元素的属性、超文本、组织网站、相对地址</li>
+      <li>
+        <a href="4、引用、块元素与内联元素、void元素、列表.html">引用、块元素与内联元素、void元素、列表</a>
+      </li>
+      <li>
+        <a href="5.字符实体、将网站发布到Web上、URL——统一资源定位符、两种路径的使用.html">字符实体、将网站发布到Web上、URL——统一资源定位符、两种路径的使用</a>
+      </li>
+      <li>
+        <a href="6.title属性和id属性、target属性、几个新标记.html">6.title属性和id属性、target属性、几个新标记</a>
+      </li>
+      <li>
+        <a href="7.浏览器中的图像、img元素、缩略图、一些图像编辑软件的知识.html">浏览器中的图像、img元素、缩略图、一些图像编辑软件的知识</a>
+      </li>
+      <li>
+        <a href="8.HTML简史、工业标准的HTML.html">HTML简史、工业标准的HTML</a>
+      </li>
+      <li>
+        <a href="9.CSS入门、使用外部样式表、类的概念、一些CSS属性.html">CSS入门、使用外部样式表、类的概念、一些CSS属性</a>
+      </li>
+      <li>
+        <a href="10.字体.html">字体</a>
+      </li>
+      <li>
+        <a href="11.Web中的颜色、用CSS指定颜色、关于文本装饰.html">Web中的颜色、用CSS指定颜色、关于文本装饰</a>
+      </li>
+      <li>
+        <a href="12.盒模型、元素的背景、边距、边框、利用id为CSS定位元素、使用多个样式表、对不同设备使用不同样式表.html">盒模型、元素的背景、边距、边框、利用id为CSS定位元素、使用多个样式表、对不同设备使用不同样式表</a>
+      </li>
+      <li>
+        <a href="13.使用div元素建立逻辑分区、更小巧的逻辑分区span、子孙选择器、CSS属性的简写、伪类.html">使用div元素建立逻辑分区、更小巧的逻辑分区span、子孙选择器、CSS属性的简写、伪类</a>
+      </li>
+      <li>
+        <a href=""></a>
+      </li>
+      <li>
+        <a href=""></a>
+      </li>
+      <li>
+        <a href=""></a>
+      </li>
+      <li>
+        <a href="学习过程中解决的麻烦.html">学习过程中解决的麻烦</a>
+      </li>
+    </ol>
+    <h2>一、引用——q元素与blockquote元素</h2>
       <p>
         如果你需要在页面中引用一段别人的文字，可以用q元素或blockquote元素来达到，要注意的是，大多数浏览器会自动为q元素或
         blockquote元素的内容两边加上双引号。如果你觉得q元素或blockquote元素只不过是代表了两个双引号就错了，这样做是为了
@@ -23,7 +79,7 @@
         对于引用，有些浏览器会使用引号包围，有些使用斜体表示，还有些不加任何效果，要想确定它们如何显示，唯一的办法就是指定样
         式，以后会讨论这个问题。<br>
       </p>
-      <h2>二、块元素与内联元素</h2>
+    <h2>二、块元素与内联元素</h2>
       <p>
         上边讲到q元素与blockquote元素，blockquote元素属于块元素，q元素属于内联元素，它们属于两类元素，它们的区别就是一个
         自成一段而另一个可以嵌在一个段落里。因此，q元素也叫短引用，blockquote元素叫长引用。<br>
@@ -32,7 +88,7 @@
         面时，一般都从较大的块元素开始。<br>
         内联元素会显示在段落中，它们往往用来标记小段内容。
       </p>
-      <h2>三、void元素</h2>
+    <h2>三、void元素</h2>
       <p>
         由于浏览器会忽略html文件中的回车符，因此就需要一个特别的元素来实现换行的功能，那就是br元素。它的使用方式与其它元素不一
         样，只需要在要换行的地方插入一个即可，它没有匹配标记，这是一种简写，毕竟每次换行都写成&ltbr&gt&lt/br&gt这样是没有意
@@ -42,7 +98,7 @@
         void元素这个名字很怪，这个词来自于计算机科学，原意是:无值。<br>
         确切的说，void元素指HTML页面中在开始标记和结束标记之间没有任何内容的元素。
       </p>
-      <h2>四、列表</h2>
+    <h2>四、列表</h2>
       <p>
         常用的列表分两类，有序列表ol元素和无序列表ul元素，它们都要用到列表项li元素。<br>
         只要将每个列表项用li元素包围（标记），再将整体用ol或ul元素包围即可，ol与ul的区别是ol会为每个列表项按照顺序自动创建编号
@@ -60,6 +116,7 @@
         <img src="../图片/定义列表1.PNG"><br>
         值得注意的是，它所展现的效果就像文章分小标题介绍一样，所以可以用于这方面。
       </p>
-    </div>
-  </body>
+  </div>
+</body>
+
 </html>
