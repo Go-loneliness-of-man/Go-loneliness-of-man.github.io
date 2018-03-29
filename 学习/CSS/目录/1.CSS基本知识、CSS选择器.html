@@ -5,7 +5,14 @@
   <title></title>
   <meta charset="UTF-8">
   <style>
-  
+    #demo::after{
+                  content:'';
+                  width:0px;
+                  border:40px solid red;
+                  border-right:20px solid transparent;
+                  border-left:20px solid transparent;
+                  border-top:0px solid transparent;
+                }
   </style>
 </head>
 
@@ -49,10 +56,10 @@
           <summary>3.伪元素选择器</summary>
           <span class="em">元素名::first-line</span>:选择当前层级下所有块级元素文本的首行<br>
           <span class="em">元素名::first-letter</span>:选择当前层级下所有块级元素文本的首字母(其实对汉字也管用)<br>
-          <span class="em">元素名::before</span>:在该元素之前插入内容，要与content属性配合，用法,a::before{ content:'内容' }，即在a元素前
-          插入内容<br>
-          <span class="em">::after</span>:在该元素之后插入内容，用法同上。<br>
-          伪元素选择器也可用复合选择器组合，这样就能达到筛选的作用。<br>
+          <span class="em">元素名::before</span>:在该元素之前插入一个内联元素，要与content属性配合，用法,a::before{ content:'内容' }，即在
+          a元素前插入内容<br>
+          <span class="em">元素名::after</span>:在该元素之后插入一个内联元素，用法同上。<br>
+          伪元素选择器也可与复合选择器组合，这样就能达到筛选的作用。这是一个伪元素选择器示例:<span id="demo"></span><br>
         </details>
         <details>
           <summary>4.伪类选择器</summary>
