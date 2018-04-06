@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>wamp配置</title>
+  <meta charset="UTF-8">
+  <style>
+    a{ color:green; font-size:30px; }
+  </style>
+</head>
+
+<body>
+  <div id="h1"><span class="smallh1">wamp配置</span></div>
+  <div id="body">
+    <a href="https://pan.baidu.com/s/1XVYGMzeThQqTe8OvIwBsng" target="_blank">wamp安装包资源链接</a> 密码：l1f3<br>
+    <h2>wamp安装配置</h2>
+      <details>
+        <summary>安装</summary>
+        对刚接触php的小白来说自己搭建运行环境是非常困难的，好在有wamp的出现，它是一个傻瓜式的php环境搭建包。<br>
+        然而搭建wamp过程中也会出现一些问题，下面是我初学时花了一上午才解决的问题:<br>
+        我安装的是wamp2.5，首先要确认以下几点:<br>
+        1.电脑上要安装有.net framework 4或以上版本<br>
+        2.安装vcredist 05/08/10/12这四个运行库，微软官网就可以下载电脑系统对应的版本(×64或×32)。<br>
+        3.自定义安装路径中不能有中文字符。<br>
+        安装时如果不自定义安装路径直接一路next就好，中间会弹出一个对话框让设置默认浏览器，别乱点，直接点"打开"就好。<br>
+        安装完运行时任务栏里的wamp图标有三种可能的颜色:红色、橙色、绿色。只有绿色代表正常运行。<br>
+        安装好后在wamp安装目录的www文件夹里存放php文件，即可通过浏览器在本地用URL访问:http://localhost/相对路径
+      </details>
+    <details>
+      <summary>安装好后图标是红色或橙色</summary>
+      以下每个步骤进行完后都重启wamp服务观察其运行颜色:<br>
+      首先检查电脑是否已经安装有MySQL，如果有，打开进程关掉。<br>
+      其次，360会禁用wamp的一些组件，导致其无法运行，所以，关掉360。<br>
+      如果还是不行，右击"计算机",依次进入管理-服务和应用程序-服务，在右边找到Apache和MySQL的进程，把其中"已启动"关闭，再把启动类
+      型全部改为手动。<br>
+      这些都弄完后图标应该会呈现橙色，这可能是端口被占用的问题，只需改变端口号:<br>
+      在wamp安装目录下，依次进入bin-apache-apache2.4.9-conf,打开httpd.conf文件<br>
+      查找关键字:"80",改端口号，例如改为"8088"<br>
+      重启wamp服务，此时应该会变成绿色，正常运行。<b>这样以后每次访问apache服务时,必须在浏览器地址栏的localhost后输入端口号</b>
+      ，即:<br>
+      "http://localhost:8088/..."
+    </details>
+    <h2>更改wamp项目默认根目录</h2>
+      wamp默认的项目目录是其安装目录下的www文件夹，若要修改需要以下步骤:
+      <details>
+        <summary>1.更改路径</summary>
+        打开apache的httpd.conf文件吗，搜索(Ctrl+F)这段字符:DocumentRoot，找出后边跟有路径的那一个，然后将其路径替换为你想要的路径。<br>
+        接着搜索这段字符:&ltDirectory,依然选择后边跟有路径的那一个,更改。<br>
+        这样路径就算修改完了。另外，路径中不能有中文字符，apache服务器不能访问中文字符，并且要将windows系统路径里的反斜杠\更改为/。
+      </details>
+      <details>
+        <summary>2.修改权限</summary>
+        wamp默认的apache只能访问安装目录下的文件夹，若要访问其它文件夹，还需要修改权限:<br>
+        搜索以下字符:<br>
+        &lt Directory /&gt<br>
+         AllowOverride all<br>
+         Require all denied<br>
+        &lt /Directory&gt<br>
+        替换为:<br>
+        &lt Directory /&gt<br>
+         Options FollowSymLinks<br>
+         AllowOverride None<br>
+         Order deny,allow<br>
+         #Deny from all<br>
+         Allow from all<br>
+         #允许所有访问<br>
+         Satisfy all<br>
+        &lt /Directory&gt<br>
+        接着搜索更改路径时的那段字符:&ltDirectory,就是有路径的那个,将这个标签内除注释外的那几行代码分别替换为下面几行:<br>
+        Options Indexes FollowSymLinks<br>
+        AllowOverride all<br>
+        Order Deny,Allow<br>
+        Allow from all<br>
+        如图:<br>
+        <img src="../image/apache权限配置.PNG"><br>
+        这样就将可以把项目文件放在wamp安装目录外了。
+      </details>
+  </div>
+</body>
+
+</html>
