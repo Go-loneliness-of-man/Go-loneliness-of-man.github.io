@@ -11,66 +11,50 @@
               }
     body{
           background:url(图片/右上角.PNG) no-repeat;      
-        }                                                /*页面整体背景*/
+        }                                                                  /*页面整体背景*/
     div ul{
             margin:0px;
             padding:0px;
-            background:rgb(180,0,0);
+            background:rgb(170,0,0);
             width:83px;
             border:3px solid black ;
             border-radius:8px;
             height:155px;                                              
-          }                                               /*ul列表整体样式*/
+          }                                                               /*ul列表整体样式*/
     li{
-        background:rgb(255,0,0);
+        background:rgb(200,0,0);
         width:70px;
         height:20px;
         margin:10px 20px;
         padding:6px;
         border:3px solid black;
-        border-radius:10px;                               /*列表项样式*/
+        border-radius:10px;                                               /*li样式*/
       }
     li:hover{
               width:80px;
-              background:rgb(250,0,0);
+              background:rgb(255,0,0);
               font-size:20px;
-            }                                              /*列表项在指针悬停状态下的样式*/
+            }                                                 /*li在指针悬停状态下的样式*/
     a:link{ color:saddlebrown; text-decoration:none; }
     a:visited{ color:gray; text-decoration:none; }
-    a:hover{ color:white; text-decoration:none; }         /*定制a元素样式*/
-    #study:hover iframe{ display:block; }
-    #study:hover{ padding:5px 10px 15px 10px; }                       /*指定学习笔记选项的细节样式*/
-    #study2{
-            position:absolute;
-            top:155px;
-            left:134px;
-            border:3px solid black;
-            border-radius:10px;
-            display:none;
-          }                                                  /*学习笔记选项的样式*/
-    #artical:hover iframe{ display:block; }
+    a:hover{ color:white; text-decoration:none; }                     /*定制a元素样式*/
+    #study:hover,#time:hover{ padding:5px 10px 15px 10px; }
     #artical:hover{ 
                     width:70px;
                     padding:5px 0px 15px 30px;
-                  }                                                     /*指定随笔选项的细节样式*/
-    #artical2{
-                position:absolute;
-                top:155px;
-                left:134px;
-                border:3px solid black;
-                border-radius:10px;
-                display:none;
-              }                                               /*随笔选项样式*/
-    #time:hover iframe{ display:block; }
-    #time:hover{ padding:5px 10px 15px 10px; }                          /*指定岁月如梭选项的细节样式*/
-    #time2{
-            position:absolute;
-            top:155px;
-            left:134px;
-            border:3px solid black;
-            border-radius:10px;
-            display:none;
-          }                                                    /*岁月如梭选项样式*/
+                  }
+    div ul li span{ color:rgb(160,160,160); }                         /*指定li的细节样式*/
+    #study:hover iframe,#time:hover iframe,#artical:hover iframe{ display:block; }  /*使各个li的菜单在指针悬停下可见*/
+    #time2,#artical2,#study2{
+                              position:absolute;
+                              top:155px;
+                              left:134px;
+                              border:3px solid black;
+                              border-radius:10px;
+                              display:none;
+                              width:280px;
+                              height:500px;
+                            }                                           /*各个li菜单样式*/
     .smallh1{
               font-size:40px;
               font-weight:bold;
@@ -91,14 +75,14 @@
       <p>
         <ul>
           <li id="study">
-              <span style="color:gray;">学习笔记</span>
-              <iframe id="study2" width="1200px" height="500px" src="学习/index.html"></iframe></li>
+            <span>学习笔记</span>
+            <iframe id="study2" src="学习/index.html"></iframe></li>
           <li id="artical">
-                <span style="color:gray;">随笔</span>
-                <iframe id="artical2" width="1200px" height="500px" src="随笔/index.html"></iframe></li>
+            <span>随笔</span>
+            <iframe id="artical2" src="随笔/index.html"></iframe></li>
           <li id="time">
-                <span style="color:gray;">岁月如梭</span>
-                <iframe id="time2" width="1200px" height="500px" src="珍惜时间.html"></iframe></li>
+            <span>岁月如梭</span>
+            <iframe id="time2" style="width:1100px; height:480px;" src="珍惜时间.html"></iframe></li>
         </ul>
       </p>
   </div>
