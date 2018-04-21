@@ -1,0 +1,31 @@
+    html {
+            background: rgb(2, 29, 44);
+            color: rgb(158, 228, 245)
+    }                                              /*整体背景*/
+
+    code {
+            white-space: pre;
+    }                                              /*代码*/
+
+    .em {
+      color: rgb(184, 11, 11);
+      font-weight: bold;
+    }                                              /*重点*/
+
+    table {
+      border-collapse: collapse;
+      margin: 2% auto;
+      text-align: center;
+    }                                              /*表格*/
+
+    #body {
+      margin:0% 10% 2% 15%;
+      line-height:1.7em;
+    }                                              /*文章主体*/
+
+    #h1,h2,summary {
+      color: rgb(82, 255, 234);
+    }                                              /*小标题*/
+
+    a{ text-decoration:none; }
+    a:hover{ color:rgb(200,200,200) }            /*a元素样式*/
