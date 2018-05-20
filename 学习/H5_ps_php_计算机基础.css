@@ -1,10 +1,10 @@
     html {
-            background: rgb(2, 29, 44);
-            color: rgb(158, 228, 245);
+      background: rgb(2, 29, 44);
+      color: rgb(158, 228, 245);
     }                                              /*整体背景*/
 
     code {
-            white-space: pre;
+      white-space: pre;
     }                                              /*代码*/
 
     .em {
