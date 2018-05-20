@@ -5,7 +5,7 @@
 /*
 //辗转相除法算法一:
 int m, n, r1 , r2;								//声明两整数的变量、辗转相除法变量
-int same(int x, int y);							//声明求最大公因数的same()函数
+int same(int x, int y);							//声明求最大公因数的 same() 函数
 int main()
 {
 	printf("请输入m: ");
@@ -34,8 +34,8 @@ int same(int x, int y)							//定义same函数()
 /*
 //辗转相除法算法二:
 #include<stdio.h>
-int maxfactor(int x, int y);										//求最大公因数
-int m, n, max, r1;													//正整数m、n，最大公因数max，余数r1
+int maxfactor(int x, int y);									//求最大公因数
+int m, n, max, r1;												//正整数m、n，最大公因数max，余数r1
 int main()
 {
 	printf("依次输入两个整数，用一个空格隔开，输入法英文: ");
@@ -49,7 +49,7 @@ int maxfactor(int x, int y)
 	if (x > y)
 	{
 		r1 = x%y;
-		r1 == 0 ? r1 = y : maxfactor(y, r1);						//只要大的取余小的余数不为零，就再次用除数对余数取余
+		r1 == 0 ? r1 = y : maxfactor(y, r1);					//只要大的取余小的余数不为零，就再次用除数对余数取余
 		return r1;
 	}
 	else
@@ -60,6 +60,23 @@ int maxfactor(int x, int y)
 	}
 }
 */
+
+/*
+//辗转相处法终极版，利用递归。
+int a, b,maxfactor(int x,int y),max;				//被求数 a 和 b，求最大公因数函数 maxfactor()，最大公因数 max
+int  main()
+{
+	printf("\n 请输入两个数： ");
+	scanf_s("%d %d",&a,&b);							//获取数字 a 和 b
+	max = maxfactor(a, b);							//求最大公因数
+	printf(" 最大公因数是：%d\n 最小公倍数是: %d\n ", max, (a*b) / max);
+	return 0;
+}
+int maxfactor(int x, int y)
+{
+	return (x%y) == 0 ? y : maxfactor(y, (x%y));	//递归，若余数为 0，则停止，否则继续
+}
+/**/
 
 /*
 //更相减损法:
