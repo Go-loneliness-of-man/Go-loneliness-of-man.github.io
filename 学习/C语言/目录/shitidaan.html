@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>《面向考试编程》书末尾的试卷题型及答案</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="../../H5_ps_php_计算机基础.css">
+  <style>
+    #caidan{
+      color:rgb(150,195,120);
+      font-size:25px;
+      line-height:1.6em;
+      margin:20px 0px 10px 0px;
+      text-indent:2em;
+    }                                                           /*彩蛋上方字体的样式*/
+    #ks{
+      width:15%;
+      height:40%;
+      position:fixed;
+      left:82%;
+      top:0%;
+    }
+    #ks span,#ks li,#ks li a{ display:inline-block; }
+    #ks span{
+      width: 100%;
+      color:aqua;
+      font-size:28px;
+      border-bottom:4px solid aqua;
+      line-height:40px;
+    }
+    #ks li{
+      width:170px;
+      height:35px;
+      padding:1px;
+      border:5px solid rgb(82, 255, 234);
+      border-radius:12px;
+      margin:6% 10% 0% 0%;
+    }
+    #ks li a, #ks li{
+      color:rgb(82, 255, 234);
+      font-size:21px;
+    }
+    #ks li a{ margin:0% 5%; }
+    #ks li:hover{ padding: 6px; border:5px solid white; color:white; }
+    #ks li:hover a{ color:white; font-size:27px; }
+  </style>
+</head>
+
+<body>
+  <div id="h1"><span class="smallh1">《面向考试编程》书末尾的试卷题型及试题答案</span></div>
+  <div id="body">
+    <ol id="ks">
+      <span>快速定位</span>
+      <li>1.<a href="#one">选择题</a></li>
+      <li>2.<a href="#two">填空题</a></li>
+      <li>3.<a href="#three">程序阅读题</a></li>
+      <li>4.<a href="#four">编程题</a></li>
+    </ol>
+    <div id="caidan">
+      相信能找到这里的童鞋大部分都是已经看完我的《面向考试编程》的了吧，鉴于大家刚刚艰苦卓绝的学习完 C 语言，在这里就先给童鞋们调剂下，放一个本书的小彩
+      蛋，下面是前段时间写的一个好玩的 C 语言小程序源码，直接<span class="em">完整的复制粘贴到自己的编译器执行</span>就能看到了哦:
+    </div>
+      <details>
+        <summary style="font-size:22px;">《面向考试编程》小彩蛋（点击查看）</summary>  
+        <code>
+  #include&lt;stdio.h&gt;
+  #include&lt;stdlib.h&gt;											//system() 函数头文件
+  #include&lt;Windows.h&gt;											//Sleep() 函数头文件
+  #include&lt;math.h&gt;											//sqrt() 函数头文件
+  // C 语言实现弹跳小球
+  int i, j, x;
+  //依次定义标记小球位置的变量 i、用于打印的循环变量 j、决定小球运动方向的变量 x
+  void position(), unborder();
+  //依次是控制小球位置，同时打印顶部和小球上方边框的函数 position()、控制地面与小球的距离，同时打印小球下方至底部边框的函数 unborder()
+  int main()
+  {
+  	for (i = 0, x = 1; i < 11; )
+  	{
+  		position();			                          //控制小球位置，打印顶部和小球上部边框
+  		printf("         |              o               |\n");	  //打印小球
+  		unborder();					      	//控制地面与小球的距离，同时打印小球下方边框
+  		Sleep((int)(40 * (sqrt((2 * (11 - i)) / 3))));         	//利用系统延迟控制时间，t = 40 * (sqrt((2 * (11 - i)) / 3))
+  		system("cls");			                          //清屏一次
+  		if (i == 10 || i == 0)	x++;		                  //到达地面时，改变小球的运动方向，令其上升
+  		if (i == 10)	printf("\a");			           //小球到达地面时，发出一声蜂鸣
+  	}
+  	return 0;
+  }
+  void position()			                                    //控制小球位置，打印顶部和小球上部边框
+  {
+  	printf("\n\n\n         ————————————————\n");        	//确定初始位置，然后打印顶部边框
+  	if (x % 2 == 1)			                    		      //控制小球位置，同时也打印小球上方的边框
+  	{
+  		for (j = 0; j < i + 3; j++)
+  			printf("         |                              |\n");
+  		i++;							          //奇数次时向下落
+  	}
+  	else
+  	{
+  		for (j = 0; j < i + 3; j++)
+  			printf("         |                              |\n");
+  		i--;					                	//偶数次时向上升
+  	}
+  }
+  void unborder()                                       		//控制地面与小球的距离，同时打印小球下方边框
+  {
+  	if (x % 2 == 1)							//控制地面与小球的距离，同时打印小球下方至地面的边框
+  		for (j = i + 1; j < 12; j++)					//下落时
+  			printf("         |                              |\n");
+  	else
+  		for (j = i + 1; j < 12 - 2; j++)			//上升时，不过为啥要减 2 呢？这是我通过调试才得到的结果，具体原因未知
+  			printf("         |                              |\n");
+  	printf("         |    *********************     |\n");        	//打印地面
+  	printf("         |                              |\n");	          //地面下的边框
+  	printf("         ————————————————\n");	          //底部边框
+  }
+  /*
+  思路:
+  总体上，用换行和空格控制小球的位置，用清屏实现小球运动的效果，用系统延迟函数控制小球运动的速度。
+  细节上，用一个变量 i 标记小球的位置，用一个变量 x 控制小球的上升、下落，再用一个变量 j 用于打印各种字符。
+  具体的，用自增自减实现小球的下落、上升。
+  边框采用逐行打印的思想。
+  时间 t 的计算公式由自由落体公式 i = 1 / 2 a*t*t 变换而来，其中 i 相当于位移 s，加速度 a 是常数，根据需要进行设置。
+  */
+        </code><br>
+      </details><br>
+      程序下方的注释里有讲思路和实现原理，有兴趣的同学看完后可以试着自己也写一个出来，说不定还写的比我更好呢^_^
+      <h2>西安石油大学 2013 年 C 语言考试试卷题型及试题答案</h2>
+        <span class="em">题型:</span>选择题 15 道，共 30 分、填空题每空 2 分，共 20 分、程序阅读题 5 道，共30分、编程题 4 道，共 20 分。<br><br>
+        <h2 id="one">一、选择题（答案在题的底部）</h2>
+        1. C 语言程序中的变量（）<br>   A.不用说明<br> B.先引用后声明<br> C.先说明后使用<br> D.引用、说明的顺序无关<br><br>
+        2. 下列标识符不合法的是（）<br>  A.hot_do<br> B.cat1<br>  C._pri<br> D.2ab<br><br>
+        3. C 语言中用（）表示逻辑值“真”。<br>  A.ture<br>B.整数值 0<br>C.非零整数值<br>D.T<br><br>
+        4. 下列优先级最高的运算符是（）<br>    A.&& <br>B.>= <br>C.< <br>D.+ <br><br>
+        5. printf()函数输出无符号整数时，使用的格式字符是（）<br> A.%d<br>B.%e<br>C.%f<br>D.%u<br><br>
+        6. 输入语句 scanf("a=%d , b=%d",a,b); 使 a 的值为 1，b 的值为 2，正确的输入形式是（） <br> A.1,2<br>B.1 2<br>C.a=1 b=2<br>D.a=1,b=2<br><br>
+        7. 为了避免嵌套的 if-else 出现两义性，C 语言规定: C 程序中的 else 总是与（）组成配对关系。<br>
+          A.一列上缩排位置相同的 if<br>B.在其之前未配对的 if<br>C.在其之前未配对的最近的 if<br>D.同一行上的 if<br><br>
+        8. 下面程序段的执行结果是（）<br>
+        <code>
+          int x = 5;
+          while(x)
+          {
+            printf("*");
+            x--;
+          }
+        </code><br>
+        A.****<br>B.*****<br>C.******<br>D.无输出结果<br><br>
+        9. 下面程序段的执行结果是（）<br>
+        <code>
+          main()
+          {
+            int a[3][3] = { {1},{2},{3} };
+            int b[3][3] = { 1,2,3,4,5,6,7,8,9 };
+            printf("%d, %d",a[1][0],b[1][0];);
+          }
+        </code><br>
+        A. 2,1<br>B. 2,2<br>C. 2,3<br>D. 2,4<br><br>
+        10. 下面程序段的执行结果是（）<br>
+        <code>
+          float a=11111.11111;
+          printf("%5.2f\n",a);
+        </code><br>
+        A.11111.11<br>B.11.111<br>C.11111<br>D.提示出错，无结果<br><br>
+        11. 若用数组名作为函数的实参，传递给形参的是（）<br>
+        A.数组的首地址<br>B.数组第一个元素的值<br>C.数组中全部元素的值<br>D.数组元素的个数<br><br>
+        12. 比较字符串大小的 C 语言库函数是（）<br>
+        A.strcat<br>B.strcmp<br>C.strcpy<br>D.strlen<br><br>
+        13.将整数 1,2,3,4 存入数组，正确的写法是（）<br>
+        A.int a[4] = { 1,2,3,4 };<br>
+        B. int a[4] = { "1","2","3","4" };<br>
+        C. int a[4]; a[4] = { 1,2,3,4 };<br>
+        D.int a[4]; a[4] = { '1','2','3','4' };<br><br>
+        14. 简单变量做实参时，它相对应形参之间的数据传递方式是（）<br>
+        A. 地址传递<br>
+        B. 单向值传递<br>
+        C. 由实参传给形参<br>
+        D. 由用户指定传递方式<br>
+        15.若有以下定义，则 p + 1 表示（）<br>
+        <code>
+          int a[10];
+          int *p=a;
+        </code><br>
+        A. 元素 a[1] 的地址<br>
+        B. 元素 a[1] 的值<br>
+        C. 元素 a[2] 的地址<br>
+        D. 元素 a[2] 的值<br><br>
+        <details>
+          <summary>选择题答案（单击查看）</summary>
+          <ol>
+            <li>C，解析：C 语言中变量一定要先声明再引用</li>
+            <li>D，解析：标识符不能以数字开头</li>
+            <li>C</li>
+            <li>D，解析：算术运算符高于关系运算符，逻辑运算符中只有 ! 的优先级高于算术运算符</li>
+            <li>D，解析：无符号整型，用 %u</li>
+            <li>D，解析：scanf() 函数的输入输出格式要一致，也就是代码里的和终端（屏幕）上输入的格式要一致</li>
+            <li>C，解析：else 与它上方最近的未配对 if 匹配</li>
+            <li>B，解析：画流程图，写出每次循环后 x 的值和打印的状态，当 x 值为零时打印了 5 次 *</li>
+            <li>D，解析：数组 a 每一行只赋值了第一个元素，未赋值的元素自动为 0，数组 b 为九个数组元素都依次赋值了。a[1][0] 是第二行第一个元素，是
+              2，b[1][0] 是 4</li>
+            <li>A，解析：%5.2f，整数 5 位，小数 2 位，不足部分四舍五入，11111.11</li>
+            <li>A，解析：数组名就是数组首元素的首地址，数组名是一个地址常量。</li>
+            <li>B，解析：C 库函数提供的字符串比较函数是 stcmp()</li>
+            <li>A，解析：整数意思是数值，B、D 是字符，错误，C 中的赋值方式是错误的，a[4] 仅代表一个数组元素，不能代表真个数组</li>
+            <li>B，解析：除了传递地址外（地址常量、指针），都是值传递</li>
+            <li>A，解析：a 是数组名，即地址常量，int *p = a，是将地址 a 赋值给指针变量 p，则此时指针变量 p 指向数组 a，根据地址运算，p + 1 是数
+              组第二个元素的地址，即a[1]</li>
+          </ol>
+        </details>
+      <h2 id="two">二、填空题</h2>
+        <ol>
+          <li>结构化程序有顺序结构_____和_____三种基本结构构成。</li><br>
+          <li>将数学表达式 (a<sup>2</sup>+ b<sup>2</sup>)/ 5c 转换为 C 语言表达式是_______。</li><br>
+          <li>判断 char 型变量 ch 是否为大写字母的表达式是______。</li><br>
+          <li>计算 a、b 中最小值，用条件运算符（三目运算符）表示为_______。</li><br>
+          <li>变量类型按作用域分____和____。</li><br>
+          <li>在循环语句中，要想跳出包围语句的最内层的循环语句之外，转去执行紧跟其后的语句，应使用_____语句。</li><br>
+          <li>在 C 语言程序的函数调用中，用_____语句来使函数返回一个值。</li><br>
+          <li>有语句: int a[3] = { 1,2,3 }; int *p; p = a; p++; ，则 *p 的值为_____。</li><br>
+        </ol>
+        <details>
+          <summary>填空题答案</summary>
+          <ol>
+            <li>选择结构、循环结构</li>
+            <li>( a * a + b * b ) / ( 5 * c )</li>
+            <li>( ch >= 'A' ) && ( ch <= 'Z' )，也可以用 ASCⅡ 来表示，自己试试看</li>
+            <li>a > b ? b : a</li>
+            <li>全局变量、局部变量</li>
+            <li>直接跳出整个循环用 break</li>
+            <li>return 用来返回函数的值</li>
+            <li>2 ，解析: 第一个语句声明定义了数组 a，第二个语句声明了指针变量 p，第三个语句将数组 a 的首地址赋给 p，然后第四个语句 p 自增了一次，
+              根据地址运算，p 现在指向数组第二个元素 a[1]，它的值是 2</li>
+          </ol>
+        </details>
+      <h2 id="three">三、程序阅读题</h2>
+        1. 下面这个程序的输出结果是_____。
+        <code>
+          void main()
+          {
+            int x, y, z = 2;
+            x = z++;
+            y = ++z;
+            printf("%d %d %d",x,y,z);
+          }
+        </code><br>
+        解析: 这道题要注意的就是自增运算符的“自增“与“取值”的顺序，x = z++; 是先取值再自增，即 z 先把值赋给 x 然后 z 再自增一次，y = ++z;
+        相反，z 先自增一次然后才把值赋给 y<br><br>
+        2. 以下程序的输出结果是_____。
+        <code>
+          void main()
+          {
+            int a = 1, b = 2, c = 3;
+            if( a < b )
+              if( a < c )
+                printf("%d\n",a);
+            else
+              printf("%d\n",b);
+          }
+        </code><br>
+        解析: 这是一个选择嵌套，如果 a 既小于 b 又小于 c，就输出 a，否则输出 b。<br><br>
+        3. 以下程序的输出结果是_______。<br>
+        <code>
+          void main()
+          {
+            int a[10], i, b = 0;
+            for( i = 0 ; i < 10 ; i++ )
+              a[i] = i;
+            for( i = 1 ; i < 4 ; i++)
+              b = b + a[i] + i;
+            printf("%d\n",b);
+          }
+        </code><br>
+        解析: 这个程序含两个循环，先看第一个，i 从 0 自增到 9，a[i] = i，所以循环结束后数组 a 每个数组元素的值等于它自身的编号（从 0 到 9）。接下
+        来看第二个循环，第二个 for 共循环三次，然后循环体是 b= b + a[i] + i; 相当于每次循环 b 自增 a[i] + i 这样大的值，而循环三次就是，从 0 开
+        始，自增三次。最后输出 b 的值。这题最好写在纸上，一步一步算。<br><br>
+        4. 以下程序的输出结果是______。
+        <code>
+          void main()
+          {
+            char *p, a[] = { "0123456789" };
+            p = a;
+            p++;
+            printf("%s",p);
+          }
+        </code><br>
+        解析: 这题考察了三个知识点，指针指向数组、字符串、地址运算，首先它声明定义了一个字符串 a，然后将 a 的首地址赋值给指针变量 p，最后 p++ 了一次，
+        那么 p 就指向了字符串的第二个元素 a[1]，也就是字符 1，所以利用占位符 %s 输出时从字符 1 开始输出。<br><br>
+        5. 以下程序的输出结果是_____。
+        <code>
+          int fun(int x,int y)
+          {
+            int t;
+            if( x < y )  t = x;
+            else         t = y;
+            return t;
+          }
+          void main()
+          {
+            int a = 1, b = 2, c;
+            c = fun( a , b );
+            printf("%d\n",c);
+          }
+        </code><br>
+        解析: 先分析函数 fun(int x,int y) 的功能，它利用一个 if-else 语句实现了输出两个形参中较小的一个（其实我觉得它可以用三目运算符代替，这样代
+        码量更短），再看主函数，声明了a，b，c 三个变量，然后将 a，b 传入 fun() 中，将 fun() 的返回值赋给 c，输出 c 的值。<br><br>
+        <details>
+          <summary>程序阅读题答案</summary>
+          <ol>
+            <li>2, 4, 4</li>
+            <li>1</li>
+            <li>12</li>
+            <li>123456789</li>
+            <li>1</li>
+          </ol>
+        </details>
+      <h2 id="four">四、编程题</h2>
+        1. 从键盘输入圆的半径 r，计算并输出圆的周长和面积。<br><br>
+        <details>
+          <summary>答案</summary>
+          <code>
+            #include&lt;stdio.h&gt;
+            #define PI 3.14                 //定义一个宏表示圆周率
+            int main()
+            {
+              double r, c, s;               //依次代表半径、周长、面积
+              scanf("%lf",&r);              //获取半径
+              c = 2 * PI * r;
+              s = PI * r * r;
+              printf("周长:%lf\t面积:%lf\n",c,s);
+              return 0;
+            }
+          </code>
+        </details><br>
+        2. 编写程序，输入 3 个整数，输出其最大值。<br><br>
+        <details>
+          <summary>答案</summary>
+          <code>
+            #include&lt;stdio.h&gt;
+            #define MAX(x,y) ( (x) > (y) ? (x) : (y) )              //定义一个找出两数中较大者的有参宏 MAX
+            int main()
+            {
+              int i, nums[3], max;                                  //依次是循环变量 i、存储数列的数组 nums[]、最大值 max
+              for( i = 0 ; i < 3  ; i++ ) scanf("%d",&nums[i]);     //利用循环获取三个数字
+              for( i = 0 , max = nums [i]; i < 3 ; i++ )            //max 的初始值是 nums[0]，然后从第一个开始比较，若遇到更大的值就更新
+                max = MAX( max, nums[i] );
+              printf(" 这三个数字中最大的是: %d\n",max);
+              return 0;
+            }
+          </code>
+        </details><br>
+        3. 求 1 ~ 100 之间的所有偶数，每行输出 5 个。<br><br>
+        <details>
+          <summary>答案</summary>
+          <code>
+            #include&lt;stdio.h&gt;
+            int main()
+            {
+              int i, i2;                              //循环变量 i、控制换行的 i2
+              for( i = 1, i2 = 0 ; i <= 100 ; i++)    //i 从 1 自增到 100 
+              {
+                if( i % 2 == 0 )                      //只要 i 取余 2 为 0，是偶数，输出
+                {
+                  printf( "%d ", i);
+                  i2++;
+                }
+                if( i2 % 5 == 0 && i2 != 0)            //输出 5 个，换行一次
+                  printf("\n");
+              }
+              return 0;
+            }
+          </code>
+        </details><br>
+        4.编写程序，输入 30 个整数到一个一维数组中，求数组元素的最小值并输出。<br><br>
+        <details>
+          <summary>答案</summary>
+          <code>
+            #include&lt;stdio.h&gt;
+            #define MIN(x,y) ( (x) > (y) ) ? (y) : (x)
+            int nums[30], i, min;
+            int main()
+            {
+              for( i = 0 ; i < 30 ; i++) scanf("%d", &nums[i]);   //获取 30 个整数
+              for( i = 0, min = nums[i] ; i < 30 ; i++ )          //从第一个开始比较，遇到更小的数字就更新 min 的值，遍历整个数组 
+                min = MIN( min, nums[i] );                        //进行一次比较
+                printf(" 这 30 个数中最小的是: %d\n", min);
+              return 0;
+            }                                                     //这道题和第二题的思路没什么区别
+          </code>
+        </details><br>
+      请允许我在这里厚脸皮的贴上目前仍然很烂的技术博客的地址:<br><br>
+      <span class="em" style="font-size:22px;">http://Go-loneliness-of-man.github.io</span><br><br>
+      写这个又花了四个小时，终于写完了，写页面真是比编程还累人的事情啊 ...... 都熬出来黑眼圈来了，我得好好补补觉去 ......<br>
+      最后，祝童鞋们考试顺利啊~
+  </div>
+</body>
+
+</html>
