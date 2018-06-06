@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>CSS背景渐变、CSS边框图片、CSS变形效果</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="">
+  <style>
+  html{ 
+    height:290%;
+    background-image:linear-gradient(to bottom,rgb(0,0,0),rgb(255, 0, 0) 290%);
+    color:rgb(150,150,150);
+    line-height:25px;
+  }                                                                         /*页面整体背景*/
+  #kuai1,#kuai2{
+    margin:25px 0px 0px 20px;
+    width:576px;
+    border:5px solid black;
+    height:280px;
+    background-image:repeating-radial-gradient(circle 73px at center,gray,black);
+    display:inline-block;
+  }                                                                        /*两个眼睛的背景，共同样式*/
+  #kuai1{
+    border-bottom-left-radius:250px;
+    border-top-right-radius:280px;
+  }                                                                        /*左眼背景样式*/  
+  #kuai2{
+    margin:25px 0px 0px 120px;
+    border-top-left-radius:280px;
+    border-bottom-right-radius:250px;
+  }                                                                         /*右眼背景样式*/
+  #kuai1::before,#kuai2::before{
+    content:' ';
+    height:290px;
+    width:290px;
+    border-radius:145px;
+    background:black;
+    position:absolute;
+    top:35px;
+  }                                                                         /*两个眼珠的共同样式*/
+  #kuai1::before{ top:33px; left:175px; }                                   /*左眼珠样式*/
+  #kuai2::before{ top:33px; left:883px; }                                   /*右眼眼珠样式*/
+  #repeating{
+    width:300px;
+    height:200px;
+    background-image:repeating-linear-gradient(green,red 25px,blue,yellow 50px);
+  }                                                                         /*线性渐变重复示例*/
+  table{ text-align:center; }                                               /*表格文字居中*/
+  #bk{
+    margin:40px 26px 40px 26px;
+    border-image:url(../图片/边框图片素材.PNG) 27 fill/20px/22px round;
+  }                                                                         /*第二章表格下的边框图片*/  
+  #one,#two,#three,#four,#five{
+    display:block;
+    float:left;
+    width:88px;
+    height:88px;
+    margin:10px 30px 10px 10px;
+  }
+  #one{ border-image:url(../图片/边框图片素材.PNG) 27 fill/27px; width:81px; height:81px; }
+  #two{ border-image:url(../图片/测量边框图片.PNG) 27 fill/27px; width:122px; height:108px; }
+  #three{ border-image:url(../图片/边框图片素材.PNG) 27 fill/20px; width:100px; height:100px; }
+  #four{ border-image:url(../图片/边框图片素材.PNG) 27 fill/20px repeat; }
+  #five{ border-image:url(../图片/边框图片素材.PNG) 27 fill/20px round; }       /*从 #one 到 #five 都是边框图片的示例*/
+  #Twobx{
+    margin:20px 30px 20px 35px;
+    transform: skew(-10deg,-1deg);
+  }                                                                           /*table 下 2D 变换区域的样式*/       
+  #Twobx div{
+    width:140px;
+    height:60px;
+    margin:30px 0px 0px 500px;
+    background:red;
+    transform:rotate(-13deg) skew(10deg,1deg);
+    transform-origin:-70px 0px;
+  }
+  #Twobx div::before{
+    content:' ';
+    display:inline-block;
+    width:60px;
+    height:20px;
+    margin:0px 0px 0px -59px;
+    background:red;
+    border-radius:8px 0px 0px 8px;
+  }                                                                            /*2D 变换例子的样式*/                                                                             
+  #Twobx div:active{ transform:rotate(30deg); transform-origin:-70px 0px; }    /*2D 变换例子被点击时的样式*/
+  </style>
+</head>
+
+<body>
+  <div id="h1"><span class="smallh1"></span></div>
+  <div id="body">
+    <div id=kuai1></div><div id="kuai2"></div>
+    <h2>一、 CSS背景渐变效果</h2>
+      <p>
+        背景渐变使用的 CSS 属性是 background-image<br>
+        CSS背景渐变主要有两种方式:线性渐变、径向(放射性)渐变。<br>
+        <details>
+          <summary>线性渐变</summary>
+          从一点向另一点进行渐变，属性值 linear-gradient(渐变方向,颜色,颜色....)<br>
+          例如当前页面的背景属性是: background-image:linear-gradient(to bottom,rgb(0,0,0),rgba(206, 8, 8,0.96) 199%);<br>
+          其中括号内的属性值代表背景的一些参数，第一个是渐变方向，可以用英文字母也可以用角度（例如 45deg 代表45度）。第二个和第三个都是颜色，渐变颜
+          色可以有很多个，每个颜色后可以设置百分数、像素来设定其所占比例，若不设置则默认平均分配。<br>
+          分配颜色空间的规则是，该百分数或像素确定其前方所有颜色总共所占空间的大小，如: (green,red 25px,blue,yellow 50px);<br>
+          第一个 25px 确定的是 green、red 一共所占空间的大小，最后的 50px 确定的是所有颜色所占空间的大小。<br>
+          线性渐变前还可以加一个重复前缀 repeating，这样当渐变不足以填充空间时就会进行重复渐变。如下图:<br>
+          <div id="repeating"></div><br>
+        </details>
+        <details>
+          <summary>径向渐变</summary>
+          从一点向四周辐射的渐变方式，即画圆，属性值 radial-gradient(形状半径及方位,颜色,颜色....)<br>
+          例如页面最上方的轮回眼，其眼白部分就是应用径向渐变的样式，代码是:<br>
+          background-image:repeating-radial-gradient(circle 73px at center,gray,black);<br>
+          第一个参数的 circle 指定形状，有两种,默认为椭圆。第一个参数的 73px 指定的是圆的半径大小。第一个参数的 at center 指定的是渐变的起始位置，
+          这里中心点。第二、三个参数是颜色。最后，径向渐变也可以重复，上例就加了前缀 repeating。<br>
+        </details>
+      </p>
+    <h2>二、CSS 边框图片属性</h2>
+      边框图片不是边框，它首先是背景图片，然后是专门做边框的背景图片，它位于内容区，CSS 边框图片属性将一个背景图片做出边框的效果。<br>
+      边框图片将一张图片用四条基准线划分为九块区域处理，就像九宫格一样（下面就拿它做比喻），下面是边框图片的各个属性，共 6 个:
+      <table border="1">
+        <tr><th style="width:200px;">属性</th><th style="width:300px;">功能</th><th style="width:400px;">属性值</th></tr>
+        <tr><td>border-image-source</td><td>引入边框图片到该元素</td><td>url(图片路径)</td></tr>
+        <tr><td>border-image-slice</td><td>将原图片切割成九块区域</td><td>纯数字、百分比、fill</td></tr>
+        <tr><td>border-image-width</td><td>规定边框图片显示时各基准线的位置</td><td>像素</td></tr>
+        <tr><td>border-image-repeat</td><td>设置九宫格每条边中间区域的显示方式</td><td>stretch、repeat、round、space</td></tr>
+        <tr><td>border-image-outset</td><td>设置各边向外扩张的长度</td><td>像素</td></tr>
+        <tr><td>border-image</td><td>简写形式</td><td>定义顺序是 source slice/width/outset repeat</td></tr>
+      </table>
+      <div id="bk">
+        <details>
+          <summary>border-image-slice</summary>
+          引入图片就不讨论了，slice 用来切割原图片，以供其它属性进行变换，切割的原理是设定四条基准线的位置，下面是两个示意图:<br>
+          <div id="one"></div><div id="two"></div>
+          第一个就是现在这个元素的边框图片的原图片，第二个是对原图片进行尺寸测量的示意图，这个测量可以借助图像编辑软件完成。<br>
+          根据测量，用 slice 设置切割原图片的基准线的位置:<br>
+          border-image-slice:27;<br>
+          上边这行实现了对原图进行像第二张图那样的切割，slice 的属性值是纯数字，因为它的默认单位就是 px，还有就是百分比。<br>
+          边框图片属性是专为做边框而设计的，所以默认剔除掉九宫格正中间的部分，如果不喜欢这样，slice 有一个属性值 fill，它的作用是不剔除图片中间的部
+          分，所以上边的代码就变成: border-image-slice:27 fill;
+        </details>
+        <details>
+          <summary>border-image-width</summary>
+          切割是一回事，显示是另一回事，但二者的原理是相同的，用 slice 切割好原图后，用 width 确定显示时四条基准线的位置:<br>
+          border-image-width:20px;<br>
+          这样就能呈现出下面的效果:<br>
+          <div id="three"></div>
+          可以发现，每条边中间的区域被拉伸了，原因是这个元素的宽高是 100px，四条基准线分别距各个方向 20px，所以中间区域长为 60px，自然就会拉伸。中
+          间区域的显示，由 repeat 属性处理。<br>
+        </details>
+        <details>
+          <summary>border-image-repeat</summary>
+          repeat 属性决定每条边中间部分的显示方式，有四个属性值:stretch、repeat、round、space，其中经常使用的是 repeat、round<br>
+          stretch: 拉伸，将中间区域拉伸到规定尺寸，默认值。<br>
+          repeat: 平铺且拉伸，具体处理是，对上下两边在垂直方向拉伸在水平方向上重复平铺，左右两边是在垂直方向重复平铺在水平方向上拉伸。<br>
+          round: 与 repeat 大体上一样，唯一的区别是当剩余的空间不能以整数个区域显示中间部分时，它会对中间部分的每个区域进行伸缩，使其都能正常显示。<br>
+          repeat 和 round 的区别展示:<br>
+          <div id="four"></div><div id="five"></div> 第一个是 repeat，第二个是 round，整体的宽高是 88px，可以看出，由于空间不足以容纳整数
+          个区域，前者的区域显示不完整，而后者对每个区域进行了拉伸使之刚好填满。那么到底是拉伸还是压缩？这需要计算，总的宽或高 % 单个区域的宽或高，判
+          断余数的大小，若小于单个区域的一半就压缩，大于单个区域的一半就拉伸。<br>
+          上面规定中间区域的代码分别是:<br>
+          border-image-repeat:repeat;<br>
+          border-image-repeat:round;
+        </details>
+        <details>
+          <summary>border-image-outset</summary>
+          边框图片最终是要作为边框的，所以不能显示在内容区，outset 属性使边框图片整体向外扩张一定的长度，比如各个方向分别扩张 20px:<br>
+          border-image-outset:20px;
+        </details>
+        <br>
+        以上代码最终可简写为: border-image:url(../图片/边框图片素材.PNG) 27 fill/20px/20px round;<br>
+      </div>
+    <h2>三、CSS变形效果</h2>
+      CSS3 变形（变换）效果分 2D 和 3D 两种，先说 2D。2D 变形主要使用 transform、transform-origin 这两个属性。<br>
+      <h3>2D 变形</h3>
+        2D 变形是基于直角坐标系的，x 轴正方向为右，y 轴正方向为下。<br>
+        <table border="1">
+          <tr><th style="width:150px;">属性</th><th style="width:400px;">属性值</th><th style="width:500px;">对属性值的描述</th></tr>
+          <tr><td>transform</td><td>none、translate、scale、rotate、skew、matrix</td><td>依次是无、位移、缩放、旋转、倾斜、自定义变换</td></tr>
+          <tr><td>transform-origin</td><td>left、center、right、top、bottom、像素、百分数</td><td>两个参数，依次是 x、y 轴</td></tr>
+        </table>
+        <div id="Twobx">
+          <details>
+            <summary>transform</summary>
+            6 个属性值: none、translate、scale、rotate、skew、matrix，其中位移、缩放、倾斜可在属性名后加 X 或 Y 表示单独变换一个轴。<br>
+            translate: 使用格式 transform(x 偏移量,y 偏移量)，单位是像素或百分数。<br>
+            scale: 使用格式 scale(放缩倍数)，这会同时放缩 x、y 轴，单独放缩用 scaleX、scaleY。单位是像素或百分数。<br>
+            rotate: 旋转是以 x，y 轴的交点为基准的，单位是角度（deg），范围是正负 0 ~ 360 deg。<br>
+            skew:使用格式 skew(角度,角度)，在 x，y 轴的方向上倾斜。也可以单独倾斜一条轴，倾斜可以创造出一点立体效果。<br>
+            <span class="em">matrix:</span><br>
+            使用格式 matrix(a,b,c,d,e,f)，矩阵计算变换，上述的几种变换本质上都是用 matrix 这个属性值实现的，只是换了个名字，所以 matrix 是变换
+            的根本，换句话说，理解 transform 中的 matrix 矩阵方法有利于透彻理解 CSS3 的 transform 属性。<br>
+            矩阵计算比较复杂，详情看这篇 CSDN 博客: https://blog.csdn.net/ruangong1203/article/details/54586051<br>
+            这些属性值可以都写在一行上，用空格隔开就好。
+          </details>
+          <details>
+            <summary>transform-origin</summary>
+            origin 用来改变 x、y 轴的位置，默认时 x、y 轴交点是元素的中心。<br>
+            从固定值来说，x 轴有 top、center、bottom 三个属性值，y 轴有 left、center、right 三个值。<br>
+            也可以使用像素和百分数，使用格式是:<br>
+            transform-origin: 值 值;<br>
+            第一个值指定 x 轴的位置，第二个指定 y 轴的位置，如果用像素，左上角代表 x、y 轴的起点，随着值增大，x 向右，y 向下。<br>
+            下面是一个运用纯 CSS 2D 变换的动画例子，点击色块触发效果:
+            <div></div>
+          </details>
+        </div>
+      <h3>3D 变形</h3>
+        
+        <table>
+
+        </table>
+        <div id="Threebx">
+          <details>
+            <summary></summary>
+
+          </details>
+        </div>
+  </div>
+</body>
+
+</html>

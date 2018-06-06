@@ -9,7 +9,6 @@
       font-family:'微软雅黑';
       src:url("微软雅黑.ttf");
     }                                                                      /*Web字体*/
-
     body{  background:url(图片/右上角.PNG) no-repeat; }                      /*页面整体背景*/
     div ul{
       margin:0px;
@@ -67,6 +66,14 @@
       margin-left:20px;
       margin-top:10px;
     }
+    @media screen and (max-device-width:600px){
+      body{
+        background:url(图片/请不要打扰我晒太阳.PNG);
+      }
+      #h1{
+
+      }
+    }
   </style>
 </head>
 
@@ -85,7 +92,7 @@
             <span>随笔</span>
             <iframe id="artical2" src="随笔/index.html"></iframe></li>
           <li id="time">
-            <span>岁月如梭</span>
+            <a href="#time2"><span>岁月如梭</span></a>>
             <iframe id="time2" style="width:1100px; height:480px;" src="珍惜时间.html"></iframe></li>
         </ul>
       </p>
