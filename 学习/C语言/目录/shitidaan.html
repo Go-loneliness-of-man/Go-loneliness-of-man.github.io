@@ -32,8 +32,8 @@
       width:170px;
       height:35px;
       padding:1px;
-      border:5px solid rgb(82, 255, 234);
-      border-radius:12px;
+      border:4px solid rgb(82, 255, 234);
+      border-radius:16px;
       margin:6% 10% 0% 0%;
     }
     #ks li a, #ks li{
@@ -55,6 +55,7 @@
       <li>2.<a href="#two">填空题</a></li>
       <li>3.<a href="#three">程序阅读题</a></li>
       <li>4.<a href="#four">编程题</a></li>
+      <li style="border:5px solid red;"><a href="#five" style="color:red;">5.三处错误 !</a></li>
     </ol>
     <div id="caidan">
       相信能找到这里的童鞋大部分都是已经看完《面向考试编程》的了吧，鉴于大家刚刚艰苦卓绝的学习完 C 语言，在这里就先给童鞋们调剂下，放一个本书的小彩蛋，
@@ -391,6 +392,58 @@
       <span class="em" style="font-size:22px;">http://Go-loneliness-of-man.github.io</span><br><br>
       写这个又花了四个小时，终于写完了，写页面真是比编程还累人的事情啊 ...... 黑眼圈都熬出来了，我得好好补补觉去 ......<br>
       最后，祝童鞋们考试顺利啊~
+    <h2 id="five">书中的三处错误</h2>
+      现在这几处错误已经改过来了......<br>
+      首先，书里概念性的知识点是没有错误的，后来有人向我反馈书中有错误，我起先还不信，但回去认真把整本书排查了一遍后发现......还真有......全书有三处错
+      误，<span class="em">其中两处是在两个示例代码中（二维数组例题、验证值传递），一处在结构体指针指向结构体数组。</span><br>
+      下面是我改正的代码，与书中相同的部分是正常颜色，不同点被我用红颜色加下划线标出了。<br>
+      第一处错误：二维数组例题中 : 将 sum1 和 sum2 值的重置位放错了，应该写在内嵌 for 循环的变量初始化里，下面是改过以后的代码:
+      <code>
+          #include&lt;stdio.h&gt;
+          //四名学生，求其三门课的总成绩和各学科的总成绩
+          int sorce[4][3] = {{ 88,99,100 },{ 36,42,59 },{ 60,62,54 },{ 75,97,23 }},
+          //每行代表一名学生，每列代表一门课
+          i, i2, sum1 = 0, sum2 = 0;
+          //定义二维数组、循环变量 i 和 i2、一名学生的总成绩 sum1、一门课的总成绩 sum2
+          int main()
+          {
+            for (i = 0; i < 4; i++)
+            {
+              <span class=em>for (i2 = 0, sum1 = 0; i2 < 3; i2++)</span>
+                sum1 += sorce[i][i2];                     //将一行的所有数组元素相加
+              printf("学生 %d 三门课的总成绩是: %d\n", i + 1, sum1);
+            }                                             //求出每名学生三门课的总成绩
+            for (i = 0; i < 3; i++)
+            {
+              <span class=em>for (i2 = 0, sum2 = 0; i2 < 4; i2++)</span>
+                sum2 += sorce[i2][i];                      //将一列的所有数组元素相加
+              printf("三名学生第 %d 门课的总成绩是: %d\n", i + 1, sum2);
+            }                                               //求出每门课三名学生的总成绩
+          } //这是二维数组的简单应用，考试根本不考这么难的题，看不懂没关系，作为兴趣了解就好
+      </code><br>
+      <br>
+      第二处错误：验证值传递时，函数定义中用错了参数，应该用形参......智障的我用了全局变量......
+      <code>
+          #include&lt;stdio.h&gt;
+          //验证值传递是否会改变实参的值？
+          int a = 1, b = 2;							//待交换的变量 a、b
+          void huan(int x, int y);	                 	//用于交换值的函数 huan()
+          int main()
+          {
+          	huan(a, b);								//调用函数 huan()
+          	printf(" a = %d , b = %d\n", a, b);			//a、b 的值互换了么？
+          	return 0;
+          }
+          void huan(int x, int y)
+          {
+          	int z;									//用于交换的临时变量 z
+          	<span class="em">z = x;	x = y;	y = z;</span>
+          }
+      </code><br>
+      第三处错误：结构体指针指向结构体数组，脑子抽了......虽然用结构体指针指向结构体变量时需要用取值运算符，但在用结构体指针指向结构体数组时就不用取值
+      运算符“*”了，正确的格式应该是：<span class="em">( 指针变量名 + 偏移量 ) -> 成员名</span><br><br>
+      <span style="color:white; font-size:25px; line-height:40px;">我对不起大家，毕竟你们选择了相信我，我的书中却出现了这三点错误，我真是
+      失败啊。唉，尽管发行前做了大量的检查，终究还是百密一疏 ......<br><br>
   </div>
 </body>
 
