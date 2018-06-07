@@ -8,7 +8,7 @@
     @font-face{
       font-family:'微软雅黑';
       src:url("微软雅黑.ttf");
-    }                                                                      /*Web字体*/
+    }                                                                       /*Web字体*/
     body{  background:url(图片/右上角.PNG) no-repeat; }                      /*页面整体背景*/
     div ul{
       margin:0px;
@@ -32,20 +32,16 @@
       width:80px;
       background:rgb(255,0,0);
       font-size:20px;
-    }                                                                     /*li在指针悬停状态下的样式*/
+    }                                                                     /*li 在指针悬停状态下的样式*/
     #study:hover,#time:hover{ padding:5px 10px 15px 10px; }
     #artical:hover{ 
       width:70px;
       padding:5px 0px 15px 30px;
     }
-    div ul li span{ color:rgb(160,160,160); }                             /*指定li的细节样式*/
-
-    a:link{ color:saddlebrown; text-decoration:none; }
-    a:visited{ color:gray; text-decoration:none; }
-    a:hover{ color:white; text-decoration:none; }                        /*定制a元素样式*/
-
-    #study:hover iframe,#time:hover iframe,#artical:hover iframe{ display:block; }  /*使各个li的菜单在指针悬停下可见*/
-
+    a{ text-decoration:none; }
+    div ul li span{ color:rgb(20,20,20); font-weight:bold; }                             /*指定 li 的细节样式*/
+    div ul li span:hover{ color:white; text-decoration:none; font-weight:bold; }         /*li 被点击时的样式*/
+    #study:hover iframe,#time:hover iframe,#artical:hover iframe{ display:block; }         /*使各个 li 的菜单在指针悬停下可见*/
     #time2,#artical2,#study2{
       position:absolute;
       top:155px;
@@ -55,13 +51,11 @@
       display:none;
       width:280px;
       height:500px;
-    }                                                                          /*各个li菜单样式*/
-
+    }                                                                          /* 各个li菜单样式 */
     .smallh1{
       font-size:40px;
       font-weight:bold;
     }
-
     audio{
       margin-left:20px;
       margin-top:10px;
@@ -77,7 +71,7 @@
 <body>
   <div id="h1">
     <span class="smallh1">练习室 belong to 刃舞</span><br>
-    <audio src="消愁---毛不易+.mp3" controls preload="auto" loop style="height:50px; line-height:2em; display:inline-block;"></audio>
+    <audio src="消愁---毛不易+.mp3" controls preload="auto" loop></audio>
   </div>
   <div id="body">
     <h2>浏览项</h2>
