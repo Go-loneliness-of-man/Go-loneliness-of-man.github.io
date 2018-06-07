@@ -154,8 +154,8 @@
         用link元素的<span class="em">media属性</span>或CSS的<span class="em">@media规则</span>都可以达到这个
         目的，它们是两种方式，一个是选择使用哪个外部样式表，一个是直接更改CSS文件。<br>
         media属性:<span class="em">&ltlink href="路径" rel="stylesheet" media="条件"&gt</span><br>
-        “条件”即判断条件，例如screen and (max-width:500px),指的是使用屏幕且屏幕宽度不大于500px的设备。这样的条件还有很多,例如:print代
-        表打印机，min-width代表的是屏幕宽度不小于多少多少的设备，具体可以在CSS3媒体查询规范中进一步了解。这样，就可以根据不同的设备来应用不
+        “条件”即判断条件，例如screen and (max-device-width:500px),指的是使用屏幕且屏幕宽度不大于500px的设备。这样的条件还有很多,例如:print代
+        表打印机，min-device-width代表的是屏幕宽度不小于多少多少的设备，具体可以在CSS3媒体查询规范中进一步了解。这样，就可以根据不同的设备来应用不
         同的样式表。<br>
         @media规则:<span class="em">@media 条件 { 选择器{属性:样式;}   ......  }</span><br>
         @media规则是可以直接写在CSS中的，令CSS可以根据不同设备应用不同规则，这些规则都写在一个文件中，而不需要再更改link元素，所有设备可以只使用一
