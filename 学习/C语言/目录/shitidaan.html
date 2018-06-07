@@ -422,27 +422,27 @@
           } //这是二维数组的简单应用，考试根本不考这么难的题，看不懂没关系，作为兴趣了解就好
       </code><br>
       <br>
-      第二处错误：验证值传递时，函数定义中用错了参数，应该用形参......智障的我用了全局变量......
+      第二处错误：验证值传递时，函数定义中用错了参数，应该用形参 ...... 智障的我用了全局变量 ......
       <code>
           #include&lt;stdio.h&gt;
           //验证值传递是否会改变实参的值？
-          int a = 1, b = 2;							//待交换的变量 a、b
-          void huan(int x, int y);	                 	//用于交换值的函数 huan()
+          int a = 1, b = 2;                                   //待交换的变量 a、b
+          void huan(int x, int y);                             //用于交换值的函数 huan()
           int main()
           {
-          	huan(a, b);								//调用函数 huan()
-          	printf(" a = %d , b = %d\n", a, b);			//a、b 的值互换了么？
+          	huan(a, b);                                   //调用函数 huan()
+          	printf(" a = %d , b = %d\n", a, b);           //a、b 的值互换了么？
           	return 0;
           }
           void huan(int x, int y)
           {
-          	int z;									//用于交换的临时变量 z
+          	int z;                                         //用于交换的临时变量 z
           	<span class="em">z = x;	x = y;	y = z;</span>
           }
       </code><br>
       第三处错误：结构体指针指向结构体数组，脑子抽了......虽然用结构体指针指向结构体变量时需要用取值运算符，但在用结构体指针指向结构体数组时就不用取值
       运算符“*”了，正确的格式应该是：<span class="em">( 指针变量名 + 偏移量 ) -> 成员名</span><br><br>
-      <span style="color:white; font-size:25px; line-height:40px;">我对不起大家，毕竟你们选择了相信我，我的书中却出现了这三点错误，我真是
+      <span style="color:white; font-size:25px; line-height:40px;">我对不起大家，毕竟你们选择了相信我，我的书中却出现了这三点错误，真是
       失败啊。唉，尽管发行前做了大量的检查，终究还是百密一疏 ......<br><br>
   </div>
 </body>
