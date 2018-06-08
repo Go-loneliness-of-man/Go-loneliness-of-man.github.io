@@ -29,5 +29,14 @@
       color: rgb(82, 255, 234);
     }                                              /*小标题*/
 
+    #h1{
+      text-align:center;
+      margin:3%;
+      font-size:30px;
+      font-weight:bold;
+    }                                              /*页面标题 "#h1" 的样式*/
+
+    p{ text-indent:2em; }                          /*段落首行缩进*/
+
     a{ text-decoration:none; }
     a:hover{ color:rgb(200,200,200) }            /*a元素样式*/

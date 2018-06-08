@@ -11,7 +11,7 @@
     }                                                                       /*Web字体*/
     body{  background:url(图片/右上角.PNG) no-repeat; }                      /*页面整体背景*/
     div ul{
-      margin:0px;
+      margin:1% 0px;
       padding:0px;
       background:rgb(170,0,0);
       width:83px;
@@ -44,41 +44,56 @@
     #study:hover iframe,#time:hover iframe,#artical:hover iframe{ display:block; }         /*使各个 li 的菜单在指针悬停下可见*/
     #time2,#artical2,#study2{
       position:absolute;
-      top:155px;
+      top:148px;
       left:134px;
       border:3px solid black;
       border-radius:10px;
       display:none;
-      width:280px;
+      width:600px;
       height:500px;
     }                                                                          /* 各个li菜单样式 */
     .smallh1{
+      display:inline-block;
       font-size:40px;
       font-weight:bold;
+      margin:1% 0% 0% 8%;
     }
     audio{
-      margin-left:20px;
-      margin-top:10px;
       position:absolute;
-      top:70px;
-      left:100px;
+      top:14%;
+      left:8%;
     }
     @media screen and (max-device-width:600px){
-      html{ height:770px; width:500px; }
-      body{ background:url(图片/请不要打扰我晒太阳.PNG) no-repeat; }
+      html{ height:100%; width:100%; }
+      body{
+        background:url(图片/请不要打扰我晒太阳.PNG) no-repeat;
+        height:100%; width:100%;
+      }
       #h1 .smallh1{ font-size:35px; color:rgb(40,40,40) }
+    }
+    #face{
+      display:inline-block;
+      background:url(图片/头像2.PNG) 100%;
+      width:76px;
+      height:76px;
+      border:2px solid black;
+      border-radius:38px;
+      position:absolute;
+      top:1%;
+      left:1%;
     }
   </style>
 </head>
 
 <body>
+  <div id="face"></div>
   <div id="h1">
     <span class="smallh1">练习室 belong to 刃舞</span><br>
     <audio src="消愁---毛不易+.mp3" controls preload="auto" loop></audio>
   </div>
   <div id="body">
-    <h2>浏览项</h2>
       <p>
+        <h2>浏览项</h2>
         <ul>
           <li id="study">
             <a href="#study2"><span>学习笔记</span></a>

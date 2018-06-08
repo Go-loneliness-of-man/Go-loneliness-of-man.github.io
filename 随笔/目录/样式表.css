@@ -25,7 +25,10 @@ html { background: rgb(210, 210, 210); }
         color: rgb(248, 0, 0);
         font-weight:blod;
       }
+
       .annotation{ background:yellow; }
+      
+      p{ text-indent:2em; }
 
 a:link { color: rgb(53, 13, 199); text-decoration: none; }
 a:visited{ color: black; text-decoration: none; }
