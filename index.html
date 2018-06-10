@@ -92,7 +92,8 @@
         margin:24px 0px 10px 10px;
         font-size:30px;
       }                                                                      /*确定移动端下 "浏览项" 三字的位置*/
-      #time2,#shu2{ width:900px !important; }                                /*移动端下后两个 iframe 的宽度*/
+      #time2,#shu2{ width:750px !important; }                                /*移动端下后两个 iframe 的宽度*/
+      #time div,#shu div{ overflow:auto; }                                   /*解决移动端 iframe 不滚动问题*/
     }
   </style>
 </head>
@@ -115,9 +116,15 @@
             <iframe id="artical2" src="随笔/index.html"></iframe></li>
           <li id="time">
             <a href="#time2"><span>岁月如梭</span></a>
-            <iframe id="time2" style="width:1100px; height:480px;" src="珍惜时间.html"></iframe></li>
-          <li id="shu"><a href="#shu2"><span>我的书</span></a>
-            <iframe id="shu2" style="width:1100px; height:480px;" src="面向考试编程/index.html"></iframe></li>
+            <div>
+              <iframe id="time2" style="width:1100px; height:480px;" src="珍惜时间.html"></iframe>
+            </div>
+          </li>
+            <li id="shu"><a href="#shu2"><span>我的书</span></a>
+            <div>
+              <iframe id="shu2" style="width:1100px; height:480px;" src="面向考试编程/index.html"></iframe>
+            </div>
+          </li>
         </ul>
       </p>
   </div>
