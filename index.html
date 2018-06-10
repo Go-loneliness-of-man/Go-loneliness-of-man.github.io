@@ -83,17 +83,15 @@
     }
     @media screen and (max-device-width:600px){
       html{ height:100%; width:100%; }
-      body{
-        background:url(图片/请不要打扰我晒太阳.PNG) no-repeat top left/100%;
-      }
-      #h1 .smallh1{ font-size:27px; color:rgb(40,40,40) }
+      body{ background:url(图片/请不要打扰我晒太阳.PNG) no-repeat top left/100%; }
+      #h1 .smallh1{ font-size:27px; color:rgb(20,20,20) }                   /* "刃舞的练习室" 这段文字的样式*/
       #llx{
         display:inline-block;
         margin:24px 0px 10px 10px;
         font-size:30px;
       }                                                                      /*确定移动端下 "浏览项" 三字的位置*/
       #time2,#shu2{ width:750px !important; }                                /*移动端下后两个 iframe 的宽度*/
-      #time div,#shu div{ overflow:auto; }                                   /*解决移动端 iframe 不滚动问题*/
+      #time div,#shu div{ overflow:auto; height:800px; }                     /*解决移动端 iframe 不滚动问题*/
     }
   </style>
 </head>
