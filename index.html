@@ -9,7 +9,7 @@
       font-family:'微软雅黑';
       src:url("微软雅黑.ttf");
     }                                                                       /*Web字体*/
-    body{  background:url(图片/右上角.PNG) no-repeat top left/cover; }    /*页面整体背景*/
+    body{  background:url(图片/右上角.PNG) no-repeat top left/cover; }        /*页面整体背景*/
     div ul{
       margin:1% 10px;
       padding:0px;
@@ -35,9 +35,15 @@
     }                                                                     /*li 在指针悬停状态下的样式*/
     #llx{
       display:inline-block;
-      margin:10px 0px 0px 10px;
+      margin:20px 0px 0px 10px;
       font-size:30px;
-    }                                                                     /*确定 "浏览项" 三字的位置*/
+    }                                                                     /*确定 PC 端 "浏览项" 三字的位置*/
+    .smallh1{
+      display:inline-block;
+      font-size:40px;
+      font-weight:bold;
+      margin:10px 0px 0px 120px;
+    }                                                                     /* "刃舞的练习室" 这段文字在PC下的样式*/
     #study:hover,#time:hover{ padding:5px 10px 15px 10px; }
     #artical:hover{ 
       width:70px;
@@ -59,12 +65,6 @@
       width:600px;
       height:480px;
     }                                                                      /*各个 li 菜单的样式 */
-    .smallh1{
-      display:inline-block;
-      font-size:40px;
-      font-weight:bold;
-      margin:10px 0px 0px 100px;
-    }                                                                      /* "刃舞的练习室" 这段文字在PC下的样式*/
     audio{
       position:absolute;
       top:95px;
@@ -84,13 +84,13 @@
     @media screen and (max-device-width:600px){
       html{ height:100%; width:100%; }
       body{ background:url(图片/请不要打扰我晒太阳.PNG) no-repeat top left/100%; }
-      #h1 .smallh1{ font-size:27px; color:rgb(20,20,20) }                   /* "刃舞的练习室" 这段文字在移动端下的样式*/
+      #h1 .smallh1{ font-size:28px; color:rgb(20,20,20) }                   /* "刃舞的练习室" 这段文字在移动端下的样式*/
       #llx{
         display:inline-block;
-        margin:24px 0px 10px 10px;
+        margin:35px 0px 10px 10px;
         font-size:30px;
-      }                                                                      /*确定移动端下 "浏览项" 三字的位置*/
-      #time2,#shu2{ width:750px !important; }                                /*移动端下后两个 iframe 的宽度*/
+      }                                                                       /*确定移动端下 "浏览项" 三字的位置*/
+      #time2,#shu2{ width:750px !important; }                                 /*移动端下后两个 iframe 的宽度*/
     }
   </style>
 </head>
@@ -102,28 +102,22 @@
     <audio src="消愁---毛不易+.mp3" controls preload="auto" loop></audio>
   </div>
   <div id="body">
-      <p>
-        <h2 id="llx">浏览项</h2>
-        <ul>
-          <li id="study">
-            <a href="#study2"><span>学习笔记</span></a>
-            <iframe id="study2" src="学习/index.html"></iframe></li>
-          <li id="artical">
-            <a href="#artical2"><span>随笔</span></a>
-            <iframe id="artical2" src="随笔/index.html"></iframe></li>
-          <li id="time">
-            <a href="#time2"><span>岁月如梭</span></a>
-            <div>
-              <iframe id="time2" style="width:1100px; height:480px;" src="珍惜时间.html"></iframe>
-            </div>
-          </li>
-            <li id="shu"><a href="#shu2"><span>我的书</span></a>
-            <div>
-              <iframe id="shu2" style="width:1100px; height:480px;" src="面向考试编程/index.html"></iframe>
-            </div>
-          </li>
-        </ul>
-      </p>
+    <h2 id="llx">浏览项</h2>
+      <ul>
+        <li id="study">
+          <a href="#study2"><span>学习笔记</span></a>
+          <iframe id="study2" src="学习/index.html"></iframe></li>
+        <li id="artical">
+          <a href="#artical2"><span>随笔</span></a>
+          <iframe id="artical2" src="随笔/index.html"></iframe></li>
+        <li id="time">
+          <a href="#time2"><span>岁月如梭</span></a>
+          <iframe id="time2" style="width:1100px; height:480px;" src="珍惜时间.html"></iframe>
+        </li>
+          <li id="shu"><a href="#shu2"><span>我的书</span></a>
+          <iframe id="shu2" style="width:1100px; height:480px;" src="面向考试编程/index.html"></iframe>
+        </li>
+      </ul>
   </div>
   
 </body>

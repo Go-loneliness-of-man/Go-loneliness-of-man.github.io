@@ -12,6 +12,10 @@
     color:rgb(150,150,150);
     line-height:25px;
   }                                                                         /*页面整体背景*/
+  summary{ clear:both; }                                                    /*清除 summary 旁边的浮动*/
+  img{ float:left; margin:10px 20px 10px 10px; }                            /*使所有图片浮动*/
+  code{ white-space:pre; }                                                  /*code 原样显示*/
+  table{ margin:20px auto; }                                                /*居中表格*/
   #kuai1,#kuai2{
     margin:25px 0px 0px 20px;
     width:576px;
@@ -84,6 +88,8 @@
     border-radius:8px 0px 0px 8px;
   }                                                                            /*2D 变换例子的样式*/                                                                             
   #Twobx div:active{ transform:rotate(30deg); transform-origin:-70px 0px; }    /*2D 变换例子被点击时的样式*/
+  #Threebx{ transform-style:preserve-3d; }                                     /*统一打开该元素的 3D 变换*/
+  #ThreeDxz:active{ transform:perspective(1000px) rotate3d(0,1,0,60deg); }     /*3D 变换的旋转例子*/
   </style>
 </head>
 
@@ -205,15 +211,94 @@
           </details>
         </div>
       <h3>3D 变形</h3>
-        
-        <table>
-
+        3D 变形有三个坐标轴，加了个正方向垂直屏幕向外的 z 轴，并且其是基于透视原理的，所有属性值都要配合 CSS 3D 设置视点的属性才能展示出效果。
+        <table border="1">
+          <tr><th style="width:200px">属性</th><th style="width:200px">属性值</th><th style="width:700px">描述</th></tr>
+          <tr><td rowspan="5">transform</td><td>translate3d(x,y,z)</td><td>3D 平移，可以单独设置，如 translate3dZ(z)，下边的也一样</td></tr>
+          <tr><td>scale3d(x,y,z)</td><td>3D 缩放</td></tr>
+          <tr><td>rotate3d(x,y,z,a)</td><td>3D 旋转，单独设置时去掉后缀 3d</td></tr>
+          <tr><td>perspective(长度值)</td><td>确定视点距坐标原点的距离</td></tr>
+          <tr><td>matrix3d(很多值)</td><td>3D 矩阵变换</td></tr>
+          <tr><td>transform-style</td><td>flat、preserve-3d</td><td>设定子元素的变换方式，允许进行 3d 变换，可继承</td></tr>
+          <tr><td>perspective</td><td>none、长度值</td><td>设置视点的位置，并以视锥中的形式展示元素</td></tr>
+          <tr><td>perspective-origin</td><td>长度值</td><td>确定 3D 变换坐标原点的位置，默认是元素中心，属性值有关键字、长度值、百分比</td></tr>
         </table>
         <div id="Threebx">
           <details>
-            <summary></summary>
-
+            <summary>透视原理</summary>
+            要理解CSS 3D变换，首先要稍微了解下视物时的透视原理，这是绘画领域的内容，但被应用到了 CSS 3D 里，用视点、物体、投影来描述：<br>
+            <img src="../图片/CSS3D透视原理图.png" title="CSS3D透视原理图">
+            图中，人的位置就是视点，物体被观察（3D 变换中的元素），视线在平面上的点组成了一个投影。<br>
+            视锥：视点与无数条视线构成的圆锥体。<br>
+            视距：视点到坐标原点的垂直距离。<br>
+            设置视点的位置要用到 perspective-origin、perspective 属性或 transform 的 perspective 属性值。<br>
+            后两者的默认值为 none，没有视点，展示效果与 2D 相同，此外，只能以长度值设置，长度值就是视距。<br>
+            perspective 属性是使一个元素的子元素（对本身无效）可以被 CSS 3D 变换同时设置视点在 z 轴的坐标，而 transform 的 perspective 属
+            性值是使单个元素可以被变换，也就是说前者针对多个元素使用，而后者针对单个元素使用。<br>
+            perspective-origin 的作用是确定坐标原点在元素中的 x、y 轴坐标，默认是元素中心。如：
+            <code>
+              perspective:200px;
+              perspective-origin:100px 100px;
+            </code><br>
+            含义是视点位于元素 x，y 轴 100px 100px 点距屏幕 200px 处。<br>
+            要注意设置视点的属性都是不可继承的，也就是只对该元素的直系子元素起作用，所以，进行 3D 变换时有一个习惯是为所有元素外套一个总的父元素，其被
+            称为“舞台元素”，不过这时由于该元素的所有直系子元素都只有一个共同的视点，因此即使各个子元素的变换属性相同，在不同位置也会呈现出不同的变换效
+            果。
           </details>
+          <details>
+            <summary>translate3d</summary>
+            3D 平移，三个属性值，也可以单独设置每个坐标轴。下面是个示例：<br>
+            <img src="../图片/CSS3D变换示例1.jpg" title="CSS3D变换平移示例"
+            style="transform:perspective(1000px) translate3d(0px,0px,100px);  margin:30px 80px 30px 50px;">
+            看起来似乎没有什么变化，但其实这张图片被变相的放大了，因为视物时，离得近的物体看起来更大，这张图的 CSS 代码如下：<br>
+            <code>
+              transform:perspective(1000px) translate3d(0px,0px,100px);
+              margin:30px 80px 30px 50px;
+            </code><br>
+            视点位于元素中心距屏幕 1000px 处（下面的例子都一样），而图片 z 轴的平移坐标是 100px（0px 时是原尺寸），所以图片看起来被放大了。要注意，
+            当元素的 z 轴坐标大于视点时，就看不到元素了。
+          </details>
+          <details>
+            <summary>rotate3d</summary>
+            3D 旋转，属性值是角度，格式：rotateed(x,y,z,角度)<br>
+            要注意的是，x、y、z 都只有两个可能的值 1 或 0，1 代表打开，0 代表关闭该方向上的旋转。所以该格式只能对各个方向进行统一旋转，要设置各个坐
+            标轴上的，用以下格式：<br>
+            rptateX(角度)、rptateY(角度)、rptateZ(角度)<br>
+            例子（点击触发旋转）:<br>
+            <img src="../图片/CSS3D变换例子3.png" title="CSS3D变换旋转例子" id="ThreeDxz"><br><br>
+            图片代码如下:
+            <code>
+              transform:perspective(1000px) rotate3d(0,1,0,60deg)
+            </code><br>
+            3D 旋转的 z 轴其实和 2D 旋转是一样的。<br>
+          </details>
+          <details>
+            <summary>scale3d</summary>
+            3D 缩放，三个属性值，一样可以单独设置每个坐标，与 2D 缩放不同，3D 缩放还要配合 3D 旋转才行，不然效果与 2D 缩放无异。示例:<br>
+            <img src="../图片/CSS3D变换示例2.jpg" title="CSS3D变换缩放示例"
+            style="transform:perspective(1000px) scale3d(1,0.7,0.7) rotate3d(0,1,0,45deg);"><br><br>
+            图片代码如下：
+            <code>
+              transform:perspective(1000px) scale3d(1,0.7,0.7) rotate3d(0,1,0,45deg);
+            </code><br><br>
+            x、y 轴与 2D 时是一样的，而使用 rotate3d 将元素倾斜后，元素在 z 轴上就具有了一定的长度，这时就可以在 z 轴上缩放元素的长度。
+          </details>
+          <span style="clear:both; display:block;">最后，放一个应用纯 CSS 3D 变换的综合例子（若图片显示不完整，按两下F12）：</span><br>
+          <div style="perspective:1000px;">
+            <img src="../图片/CSS3D变换例子3.png" style="width:22%; transform:translate3d(90px,45px,-20px) rotate3d(0,1,0,80deg);">
+            <img src="../图片/CSS3D变换示例1.jpg" style="width:22%; transform:translate3d(180px,-20px,300px);">
+            <img src="../图片/CSS3D变换例子4.jpg" style="width:22%; transform:translate3d(-142px,130px,200px);">
+            <img src="../图片/CSS3D变换示例2.jpg" style="width:22%; transform:translate3d(-90px,37px,110px) rotate3d(0,1,0,-260deg);">
+          </div>
+          <span style="clear:both; display:block; margin:500px 0px 0px 0px;">采用元素内联样式，代码如下:</span>
+          <code>
+            &lt;div style="perspective:1000px;"&gt;
+              &lt;img src="../图片/CSS3D变换例子3.png" style="width:22%; transform:translate3d(90px,45px,-20px) rotate3d(0,1,0,80deg);"&gt;
+              &lt;img src="../图片/CSS3D变换示例1.jpg" style="width:22%; transform:translate3d(180px,-20px,300px);"&gt;
+              &lt;img src="../图片/CSS3D变换例子4.jpg" style="width:22%; transform:translate3d(-142px,130px,200px);"&gt;
+              &lt;img src="../图片/CSS3D变换示例2.jpg" style="width:22%; transform:translate3d(-90px,37px,110px) rotate3d(0,1,0,-260deg);"&gt;
+            &lt;/div&gt;
+          </code>
         </div>
   </div>
 </body>
