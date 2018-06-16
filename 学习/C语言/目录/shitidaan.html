@@ -6,6 +6,10 @@
   <meta charset="UTF-8">
   <link rel="stylesheet" href="../../H5_ps_php_计算机基础.css">
   <style>
+    #body {
+      margin: 0% 5% 3% 5%;
+      line-height:1.7em;
+    }
     #caidan{
       color:rgb(150,195,120);
       font-size:25px;
@@ -17,8 +21,17 @@
       width:15%;
       height:40%;
       position:fixed;
-      left:82%;
+      left:91%;
       top:0%;
+      transition:all 0.7s;
+    }
+    #ks:hover{
+      position:fixed;
+      left:82%;
+    }
+    #ks:active{
+      position:fixed;
+      left:82%;
     }
     #ks span,#ks li,#ks li a{ display:inline-block; }
     #ks span{
@@ -43,6 +56,15 @@
     #ks li a{ margin:0% 5%; }
     #ks li:hover{ padding: 6px; border:5px solid white; color:white; }
     #ks li:hover a{ color:white; font-size:27px; }
+    .ti{
+      float:left;
+      display:block;
+      width:40%;
+      border:2px dashed rgb(82, 255, 234);
+      border-radius:20px;
+      padding:15px;
+      margin:2%;
+    }
   </style>
 </head>
 
@@ -57,6 +79,7 @@
       <li>4.<a href="#four">编程题</a></li>
       <li style="border:5px solid red;"><a href="#five" style="color:red;">5.三处错误 !</a></li>
       <li>6.<a href="#six" style="font-size:18px;">考试范围、重点</a></li>
+      <li>7.<a href="#seven">高频、易错</a></li>
     </ol>
     <div id="caidan">
       相信能找到这里的童鞋大部分都是已经看完《面向考试编程》的了吧，鉴于大家刚刚艰苦卓绝的学习完 C 语言，在这里就先给童鞋们调剂下，放一个本书的小彩蛋，
@@ -455,6 +478,286 @@
         <li>指针：什么是指针变量、指针变量的本质、指针指向数组、指针引用字符串、地址运算</li>
         <li>结构体：声明、定义、打印</li>
       </ol>
+    <h2 id="seven">高频、易错题型</h2>
+      最近我又刷了七套往届题，发现一些高频、易错的题型，所以总结汇总在这里，一共二十几道，下面会按不同类型分别标注分类。其中有些题出现频率非常高，七套中
+      有四套以上会考，而且是原封不动的原题，这种题被我用（高频）标出或是归类到了“概念”一栏下。<br><br>
+      <div class="ti">
+        1.（计算）定义一个变量使之保存至的范围是 0 ~ 65535，应选择的变量类型是（ ）<br>
+        A. unsigned short int<br>B. int<br>C. short<br>D. long int
+        <details>
+          <summary>解析</summary>
+          选 A。首先， 0 ~ 65535 是 65536 个数字，而变量的值是保存在内存中的，一字节内存是 8 位二进制，所以计算 2 的多少次方等于 65536 ，据此得出字
+          节数来判断变量的类型。至于计算，如果笔试，只能手算，如果是上机，可以利用 C 语言位运算来计算，如下：
+          <code>
+#include&lt;stdio.h&gt;
+int main()
+{
+  int i, x;
+  for (x = 1, i = 1; ((i << (x - 1)) != 65536); x++)
+  	printf("\n  2 的 %d 次方： %d\n\n  ", x, i << x);
+  return 0;
+}
+          </code>
+        </details>
+      </div>
+      <div class="ti">
+        2.（易错）设 x、y、z 都是整型变量，x、y 的初值都是 5，执行 z = （++x）+（y--）+ 1 后，x、y、z 三变量的值按顺序是（ ）<br>
+        A.5，5，11<br>B.6，6，13<br>C.4，6，12<br>D.6，4，12
+        <details>
+          <summary>解析</summary>
+          选 D。<span class="em">在同一表达式中</span>，自增（自减）的顺序会影响到取值，注意观察到底是先取值再自增还是先自增再取值。
+        </details>
+      </div>
+      <div class="ti">
+        3.（高频）若有声明：char c = '\72'; 则变量 c（ ）<br>
+        A. 包含一个字符<br>B. 包含两个字符<br>C. 包含三个字符<br>D. 声明不合法，c 的值不确定
+        <details>
+          <summary>解析</summary>
+          选 A。'\72' 是转义字符，算一个字符。
+        </details>
+      </div>
+      <div class="ti">
+        4. （易错）在 C 语言中，一维数组的定义方式是： 类型说明符 数组名_____<br>
+        A. 常量表达式<br>B. 整型表达式<br>C. 整型常量或整型表达式<br>D. 任何类型
+        <details>
+          <summary>解析</summary>
+          选 C。
+        </details>
+      </div>
+      <div class="ti">
+        5.（易错）下列表达式不为实型的是（ ）<br>
+        A. sqrt(9)<br>B. 5 % 2<br>C. 1.0e3<br>D. 3.1415926
+        <details>
+          <summary>解析</summary>
+          选 B。A 选项是个求根函数，返回值是 double 类型。
+        </details>
+      </div>
+      <div class="ti">
+        6.（易错）下列选项中，不能作为合法常量的是（ ）<br>
+        A. 1.234e04<br>B. 1.234e0.4<br>C. 1.234e+4<br>D. 1.234e0
+        <details>
+          <summary>解析</summary>
+          选 B。常量的指数部分只能是整型数字
+        </details>
+      </div>
+      <div class="ti">
+        7.（易错）在 C 语言中，下列数据按存储空间大小排列顺序正确的是（ ）<br>
+        A. '5' < 5 < 5L<br>B. '5' = 5 < 5L<br>C. '5' < 5 = 5L<br>D. '5' = 5 = 5L
+        <details>
+          <summary>解析</summary>
+          选 A。在 C 语言中，long 型的长度一定是不小于 int 型的，在不同编译器下可能长度相等，但严格意义上讲 long >= int
+        </details>
+      </div>
+      <div class="ti">
+        8.（易错）int a = 5; a /= a *= a += 3; 则 a 的值（ ）<br>
+        A. 5<br>B. 3<br>C. 6<br>D. 1
+        <details>
+          <summary>解析</summary>
+          选 D。复杂赋值运算符优先级相同，结合方向由右向左，所以依次是 a + 3、a * a、a / a，不难发现，由于最后一个是自己除自己，所以其实无论前面怎么计算，
+          结果都是 1。
+        </details>
+      </div>
+      <div class="ti">
+        9.（易错）下列表达式中值为 0 的是（ ）<br>
+        A. 3 / 5<br>B. 3 % 5<br>C. 3 && 5<br>D. 3 < 5
+        <details>
+          <summary>解析</summary>
+          选 A。B、C、D 依次是 5、1、1，当两个整型进行除法运算时，会省略小数部分， 3 / 5 等于 0.6，省略小数部分为 0。
+        </details>
+      </div>
+      <div class="ti">
+        10.（易错）有语句：int a[3] = { 1 , 2 , 3 }; int *p; p = a; 则 *p++ 的值为_____<br>
+        <details>
+          <summary>解析</summary>
+          *p++ 是个运算表达式，所以对 p 来说是先取值再自增，因此取出的是第一个数组元素的值，即 1。 
+        </details>
+      </div>
+      <div class="ti">
+        11.（易错）阅读程序：
+        <code>
+          #include&lt;stdio.h&gt;
+          void main()
+          {
+            int a , b , c;
+            a = 2; b = 3; c = 1;
+            if( a > b )
+              if( a > c )
+                printf( "%d\n", a);
+              else
+                printf( "%d\n", b );
+            printf( "end\n" );
+          }
+        </code><br>
+        运行结果是______。
+        <details>
+          <summary>解析</summary>
+          两层的选择结构，若第一个判断为假，则第二个直接不判断，由题知 a > b，所以不执行 if，直接输出 end。
+        </details>
+      </div>
+      <div class="ti">
+        12.（高频）阅读：
+        <code>
+          #include&lt;stdio.h&gt;
+          void main()
+          {
+            int i , j , m , n;
+            i = 8; j = 10;
+            m = ++i;
+            n = j++;
+            printf("%d , %d , %d , %d", i,j ,m ,n);
+          }
+        </code><br>
+        执行结果______。<br>
+        <details>
+          <summary>解析</summary>
+          m 对 i 是先自增再取值，因此 m 等于 9，n 对 j 是先取值再自增，因此 n 等于 10，最后，i、j 都自增过，因此 i、j 分别等于 9、11。
+        </details>
+      </div>
+      <div class="ti">
+        13.（高频）计算数列：2 / 1、3 / 2、5 / 3、8 / 5、13 / 8、21 / 13  的前 40 项之和。（精确到两位小数）
+        <details>
+          <summary>解析</summary>
+          观察数列，不难发现分子分母的每一项都来源于这样一个数列：1、2、3、5、8、13、21 ...... 从第三项开始，每一项等于前两项之和，由此可得两种解法：
+          <code>
+#include&lt;stdio.h&gt;
+/*第一种解法，利用数组，先推出分子分母数列的前 41 项，再利<br>用其计算出题目要求的数列的前 40 项之和*/
+int main()
+{
+	double nums[41], x;	int i;
+	for (nums[0] = 1, nums[1] = 2, i = 2; i < 41; i++)
+		nums[i] = nums[i - 1] + nums[i - 2];
+	for (x = 0, i = 0; i < 40; i++)
+		x += nums[i + 1] / nums[i];
+	printf("\n  数列前 40 项之和为: %.2lf\n\n  ", x);
+	return 0;
+}
+          </code>
+          <code>
+#include&lt;stdio.h&gt;
+/*第二种解法，利用两个变量，推出分子分母数列的下一项，相加后<br>再推，直到第 40 项*/
+int main()
+{
+	double a, b, x, temp;	int i;
+	for (a = 1, b = 2, x = 0, i = 0; i < 40; i++)
+	{
+		x += b / a;
+		temp = b;		//保存前一项的值
+		b += a;			//推出下一项到 b
+		a = temp;		//将前一项的值赋值给 a
+	}
+	printf("\n  数列前 40 项之和为: %.2lf\n\n  ", x);
+	return 0;
+}
+          </code>
+        </details>
+      </div>
+      <div class="ti">
+        14.（高频）输入一行字符，分别统计其中英文字母、空格、数字、其它字符的个数。<br>
+        <details>
+          <summary>解析</summary>
+          利用 ASCⅡ 码分辨字符的类别即可。
+          <code>
+#include&lt;stdio.h&gt;
+//统计一串字符中字母、数字、空格、其它字符的个数
+int main()
+{
+	int a = 0, b = 0, c = 0, d = 0; char e;
+  for (; (e = getchar()) != '\n';)
+  //注意这里括号的使用，很重要
+	{
+		if (e >= 'a'&&e <= 'z' || e >= 'A'&&e <= 'Z')
+			a++;
+		else if (e >= '0'&&e <= '9')
+			b++;
+		else if (e == ' ')
+			c++;
+		else
+			d++;
+	}
+  printf("\n  字母 %d 个，数字 %d 个，空格 %d 个，其它字符
+  %d 个\n\n  ", a, b, c, d);
+	return 0;
+}
+          </code>
+        </details>
+      </div>
+      <div class="ti">
+        15.（经典）定义一个二维数组，通过键盘输入各元素的值，求数组中所有元素的和。<br>
+        <details>
+          <summary>解析</summary>
+          用一个两层的 for 读入，再用一个两层的 for 循环相加。
+          <code>
+#include&lt;stdio.h&gt;
+//求一个二维数组所有元素的和
+int main()
+{
+	double nums[3][4], sum;	int i, j;
+	for (i = 0; i < 3; i++)
+	{
+		for (j = 0; j < 4; j++)
+			scanf_s("%lf", &nums[i][j]);
+	}
+	for (i = 0, sum = 0; i < 3; i++)
+	{
+		for (j = 0; j < 4; j++)
+			sum += nums[i][j];
+	}
+	printf("\n  所有元素和：%lf\n\n  ", sum);
+	return 0;
+}
+          </code>
+        </details>
+      </div>
+      <div class="ti">
+        16.（经典）一个 3 x 4 的矩阵，要求编程找出其中的最大值，以及其所在的行号和列号。<br>
+        <details>
+          <summary>解析</summary>
+          定义一个变量 max，从第一个数组元素开始，依次往后比较，遇到更大的数就更新值并保存行号、列号，直到遍历完整个数组。
+          <code>
+#include&lt;stdio.h&gt;
+//找出二维数组最大元素及其行号、列号
+int main()
+{
+  double nums[3][4], max;	int i, j, x, y;
+  for (i = 0; i < 3; i++)
+  {
+    for (j = 0; j < 4; j++)
+      scanf_s("%lf", &nums[i][j]);
+  }
+  for (i = 0, max = nums[0][0]; i < 3; i++)
+  {
+    for (j = 0; j < 4; j++)
+    {
+      if (max < nums[i][j])
+      {
+        max = nums[i][j];
+        x = i;
+        y = j;
+      }
+    }
+  }
+  printf("\n  最大值：%lf\t行号: %d\t列号： %d\n\n  ", max, x, y);
+  return 0;
+}
+          </code>
+        </details>
+      </div>
+      <div class="ti">
+        <h3>概念</h3>
+        <ol>
+          <li>C语言中函数<span class="em">不可以嵌套定义</span>，可以嵌套调用。</li>
+          <li>在 C 语言中，要求运算数必须是整型的运算符是 %</li>
+          <li>C 语言的标识符只能由字母、数字、下划线组成，且<span class="em">第一个字符必须是字母或下划线</span>。</li>
+          <li><span class="em">指针不是</span> C 语言的基本数据类型</li>
+          <li>一个算法应该具有的 5 个特点是：<span class="em">有穷性、有效性、确定性、0 个或多个输入、1 个或多个输出</span></li>
+          <li>按生存周期划分，变量分两种类型：静态变量、动态变量</li>
+          <li>C 语言变量的存储类别有 4 种，分别是：自动变量（auto）、寄存器变量（register）、静态变量（static）、外部变量（extern）</li>
+          <li>结构化程序设计使用的三种基本结构是：顺序、选择、循环结构，它们都具有的 4 个共同特点是：一个入口、一个出口、没有死循环、无永远执行不到的
+            语句</li>
+          <li>输入函数 scanf() 有两类参数，分别是：格式字符串、地址列表</li>
+          <li>continue 是用来结束<span class="em">本次循环</span>的，而 break 是用来结束<span class="em">整个循环</span>的。</li>
+        </ol>
+      </div>
   </div>
 </body>
 
