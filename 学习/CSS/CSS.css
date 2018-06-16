@@ -1,0 +1,15 @@
+@charset "utf-8";
+
+html{ line-height:25px; padding:10px 30px; }
+
+summary{ clear:both; }                                                    /*清除 summary 旁边的浮动*/
+img{ float:left; margin:10px 20px 10px 10px; }                            /*使所有图片浮动*/
+code{ white-space:pre; }                                                  /*code 原样显示*/
+table{ margin:20px auto; text-align:center; }                             /*居中表格及文字*/
+p{ text-indent:2em; }                                                     /*段落首航缩进*/
+.em{
+  color: rgb(250, 30, 30);
+  font-weight: bold;
+  border-bottom:2px solid rgb(250, 30, 30);
+  padding:1px;
+}                                                                          /*重点内容的样式*/

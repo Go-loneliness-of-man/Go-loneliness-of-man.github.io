@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>CSS 过渡、、</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="../CSS.css">
+  <style>
+    html{ background:rgb(200,200,200); }
+    #gd1{
+      display:block;
+      float:right;
+      color:rgb(10,10,10);
+      width:80px;
+      margin:10px 600px 10px 0px;
+      background:white;
+      padding:20px 30px;
+      border-radius:30px;
+      transition-property:all;
+      transition-duration:0.8s;
+    }
+    #gd1:hover{
+      background:black;
+      border-radius:90px;
+      padding:20px 100px;
+      color:rgb(220,220,220);
+      margin:10px 550px 10px 0px;
+    }                                                                        /*过渡示例 1*/
+    #gd2{
+      display:block;
+      float:right;
+      color:rgb(220,220,220);
+      width:50px;
+      margin:10px 750px 10px 0px;
+      background:black;
+      padding:50px 50px;
+      border-radius:25px;
+      transition-property:all;
+      transition-duration:2s;
+      transition-timing-function:ease-in;
+      transition-delay:0.6s;
+    }
+    #gd2:hover{
+      border-radius:90px;
+      color:rgb(0,0,0);
+      margin:10px 70px 10px 0px;
+    }                                                                         /*过渡示例 2*/
+    #gd3{
+      display:block;
+      float:right;
+      color:rgb(220,220,220);
+      width:50px;
+      margin:10px 750px 10px 0px;
+      background:black;
+      padding:50px 50px;
+      border-radius:25px;
+      transition:border-radius 1.2s ease-in 0.2s,color 2s ease-in 1.8s,margin 2s ease-in 1.2s;
+    }
+    #gd3:hover{
+      border-radius:90px;
+      color:rgb(0,0,0);
+      margin:10px 70px 10px 0px;
+    }                                                                         /*过渡示例 3*/
+    #dh1{
+      float:right;
+      color:rgb(10,10,10);
+      width:100px;
+      margin:10px 750px 10px 0px;
+      background:white;
+      padding:20px 30px;
+      border-radius:30px;
+      animation-name:dh1;
+      animation-duration:8s;
+      animation-delay:2s;
+    }
+    @keyframes dh1{
+      0%,100%{
+        color:rgb(10,10,10);
+        margin:10px 750px 10px 0px;
+        background:white;
+        padding:20px 30px;
+        border-radius:30px;
+      }
+      25%,75%{
+        color:rgb(34, 177, 15);
+        margin:10px 400px 10px 0px;
+        background:rgb(12, 1, 1);
+        padding:40px 70px;
+        border-radius:60px;
+      }
+      50%{
+        color:rgb(38, 19, 204);
+        margin:10px 100px 10px 0px;
+        background:rgb(73, 155, 199);
+        padding:10px 20px;
+        border-radius:40px;
+      }
+    }                                                                          /*动画示例1*/
+    #dh2,#dh3,#dh4{
+      float:right;
+      color:rgb(10,10,10);
+      width:80px;
+      margin:10px 750px 10px 0px;
+      background:white;
+      padding:20px 30px;
+      border-radius:30px;
+      animation-name:dh234;
+      animation-duration:3s;
+    }
+    #dh2{ animation-iteration-count:infinite; }
+    #dh3{
+      animation-iteration-count:infinite;
+      animation-direction:alternate;
+    }
+    #dh4{ animation-fill-mode:forwards; }
+    @keyframes dh234{
+      0%{
+        color:rgb(10,10,10);
+        margin:10px 750px 10px 0px;
+        background:white;
+        padding:20px 30px;
+        border-radius:30px;
+      }
+      50%{
+        color:rgb(34, 177, 15);
+        margin:10px 520px 10px 0px;
+        background:rgb(12, 1, 1);
+        padding:40px 70px;
+        border-radius:60px;
+      }
+      100%{
+        color:rgb(38, 19, 204);
+        margin:10px 400px 10px 0px;
+        background:rgb(73, 155, 199);
+        padding:10px 20px;
+        border-radius:40px;
+      }
+    }                                                                          /*动画示例 2*/
+  </style>
+</head>
+
+<body>
+  <div id="h1"><span class="smallh1">CSS 过渡</span></div>
+  <div id="body">
+    <h2>一、CSS 过渡</h2>
+      CSS 过渡是个比较好玩、好看的属性，它是通过 CSS 伪类选择器来触发的。
+      <table border="1">
+        <tr><th style="width:200px;">属性</th><th style="width:300px;">描述</th><th style="width:500px;">属性值</th></tr>
+        <tr><td>transition-property</td><td>选定该元素要进行过渡的属性</td><td>none、all、单独写上各个属性</td></tr>
+        <tr><td>transition-duration</td><td>指定过渡所需要的时间</td><td>时间单位， s</td></tr>
+        <tr><td>transition-timing-function</td><td>指定过渡的方式</td><td>ease、linear、ease-in、ease-out、ease-in-out、cubic-bezier()</td></tr>
+        <tr><td>transition-delay</td><td>指定开始过渡的延迟时间</td><td>时间单位， s</td></tr>
+        <tr><td>transition</td><td>简写形式</td><td>顺序是属性、过渡时间、过渡方式、延迟时间</td></tr>
+      </table>
+      <details>
+        <summary>transition-property、transition-duration</summary>
+        用法很简单，这俩的作用依次是选定过渡属性、指定对应属性的过渡时间，拿一个 div 元素来展示（hover 触发）：<br>
+        <div id="gd1">悬停在我身上触发哦！</div><br>
+        <div style="float:right; margin:30px 50px 20px 0px; clear:both; width:850px;">
+          解释：<br>
+          <p>
+            第一个 CSS 选择器里前几行都是设置静态样式的，CSS 过渡属性位于最后两行，倒数第二行选定了要进行过渡的属性，倒数第一行指定了过渡所需要的
+            时间。第二个 CSS 选择器指定了元素过渡后的末状态，即指定了要进行过渡变化的 CSS 属性的末状态。
+          </p>
+        </div>
+        代码如下：
+        <code>
+          #gd1{
+            display:block;
+            float:right;
+            color:rgb(10,10,10);
+            width:80px;
+            margin:10px 600px 10px 0px;
+            background:white;
+            padding:20px 30px;
+            border-radius:30px;
+            transition-property:all;
+            transition-duration:0.8s;
+          }
+          #gd1:hover{
+            background:black;
+            border-radius:90px;
+            padding:20px 100px;
+            color:rgb(220,220,220);
+            margin:10px 550px 10px 0px;
+          }
+        </code><br>
+      </details>
+      <details>
+        <summary>transition-timing-function、transition-delay</summary>
+        依次决定的是变换方式、变换延迟。
+        <div id="gd2">鼠标跟着我走</div><br>
+        <div style="float:right; margin:30px 50px 20px 0px; clear:both; width:780px;">
+          解释：<br>
+          <p>
+            同样的，第一个选择器只有最底下的两行是展示该效果的，依次是指定加速过渡、延迟 0.6s，这个延迟是指<span class="em">满足触发条件或触发条件
+            结束后</span>，对开始进行过渡前的延迟时间。
+          </p>
+          <p>
+            transition-timing-function 有六个属性值，如上表，依次是先加速后减速（默认值）、始终匀速、加速、减速、先加速后减速（整个过程看起来比
+            ease 要慢）、自定义，最后一个自定义是指用贝塞尔曲线自定义实现，前面的几个也都是由贝塞尔曲线实现的。
+          </p>
+        </div>
+        代码如下：
+        <code>
+          #gd2{
+            display:block;
+            float:right;
+            color:rgb(220,220,220);
+            width:50px;
+            margin:10px 750px 10px 0px;
+            background:black;
+            padding:50px 50px;
+            border-radius:25px;
+            transition-property:all;
+            transition-duration:2s;
+            transition-timing-function:ease-in;
+            transition-delay:0.6s;
+          }
+          #gd2:hover{
+            border-radius:90px;
+            color:rgb(0,0,0);
+            margin:10px 70px 10px 0px;
+          }
+        </code>
+      </details>
+      <details>
+        <summary>transition</summary>
+        简写形式，现在将上面的第二个示例用简写形式稍加改动：<br>
+        <div id="gd3">鼠标跟着我走</div><br>
+        <div style="float:right; margin:10px 50px 20px 0px; clear:both; width:780px;">
+          解释：<br>
+          <p>
+            上面这个例子把第二个示例的各个属性的过渡单独改动了下，单独设置各个属性的过渡变化，用逗号隔开，例如：
+            transition:border-radius 1.2s ease-in 0.2s,color 2s ease-in 1.8s,margin 2s ease-in 1.2s;
+          </p>
+        </div>
+        代码如下：
+          <code>
+            #gd3{
+              display:block;
+              float:right;
+              color:rgb(220,220,220);
+              width:50px;
+              margin:10px 750px 10px 0px;
+              background:black;
+              padding:50px 50px;
+              border-radius:25px;
+              transition:border-radius 1.2s ease-in 0.2s,color 2s ease-in 1.8s,margin 2s ease-in 1.2s;
+            }
+            #gd3:hover{
+              border-radius:90px;
+              color:rgb(0,0,0);
+              margin:10px 70px 10px 0px;
+            }
+          </code>
+      </details>
+    <h2>二、CSS 动画</h2>
+      CSS 动画比 CSS 过渡更灵活、更强大，它不必通过触发演示，默认下是自动播放的，并且它用关键帧来实现动画，说白了就相当于为 CSS 过渡加上多个状态（过
+      渡只有始、末两个状态），下面是 CSS 动画的属性一览：
+      <table border="1">
+        <tr><th style="width:250px;">属性</th><th style="width:250px;">属性值</th><th style="width:600px;">描述</th></tr>
+        <tr><td>animation-name</td><td>@keyframes 规则的名称</td><td>选择该元素执行哪个关键帧动画</td></tr>
+        <tr><td>animation-duration</td><td>以 s 为单位</td><td>与过渡一样</td></tr>
+        <tr><td>animation-timing-function</td><td>与过渡一样</td><td>同上</td></tr>
+        <tr><td>annimation-delay</td><td>以 s 为单位</td><td>同上</td></tr>
+        <tr><td>animation-iteration-count</td><td>数字、infinite</td><td>指定动画的循环次数</td></tr>
+        <tr><td>annimation-direction</td><td>normal、alternate</td><td>确定动画是否交替播放，即正向一次，反向一次</td></tr>
+        <tr><td>animation-play-state</td><td>paused</td><td>暂停动画</td></tr>
+        <tr><td>animation-fill-mode</td><td>none、forwords、backforwords、both</td><td>确定动画播放后元素的状态</td></tr>
+        <tr><td>animation</td><td>简写形式</td><td>顺序是 name、duration、function、循环次数、是否交替、delay、mode</td></tr>
+        <tr><td>@keyframes name</td><td>CSS 属性</td><td>定制一段动画，确定其在不同进度时的关键帧</td></tr>
+      </table>
+      <details>
+        <summary>@keyframes、name、duration</summary>
+        <span class="em">@keyframes 定制关键帧，name 引用它，duration 确定动画演示的时间</span>，这样就组成了动画演示的基本要素。下面做个例子：<br>
+        <div id="dh1">按 F5 进行一次演示</div><br>
+        <div style="float:right; margin:10px 50px 20px 0px; clear:both; width:780px;">
+          解释：
+          <p>
+            <span class="em">@keyframes 确定的动画名称可以与元素的 id 重名</span>，#dh1 规则的最后两行确定了该元素要引用哪个动画、动画持续的
+            时间，@keyframes 规则定制了一段动画，这段动画分 5 个关键帧（帧数可任意指定），每个关键帧都对要进行改变的 CSS 属性进行了设置，实际上，每
+            两个关键帧之间就相当于进行一次 CSS 过渡，
+          </p>
+        </div>
+        代码如下：
+        <code>
+          #dh1{
+            float:right;
+            color:rgb(10,10,10);
+            width:100px;
+            margin:10px 750px 10px 0px;
+            background:white;
+            padding:20px 30px;
+            border-radius:30px;
+            animation-name:dh1;
+            animation-duration:8s;
+          }
+          @keyframes dh1{
+            0%,100%{
+              color:rgb(10,10,10);
+              margin:10px 750px 10px 0px;
+              background:white;
+              padding:20px 30px;
+              border-radius:30px;
+            }
+            25%,75%{
+              color:rgb(34, 177, 15);
+              margin:10px 400px 10px 0px;
+              background:rgb(12, 1, 1);
+              padding:40px 70px;
+              border-radius:60px;
+            }
+            50%{
+              color:rgb(38, 19, 204);
+              margin:10px 100px 10px 0px;
+              background:rgb(73, 155, 199);
+              padding:10px 20px;
+              border-radius:40px;
+            }
+          }
+        </code>
+      </details>
+      <details>
+        <summary>animation-iteration-count、animation-fill-mode、annimation-direction、animation-play-state</summary>
+        animation-play-state 是个开关，为元素设置其为 pause 后就会禁用动画。剩下的三个依次是动画循环次数、动画结束后元素的状态、动画播放是否交替，
+        现在把第一个例子分别改造下：
+        <div id="dh2">我是循环演示的动画</div><br><br><br><br>
+        <div id="dh2">我是交替演示的动画</div><br><br><br><br>
+        <div id="dh2">停止在末状态的动画</div><br><br><br><br>
+        <div style="float:right; margin:10px 50px 20px 0px; clear:both; width:780px;">
+          解释：
+          <p>
+            
+          </p>
+        </div>
+        循环演示的代码如下：
+        <code>
+
+        </code>
+      </details>
+  </div>
+</body>
+
+</html>

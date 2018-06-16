@@ -15,7 +15,7 @@
   summary{ clear:both; }                                                    /*清除 summary 旁边的浮动*/
   img{ float:left; margin:10px 20px 10px 10px; }                            /*使所有图片浮动*/
   code{ white-space:pre; }                                                  /*code 原样显示*/
-  table{ margin:20px auto; }                                                /*居中表格*/
+  table{ margin:20px auto; text-align:center; }                             /*居中表格及文字*/
   #kuai1,#kuai2{
     margin:25px 0px 0px 20px;
     width:576px;
@@ -23,6 +23,7 @@
     height:280px;
     background-image:repeating-radial-gradient(circle 73px at center,gray,black);
     display:inline-block;
+    position:relative;
   }                                                                        /*两个眼睛的背景，共同样式*/
   #kuai1{
     border-bottom-left-radius:250px;
@@ -40,16 +41,13 @@
     border-radius:145px;
     background:black;
     position:absolute;
-    top:35px;
+    left:143px;
   }                                                                         /*两个眼珠的共同样式*/
-  #kuai1::before{ top:33px; left:175px; }                                   /*左眼珠样式*/
-  #kuai2::before{ top:33px; left:883px; }                                   /*右眼眼珠样式*/
   #repeating{
     width:300px;
     height:200px;
     background-image:repeating-linear-gradient(green,red 25px,blue,yellow 50px);
   }                                                                         /*线性渐变重复示例*/
-  table{ text-align:center; }                                               /*表格文字居中*/
   #bk{
     margin:40px 26px 40px 26px;
     border-image:url(../图片/边框图片素材.PNG) 27 fill/20px/22px round;
@@ -231,19 +229,19 @@
             图中，人的位置就是视点，物体被观察（3D 变换中的元素），视线在平面上的点组成了一个投影。<br>
             视锥：视点与无数条视线构成的圆锥体。<br>
             视距：视点到坐标原点的垂直距离。<br>
-            设置视点的位置要用到 perspective-origin、perspective 属性或 transform 的 perspective 属性值。<br>
-            后两者的默认值为 none，没有视点，展示效果与 2D 相同，此外，只能以长度值设置，长度值就是视距。<br>
-            perspective 属性是使一个元素的子元素（对本身无效）可以被 CSS 3D 变换同时设置视点在 z 轴的坐标，而 transform 的 perspective 属
-            性值是使单个元素可以被变换，也就是说前者针对多个元素使用，而后者针对单个元素使用。<br>
-            perspective-origin 的作用是确定坐标原点在元素中的 x、y 轴坐标，默认是元素中心。如：
+            设置视点的位置要分别设置坐标原点、视距<br>
+            设置视距要用到 perspective 属性或 transform 的 perspective 属性值。<br>
+            两者的默认值为 none，即没有视点，展示效果与 2D 相同。此外，只能以长度值作为属性值，长度值就是视距。<br>
+            perspective 属性是为一个元素的所有直系子元素（对本身无效）设置一个共同的视距，而 transform 的 perspective 属性值是为单个元素设置视
+            距（即一个元素一个视点），也就是说前者针对多个元素使用，而后者针对单个元素使用。<br>
+            perspective-origin 确定坐标原点在元素中的 x、y 轴坐标，默认是元素中心。如：
             <code>
               perspective:200px;
               perspective-origin:100px 100px;
             </code><br>
             含义是视点位于元素 x，y 轴 100px 100px 点距屏幕 200px 处。<br>
-            要注意设置视点的属性都是不可继承的，也就是只对该元素的直系子元素起作用，所以，进行 3D 变换时有一个习惯是为所有元素外套一个总的父元素，其被
-            称为“舞台元素”，不过这时由于该元素的所有直系子元素都只有一个共同的视点，因此即使各个子元素的变换属性相同，在不同位置也会呈现出不同的变换效
-            果。
+            “视点”这个属性是不可继承的，即只对该元素的直系子元素或元素本身起作用，多个元素有一个共同的视点时，外层的父元素被称为“舞台元素”，这时由于
+            该元素的所有直系子元素都只有一个共同的视点，因此即便各个子元素的变换属性相同，在不同位置也会呈现出不同的变换效果。
           </details>
           <details>
             <summary>translate3d</summary>

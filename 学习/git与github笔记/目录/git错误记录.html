@@ -3,6 +3,7 @@
 
 <head>
   <title></title>
+  <link rel="stylesheet" href="../../样式表.css">
   <meta charset="utf-8">
   <style type="text/css">
     body{
@@ -10,7 +11,6 @@
       margin:5% 10% 10% 10%;
       border:2px solid gray;
       padding:20px;
-      line-height:1.8em;
     }
   </style>
 </head>
@@ -38,10 +38,22 @@
         这样就可以正常push了。
       </details>
       <details>
-        <summary>5.push到github时出现问题，提示could not resolve host:github.com</summary>
+        <summary>push到github时出现问题，提示could not resolve host:github.com</summary>
         是因为github.com没有被主机给解析，解决办法:<br>
         直接修改/etc/hosts文件，windows系统应该也一样，直接修改 C:\Windows\System32\drivers\etc\host 文件即可，在底部添加 :<br>
         <span style="color:red; font-size:24px;">192.30.253.112 github.com</span>
+      </details>
+      <details>
+        <summary>push 时提示 error failed to push some refs to"仓库地址"....</summary>
+        这是由于你在远程仓库上在线改动，造成本地库与远程仓库分成了两条文件线，解决方法是拉取远程仓库到本地进行合并，然后再提交推送，命令依次是：<br>
+        <code>
+          git fetch 仓库名 分支名
+          git diff 仓库名 分支名
+          git merge 仓库名 分支名
+          git add .
+          git commit -m "注释"
+          git push 仓库名 分支名
+        </code>
       </details>
     </p>
   </div>
