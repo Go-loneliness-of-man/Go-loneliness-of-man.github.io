@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>CSS 多列布局、、</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="../CSS.css">
+  <style>
+    #dl{
+      columns:270px 3;
+      column-gap:30px;
+      column-rule:2px solid gray;
+    }
+    #dl h3{ column-span:all; text-align:center; }
+  </style>
+</head>
+
+<body>
+  <div id="h1"><span class="smallh1">CSS 多列布局、、</span></div>
+  <div id="body">
+    <h2>一、CSS 多列布局</h2>
+      多列布局模仿报纸的排版格式，它能将元素的内容分成很多列，并实现内容在列与列间自由流动，主要是四个 CSS 属性：
+      <table border="1">
+        <tr><th style="width:200px;">属性名</th><th style="width:200px;">属性值</th><th style="width:300px;">描述</th></tr>
+        <tr><td>columns</td><td>长度值、数字</td><td>指定每列最小宽度、列数</td></tr>
+        <tr><td>column-gap</td><td>长度值</td><td>指定列间距</td></tr>
+        <tr><td>column-rule</td><td>与 border 相同</td><td>定义列边框样式</td></tr>
+        <tr><td>column-span</td><td>all</td><td>实现标题跨列效果</td></tr>
+      </table>
+      <details>
+        <summary>例子</summary>
+        <div id="dl">
+          <span class="em">columns:</span><br>
+          写两个属性值，依次是每列最小宽度、列数，最小宽度的意思是，若窗口宽度小于 最小宽度 x 列数 时，会维持每列的最小宽度，减少列数。<br>
+          <span class="em">column-gap:</span><br>
+          指定列与列之间间距的大小。<br>
+          <span class="em">column-rule:</span><br>
+          定义列与列间分割线的样式，属性值与边框相同，但不一样的是，分割线不在文档流中，即不在元素中占据空间，相当于绝对定位。<br>
+          <h3>我是跨列显示的标题</h3>
+          <span class="em">columns-span</span><br>
+          如上，该属性实现标题的跨列显示的效果，火狐目前不支持这个属性。<br>
+        </div>
+      </details>
+    <h2>二、CSS 弹性伸缩布局</h2>
+      
+  </div>
+</body>
+
+</html>

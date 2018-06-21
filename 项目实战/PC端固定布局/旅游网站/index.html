@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>PC端固定布局——旅游网站</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="css/index.css">
+  <style>
+    header h1{ background: url(img/logo.PNG) center/cover; }
+    #search{ background:url(img/search.jpg) no-repeat center/cover; }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>旅行社</h1>
+    <nav>
+      <h2 style="display:none;">导航栏</h2>
+      <ul>
+        <li><a href="#">公司简介</a></li>
+        <li><a href="#">风景欣赏</a></li>
+        <li><a href="#">旅游资讯</a></li>
+        <li><a href="#">机票订购</a></li>
+        <li><a href="#" class="active">首页</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section id="search">
+    <h2 style="display:none;">搜索区</h2>
+    <div id="zz"></div>
+    <form>
+      <input type="search" placeholder="请输入旅游景点或城市名称"><button type="submit">搜索</button>
+    </form>
+  </section>
+  
+  <section id="tour">
+    <h2 style="display:none;">旅游项目区</h2>
+    <section id="bt" class="center">
+    <h3>热门旅游</h3>
+    <p>
+      国内、国外、自助、自驾、游轮签证、主题旅游等各种最新热门旅游推荐。
+    </p>
+    </section>
+
+    <section id="xm">
+      <h3 style="display:none;">项目展示区</h3>
+      <figure>
+        <img src="img/黄石公园.jpg">
+        <figcaption>
+          <div class="title">【黄石公园】</div><br>
+          特色风味美食：<br>
+          Lady-M、黄石鹿肉餐、渔人码头螃蟹餐<br>
+          3天2晚夏威夷，体验真正的休闲假期！<br>
+          <span class="price">￥ 2644</span><span class="myd">满意度：87%</span>
+          <div class="type">出境长线</div>
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="img/迪拜.jpg">
+        <figcaption>
+          <div class="title">【迪拜】</div><br>
+          【全球第一家Armani享用午餐】<br>
+          乔治阿玛尼亲自设计。遵循阿玛尼品牌的风格，沒有过多的色彩，黑色、灰色、咖啡色，顺着迪拜塔弧形立面延伸的线条，造就了酒店的简约干练。它不像迪拜
+          其他超星级酒店那样金光灿灿，却令绝大多数来此朝拜设计典范的人欣喜若狂。<br>
+          <span class="price">￥ 2710</span><span class="myd">满意度：92%</span>
+          <div class="type">出境长线</div>
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="img/蒙古.jpg">
+        <figcaption>
+          <div class="title">【蒙古】</div><br>
+          蒙古对于大家来说是既熟悉又陌生的地方。当年成吉思汗骑坐在马背上驰骋于大草原，叱咤风云，让大家开始了解这里。<br>
+          在这里，您感受不到城市的喧嚣与嘈杂，没有雾霾与污染；给您的只有蓝天白云，绿草青山，牛羊成群，大自然的魅力尽显无遗。<br>
+          <span class="price">￥ 1840</span><span class="myd">满意度：88%</span>
+          <div class="type">国内短线</div>
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="img/美国东海岸.jpg">
+        <figcaption>
+          <div class="title">【美国东海岸】</div><br>
+          【轻奢体验】<br>
+          全程0购物，0自费+拉斯维加斯，夏威夷各一天自由活动 +美帝内陆飞三段（DC直飞大瀑布，节省13小时拉车时间和1433公里车程）
+          +5大公园深度纯玩  带您享受美妙的旅行，体验无微不至的服务<br>
+          <span class="price">￥ 4900</span><span class="myd">满意度：96%</span>
+          <div class="type">出境长线</div>
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="img/日本大阪.jpg">
+        <figcaption>
+          <div class="title">【日本大阪】</div><br>
+          大阪城公园是大阪市区内的一座大型公园，公园的主体景观是著名的大阪城天守阁，此外还有森林公园以及多用途运动场的太阳广场、软式
+          棒球场、野外音乐堂、橄榄球足球场等公共设施。<br>
+          <span class="price">￥ 2100</span><span class="myd">满意度：74%</span>
+          <div class="type">出境短线</div>
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="img/悉尼.jpg">
+        <figcaption>
+          <div class="title">【悉尼】</div><br>
+          优质接待标准：澳大利亚新西兰全程三-四星级酒店；特别安排早餐酒店中西式自助，午晚餐升级六菜一汤；<br>
+          古老观光电车：整个澳洲只有墨尔本还保存着世界上体系的有轨电车,它是墨尔本重要的特色之一。<br>
+          <span class="price">￥ 3400</span><span class="myd">满意度：86%</span>
+          <div class="type">出境长线</div>
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="img/埃及.jpg">
+        <figcaption>
+          <div class="title">【埃及】</div><br>
+          安排埃及红海3晚五星海滨酒店<br>
+          旅程：全程五星土耳其航空，伊斯坦布尔直飞开罗，红海直飞伊斯坦布尔<br>
+          享受：特别安排3晚红海度假五星酒店，伊斯坦布尔2晚市区五星酒店<br>
+          美食：土耳其特色餐食+阿拉伯特色餐食<br>
+          <span class="price">￥ 5200</span><span class="myd">满意度：82%</span>
+          <div class="type">出境长线</div>
+        </figcaption>
+      </figure>
+      <figure>
+        <img src="img/上海.jpg">
+        <figcaption>
+          <div class="title">【上海】</div><br>
+          1、接站为拼车接站，需要相互等候，等待时间为2小时内，敬请谅解！<br>
+          2、接站送服务只能在旅游当日使用，提前或者延后无法提供接站服务，敬请谅解！<br>
+          <span class="price">￥ 2400</span><span class="myd">满意度：83%</span>
+          <div class="type">国内长线</div>
+        </figcaption>
+      </figure>
+    </section>
+  </section>
+
+  <footer>
+    <div id="top">
+      <ul>
+        <li>合作伙伴</li>
+        <li><a href="#">途牛旅游网</a></li>
+        <li><a href="#">驴妈妈旅游网</a></li>
+        <li><a href="#">携程旅游</a></li>
+        <li><a href="#">中国青年旅行社</a></li>
+      </ul>
+      <ul>
+        <li>旅游FAQ</li>
+        <li><a href="#">旅游合同签订方式？</a></li>
+        <li><a href="#">儿童价是基于什么制订的？</a></li>
+        <li><a href="#">旅游的线路品质是怎么界定的？</a></li>
+        <li><a href="#">单房差是什么？</a></li>
+        <li><a href="#">旅游保险有哪些种类？</a></li>
+      </ul>
+      <ul>
+        <li>联系方式</li>
+        <li><a href="#">微博：329054.com</a></li>
+        <li><a href="#">邮件：1786053661@qq.com</a></li>
+        <li><a href="#">地址：西安市户县五竹镇公交站</a></li>
+        <li><a href="http://go-loneliness-of-man.github.io"
+               target="_blank">博客：http://go-loneliness-of-man.github.io</a></li>
+      </ul>
+    </div>
+
+    <div id="bottom" class="center">
+      <p>Copyright © Go-loneliness-of-man | 陕ICP1423553234号 | 旅行社经营许可证：L-YC-BK52312</p>
+    </div>
+  </footer>
+</body>
+
+</html>

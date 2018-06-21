@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>CSS 传统布局</title>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="../CSS.css">
+  <style>
+    html{ background:rgb(200,200,200); }
+    table{
+      width:1270px;
+      border-collapse:collapse;                        /*用于清除单元格间的边框*/
+    }                                                  /*表格布局示例*/
+    /*浮动布局例子开始*/
+    #one,#two,#three,#four{ text-align:center; }
+    #one,#four{ width:1270px; height:100px; line-height:100px; }       /*设置行高与元素高度相同，可以使文字垂直居中*/
+    #two,#three{ float:left; height:300px; line-height:300px; }
+    #one{ background:olive; }
+    #two{ background:purple; width:200px; }
+    #three{ background:maroon; width:1070px; }
+    #four{ background: gray; clear:both; }
+    /*浮动布局例子结束*/
+    /*定位布局例子开始*/
+    #xd{ position:relative; text-align:center; }
+    #one2,#four2{ width:1270px; height:100px; line-height:100px; position:absolute; }
+    #two2,#three2{ top:100px; }
+    #one2{ background:olive; }
+    #two2{ background:purple; width:200px; position:fixed; height:100px; line-height:100px; z-index:-1; }
+    #three2{ background:maroon; width:1070px; position:absolute; height:300px; line-height:300px; left:200px; }
+    #four2{ background: gray; top:400px; }
+    /*定位布局例子结束*/
+    /*resize 例子开始*/
+    #one3,#two3,#three3,#four3{ text-align:center; resize:both; overflow:auto; }
+    #one3,#four3{ width:1270px; height:100px; line-height:100px; }
+    #two3,#three3{ display:inline-block; height:300px; line-height:300px; }
+    #one3{ background:olive; }
+    #two3{ background:purple; width:200px; }
+    #three3{ background:maroon; width:1070px; }
+    #four3{ background: gray; clear:both; }
+    /*resize 例子结束*/
+  </style>
+</head>
+
+<body>
+  <div id="h1"><span class="smallh1">CSS 传统布局</span></div>
+  <div id="body">
+    <h2>一、表格布局</h2>
+      这是最原始的布局方式，将整个页面放在一个表格里展示，已经被舍弃很久了，作为了解，这里就写一个看看：<br>
+      <details>
+        <summary>例子</summary>
+        <table>
+          <tr><td colspan="2" style="background:olive; height:100px;">header</td></tr>
+          <tr><td style="background:purple; height:300px; width:200px;">aside</td><td style="background:maroon;">section</td></tr>
+          <tr><td colspan="2" style="background:gray; height:100px;">footer</td></tr>
+        </table>
+        HTML 和 CSS 代码如下：
+        <code>
+          &lt;style&gt;
+            table {
+              width: 1270px;
+              border-collapse: collapse;                /*用于清除单元格间的边框*/
+              text-align:center;
+            }
+          &lt;/style&gt;
+          &lt;table&gt;
+            &lt;tr&gt;&lt;td colspan="2" style="background:olive; height:100px;"&gt;header&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td style="background:purple; height:300px; width:200px;"&gt;aside&lt;/td&gt;&lt;td style="background:maroon;"&gt;section&lt;/td&gt;&lt;/tr&gt;
+            &lt;tr&gt;&lt;td colspan="2" style="background:gray; height:100px;"&gt;footer&lt;/td&gt;&lt;/tr&gt;
+          &lt;/table&gt;
+        </code><br>
+        将宽高换成百分比，能实现一点点自适应的效果。
+      </details>
+    <h2>二、浮动布局</h2>
+      浮动布局是早期普遍使用的布局，现在也有一些应用，浮动布局的核心是两个属性：float、clear，利用这两个 CSS 属性，可以对页面元素进行一些简单的布局，
+      下面做一个例子。
+      <details>
+        <summary>例子</summary>
+        <br><div id="one">header</div><div id="two">aside</div><div id="three">section</div><div id="four">footer</div><br>
+        HTML 和 CSS 代码如下：
+        <code>
+          &lt;style&gt;
+            #one,#two,#three,#four{ text-align:center; }
+            #one,#four{ width:1270px; height:100px; line-height:100px; }      /*设置行高与元素高度相同，可以使文字垂直居中*/
+            #two,#three{ float:left; height:300px; line-height:300px; }
+            #one{ background:olive; }
+            #two{ background:purple; width:200px; }
+            #three{ background:maroon; width:1070px; }
+            #four{ background: gray; clear:both; }
+          &lt;/style&gt;
+          &lt;div id="one"&gt;header&lt;/div&gt;
+          &lt;div id="two"&gt;aside&lt;/div>&lt;div id="three">section&lt;/div&gt;
+          &lt;div id="four"&gt;footer&lt;/div&gt;
+        </code><br>
+        <p>
+          浮动使元素脱离原有文档流，在其上方重新生成一条文档流，浮动元素的特点是，不会浮动到其 HTML 结构里上方元素的上方，而其 HTML 结构下方的元素就
+          会移动到浮动元素的下方，浮动元素间的关系与 inline-block 间的空间关系相同，文字等内容会环绕浮动元素。浮动元素只能是 block 元素，但需要为其
+          指定宽度，否则内容撑开。<br>
+          float 属性值：left、right<br>
+        </p>
+        <p>
+          为了不使浮动元素下方的元素乱跑，就要使用 clear 属性清除浮动造成的影响，三个属性值：left、right、both，依次是左边、右边、两侧不允许出现浮动
+          元素，若有，元素向下移动。
+        </p>
+      </details>
+    <h2>三、定位布局</h2>
+      定位布局主要用到 position、z-index 及其相关属性，定位布局的理念是使元素脱离文档流，依靠 CSS 属性为元素精确指定位置，下面是例子：<br>
+      <details>
+        <summary>例子</summary>
+        <div id="xd">
+          <div id="one2">header</div>
+          <div id="two2">aside</div><div id="three2">section</div>
+          <div id="four2">footer</div>
+        </div><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+        代码如下：
+        <code>
+          &lt;style&gt;
+            #xd{ position:relative; text-align:center; }
+            #one2,#four2{ width:1270px; height:100px; line-height:100px; position:absolute; }
+            #two2,#three2{ top:100px; }
+            #one2{ background:olive; }
+            #two2{ background:purple; width:200px; position:fixed; height:100px; line-height:100px; z-index:-1; }
+            #three2{ background:maroon; width:1070px; position:absolute; height:300px; line-height:300px; left:200px; }
+            #four2{ background: gray; top:400px; }
+          &lt;/style&gt;
+          &lt;div id="xd"&gt;
+            &lt;div id="one2"&gt;header&lt;/div&gt;
+            &lt;div id="two2"&gt;aside&lt;/div&gt;&lt;div id="three2"&gt;section&lt;/div&gt;
+            &lt;div id="four2"&gt;footer&lt;/div&gt;
+          &lt;/div&gt;
+        </code><br>
+        这个例子用到了相对定位、绝对定位、窗口定位，完全运用了定位布局，但很多时候其实没必要像这样为所有元素都定位，只需定位关键的几个元素即可。<br>
+        position：有四个属性值 state、relative、absolute、fixed，其中 state 是默认值，还有四个配套属性 top、left、right、bottom 用来为元素
+        指定位置。<br>
+        z-index：指定元素在定位布局中的层级，也可以理解为 3D 变换中的 z 轴，决定了元素显示的优先级，所有元素默认为 0，负值在文档流之下，例如上例中
+        的 aside 就是负值，以便于显示页面中的文字。<br>
+        相对定位：relative，不脱离文档流，元素以原有位置为参考进行定位，类似于 2D 平移，但不同的是其在文档流中占据的始终为原有位置的大小。<br>
+        绝对定位：absolute，绝对定位的关键是分清其参考元素，绝对定位的参考元素是其最近的具有 relative 的父元素，若没有，以 body 元素为参考。<br>
+        窗口定位：fixed，始终以窗口为参考，位置不随页面位置的改变而改变。<br>
+        文字等内容不会环绕使用定位布局的元素。
+      </details>
+    <h2>四、方便布局的盒子 —— box-sizing</h2>
+      很多时候，为了方便布局计算，需要改变<span class="em">计算盒模型空间大小的方式</span>，这就需要 box-sizing 属性，它有两个属性值：
+      content-box、border-box<br>
+      content-box：内容区 = width<br>
+      border-box：内容区 + 内边距 + 边框 = width
+    <h2>五、使用户可以调节元素大小 —— resize</h2>
+      CSS 提供了一个属性使用户可以调节页面中元素的大小，这点表单元素默认就可以办到，而其它元素需要使用 resize 属性来设置。<br>
+      resize：有四个属性值 none（默认）、both、horizontal、vertical，依次是不能、宽高都可以、只能调节宽、只能调节高。<br>
+      resize 属性对表单元素可以直接使用，而对其它元素要配合盒模型的 overflow:auto 使用才能使元素大小可调节。下面是例子：
+      <details>
+        <summary>例子</summary>
+        <div id="one3">header</div>
+        <div id="two3">aside</div><div id="three3">section</div>
+        <div id="four3">footer</div><br>
+      可以看到，右下角出现了一个控件，用户可以使用它调节元素的大小。
+      </details>
+  </div>
+</body>
+
+</html>

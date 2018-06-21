@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>项目笔记-one</title>
+  <meta charset="UTF-8">
+  <style>
+    .em {
+      color: rgb(250, 30, 30);
+      font-weight: bold;
+      border-bottom:2px solid rgb(250, 30, 30);
+      padding:1px;
+    }                                                       /*重点*/
+  </style>
+</head>
+
+<body>
+  <div id="h1"><span class="smallh1">PC 端固定布局笔记</span></div>
+  <div id="body">
+    <h2>一、网站结构</h2>
+      <p>
+        这是一个旅行社的企业网站，首页分为四个基本模块：导航 nav、头部 header、首页主体 div、尾部 footer<br>
+        导航栏是固定在页面顶部的。<br>
+        关于选择器的使用，对于常用的元素，有两种方法，一种是使用子选择器一层一层的去选择，这样不会妨碍页面接下来的选择；另一种是命名显而易见的类，利
+        用类去一层一层的选择，前者多用于小项目，后者适合大项目。
+      </p>
+    <h2>二、制作 header</h2>
+      <p>
+        首先，去除所有浏览器默认边距：*{ margin:0px; padding:0px; }<br>
+        header 内分两块内容，logo 和 导航栏。<br>
+        <span class="em">logo 采用 h1 标签元素背景</span>，目的是为了让搜索引擎更好的抓取关键字，建议一个页面只用一个 h1，将最关键的文字放在里边，比如公司名称或新闻标题，
+        为了不影响 logo，将文字移动到画面外即可，如 text-indent:-2000em;<br>
+        导航栏使用一个 ul 列表制作，将 li 浮动排列就行，在导航栏里，为了表示当前页面属于导航栏的哪个分支，可以创建一个 active 类为其指定特殊样式，
+        然后在不同页面下把导航栏的不同部分归到 active 下即可。<br>
+        异常：这里遇到的一个问题是，当在外部样式表中为 h1 设置元素背景时出现无法引用的情况，即在外部样式表为元素设置的背景图片无效，这很奇怪，目前原
+        因未知，解决办法是直接在 html 文件写元素背景。<br>
+        <span class="em">为 header 加一个阴影效果：</span>header{ box-shadow:0px 3px 10px 0px black; position:relative; z-index:9999; }<br>
+        阴影的层级比较靠下，要靠定位将其定位到最高层才能看到。<br>
+        <span class="em">导航栏最后要固定到窗口顶部，注意定位时要指定宽度，不然会乱掉，还要对其下方元素进行偏移，因为定位元素不在文档流中。</span>
+      </p>
+    <h2>三、制作搜索区</h2>
+      header 下是旅游网站的搜索区，其往往由一张大的风景图加一个搜索框组成。<br>
+      风景图同样用元素背景实现，background:url(img/search.jpg) no-repeat center/cover;<br>
+      搜索框用表单元素，利用定位布局定位到风景图中部偏上的位置，可以为其加上一个黑色的半透明遮罩修饰。
+    <h2>四、制作旅游项目区</h2>
+      搜索区下是旅游项目区，分两部分：标题、项目展示区<br>
+      首先要注意的是，旅游项目区这个 id 为 tour 的大 section 要指定高度，否则若是为其设置背景颜色时就有奇怪的现象，不能覆盖整个元素的范围。<br>
+      标题用 h3 和 p 即可。项目展示区整个放在 id 为 xm 的 section 内，里面分八个展示模块，每个由图文元素 figure 表示，而每个 figure 又由
+      figcaption、img 组成，每个 figcaption 又由正文，class 为 title、price、myd 的 span 或 div 组成。figure 整体用浮动布局，而内部采用定
+      位布局。
+    <h2>五、底部区域</h2>
+      首页的最后是底部区域，
+  </div>
+</body>
+
+</html>
