@@ -47,9 +47,10 @@ nav ul li a{ color:rgb(200,200,200); }
 nav ul li a:hover{ background:black; }
 nav ul li a.active{ background:black; }                 /*在导航栏上表示现在的页面是"首页"*/
 /*头部结束*/
+
 /*搜索区开始*/
 #search{
-    width:100%;
+  width:100%;
   min-width:900px;
   max-width:1380px;                                        /*当屏幕过宽或过窄时，限制页面整体的宽度*/
   height:556px;
@@ -79,6 +80,7 @@ nav ul li a.active{ background:black; }                 /*在导航栏上表示�
 #search form input{ left:418px; width:430px; }
 #search form button{ left:851px; width:100px; }
 /*搜索区结束*/
+
 /*旅游项目区开始*/
 #tour {
   background: rgb(230, 230, 230);
@@ -145,21 +147,22 @@ nav ul li a.active{ background:black; }                 /*在导航栏上表示�
 /*底部开始*/
 footer {
   height: 241px;
-  margin-top: 40px;
+  margin-top: 30px;
   width: 100%;
   min-width: 900px;
   max-width: 1380px;                                      /*当屏幕过宽或过窄时，限制页面整体的宽度*/
 }
 #top{
   height:83%;
-  background:rgb(30,30,30);
+  background:rgb(25,25,25);
 }
 #top > ul{
-  float:left;
-  margin:20px 2%;
-  width:26%;
+  display:inline-block;
+  vertical-align:top;
+  margin:20px 3%;
+  width:25%;
 }
-#top > ul:nth-child(1){ margin:20px 2% 20px 7%; }
+#top > ul:nth-child(1){ margin:20px 2% 20px 6%; }
 #top > ul > li > a{
   display:block;
   margin-bottom:6px;
