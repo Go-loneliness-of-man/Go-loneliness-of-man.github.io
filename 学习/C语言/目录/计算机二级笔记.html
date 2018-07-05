@@ -1581,21 +1581,21 @@
         <code>
           #include &lt;stdio.h&gt;
           //文件二进制读写
-          FILE *f;                          //定义文件指针
-          char a[100], b[100];									//用于存储字符串的数组
+          FILE *f;                                          //定义文件指针
+          char a[100], b[100];                              //用于存储字符串的数组
           int  main()
           {
-          	if ((f = fopen("a.txt", "wb+")) != NULL)			//打开文件
+          	if ((f = fopen("a.txt", "wb+")) != NULL)    //打开文件
           		printf("\n 打开文件成功\n");
           	printf(" 请输入一串字符: ");
-          	gets_s(a, 100);										//利用 gets_s() 读取字符串到 a[]
-          	fwrite(a, sizeof(a[0]), 100, f);		    //写入内容
-          	fclose(f);											//写入完毕，关闭文件
+          	gets_s(a, 100);                             //利用 gets_s() 读取字符串到 a[]
+          	fwrite(a, sizeof(a[0]), 100, f);            //写入内容
+          	fclose(f);                                  //写入完毕，关闭文件
           	if ((f = fopen("a.txt", "ab+")) != NULL)
           		printf(" 第二次打开文件成功\n");
           	fread(b, sizeof(a[0]), 100, f);
           	printf(" 读取到的文件字符： %s\n\n ", b);
-          	fclose(f);											//读取完毕，关闭文件
+          	fclose(f);                                  //读取完毕，关闭文件
           	return 0;
           }
         </code><br>
@@ -1619,19 +1619,19 @@
           //示范随机读写三个函数的使用
           int main()
           {
-          	FILE *f;									//声明文件指针
+          	FILE *f;                                  //声明文件指针
           	char a[100];
-          	if ((f = fopen("a.txt", "wb+")) == NULL)	//打开文件，建立文件指针与文件的联系
+          	if ((f = fopen("a.txt", "wb+")) == NULL)  //打开文件，建立文件指针与文件的联系
           		printf("文件打开失败\n");
-          	fprintf(f,"1 2 3 4 5 6 7 8 9");				//向文件写入字符串，用空格隔开实现单个读取，以便推断光标的位置
+          	fprintf(f,"1 2 3 4 5 6 7 8 9");           //向文件写入字符串，用空格隔开实现单个读取，以便推断光标的位置
           	printf("\n 向文件内写入的字符串: \"1 2 3 4 5 6 7 8 9\"\n 文件内光标此时的位置 : %d\n 重置光标到开头。\n",ftell(f));
-          	rewind(f);									//将光标移动到文件开头
+          	rewind(f);                                //将光标移动到文件开头
           	printf(" 此时光标的位置: %d\n", ftell(f));
-          	fscanf(f, "%s", a);							//在文件中读取一个字符串
+          	fscanf(f, "%s", a);                       //在文件中读取一个字符串
           	printf(" 读取到的字符串: %s\n 现将光标向后移动 5 位", a);
-          	fseek(f, 5L, 1);							//用 fseek() 移动光标
+          	fseek(f, 5L, 1);                          //用 fseek() 移动光标
           	printf(" 此时光标的位置: %d\n", ftell(f));
-            	fscanf(f, "%s", a);							//光标向后移动了 5 位，因为有空格，所以应读到数字 4
+            	fscanf(f, "%s", a);                       //光标向后移动了 5 位，因为有空格，所以应读到数字 4
           	printf(" 读取到的字符串: %s\n ", a);
           	return 0;
           }
