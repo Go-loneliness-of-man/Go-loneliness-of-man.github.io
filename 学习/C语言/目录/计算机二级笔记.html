@@ -385,7 +385,7 @@
           <tr><td>&lt;&lt;=</td><td>左移后赋值</td><td>变量&lt;&lt;=表达式</td></tr>
           <tr><td>&gt;&gt;=</td><td>右移后赋值</td><td>变量&gt;&gt;=表达式</td></tr>
           <tr><td>&=</td><td>按位与后赋值</td><td>变量&=表达式</td></tr>
-          <tr><td>^=</td><td>按位非后赋值</td><td>变量^=表达式</td></tr>
+          <tr><td>^=</td><td>按位异或后赋值</td><td>变量^=表达式</td></tr>
           <tr><td>|=</td><td>按位或后赋值</td><td>变量|=表达式</td></tr>
           <tr><td>15</td><td>,</td><td>逗号运算符</td><td>表达式,表达式,...</td><td>左到右</td></tr>
         </table>
@@ -1599,6 +1599,8 @@
           	return 0;
           }
         </code><br>
+        四个参数分别代表：第一个数据块的首地址、单个数据块的长度、数据块个数、文件指针，这俩函数执行成功的返回值是进行 I/O 操作的元素的个数，失败的
+        返回值小于等于 0<br>
       </details>
       <details>
         <summary>随机读写文件</summary>
