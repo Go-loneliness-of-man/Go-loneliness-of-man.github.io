@@ -40,6 +40,34 @@
       0px 12px 11px rgba(100, 100, 100, 0.25),
       0px 13px 15px rgba(100, 100, 100, 0.3);
     }
+    #dh{
+      position:absolute;
+      right:50%;
+      text-decoration:none;
+      animation:lj 5s linear infinite;
+      transition:all 0.3s linear;
+    }
+    #dh:hover{ color:red!important; font-size:26px; }
+    @keyframes lj{
+      0%,100%{ color:rgb(180,180,180); right:55%; }
+      25%,75%{ color:rgb(50,50,50); right:34%; }
+      50%{color:rgb(180,180,180); right:5%;}
+    }                                                                         /*顶部链接动画*/
+    @media screen and (max-device-width:600px){
+      #dh{
+        position:absolute;
+        right:25%;
+        text-decoration:none;
+        animation:lj 5s linear infinite;
+        transition:all 0.3s linear;
+      }
+      #dh:hover{ color:red!important; font-size:26px; }
+      @keyframes lj{
+        0%,100%{ color:rgb(180,180,180); right:35%; }
+        25%,75%{ color:rgb(50,50,50); right:13%; }
+        50%{color:rgb(180,180,180); right:4%;}
+      }                                                                        /*顶部链接动画*/
+    }
   </style>
 </head>
 
@@ -47,8 +75,8 @@
   <div id="h1"><span class="smallh1">面向考试编程——一本开源的 C 语言入门书</span></div>
   <div id="body">
       <a href="#" target="_blank" style="font-size:28px;">若觉得这个窗口太小，可以点击此处进入完整页面</a>
-      <h2>第一版正式完稿：2018 年 6 月 9 日</h2>
-        <a href="面向考试编程.docx">点击下载 《面向考试编程》 word 文档</a>
+      <h2 style="height:100px;">第一版正式完稿：2018 年 6 月 9 日<br><br>
+        <a href="面向考试编程.docx" id="dh">点击下载 《面向考试编程》 word 文档</a></h2>
         <p>
           <span class="em">你是否还在为担心 C 语言挂科而发愁？还在为写不出程序而烦恼？还在为没有认真系统的学习过 C 语言基础语法而焦虑？</span>
         </p>

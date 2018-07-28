@@ -1,42 +1,41 @@
-﻿    html {
-            background: rgb(2, 29, 44);
-            color: rgb(158, 228, 245);
-    }                                              /*整体背景*/
+﻿@charset "utf-8";
+html {
+        background: rgb(2, 29, 44);
+        color: rgb(158, 228, 245);
+}                                              /*整体背景*/
 
-    code {
-            white-space: pre;
-    }                                              /*代码*/
+code { white-space: pre; }                     /*代码*/
 
-    .em {
-      color: rgb(250, 30, 30);
-      font-weight: bold;
-      border-bottom:2px solid rgb(250, 30, 30);
-      padding:1px;
-    }                                              /*重点*/
+.em {
+  color: rgb(250, 30, 30);
+  font-weight: bold;
+  border-bottom:2px solid rgb(250, 30, 30);
+  padding:1px;
+}                                              /*重点*/
 
-    table {
-      border-collapse: collapse;
-      margin: 2% auto;
-      text-align: center;
-    }                                              /*表格*/
+table {
+  border-collapse: collapse;
+  margin: 2% auto;
+  text-align: center;
+}                                              /*表格*/
 
-    #body {
-      margin:0% 10% 2% 15%;
-      line-height:1.7em;
-    }                                              /*文章主体*/
+#body {
+  margin:0% 10% 2% 15%;
+  line-height:1.7em;
+}                                              /*文章主体*/
 
-    #h1,h2,summary {
-      color: rgb(82, 255, 234);
-    }                                              /*小标题*/
+#h1,h2,summary {
+  color: rgb(82, 255, 234);
+}                                              /*小标题*/
 
-    #h1{
-      text-align:center;
-      margin:3%;
-      font-size:30px;
-      font-weight:bold;
-    }                                              /*页面标题 "#h1" 的样式*/
+#h1{
+  text-align:center;
+  margin:3%;
+  font-size:30px;
+  font-weight:bold;
+}                                              /*页面标题 "#h1" 的样式*/
 
-    p{ text-indent:2em; }                          /*段落首行缩进*/
+p{ text-indent:2em; }                          /*段落首行缩进*/
 
-    a{ text-decoration:none; }
-    a:hover{ color:rgb(200,200,200) }            /*a元素样式*/
+a{ text-decoration:none; }
+a:hover{ color:rgb(200,200,200) }            /*a元素样式*/
