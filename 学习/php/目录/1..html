@@ -3,10 +3,10 @@
 
 <head>
   <title>两小时快速入门php</title>
-  <meta charset="UTF-8">
   <link rel="stylesheet" href="../../H5_ps_php_计算机基础.css">
+  <meta charset="UTF-8">
   <style>
-    
+    code{ white-space:pre; }
   </style>
 </head>
 
@@ -14,7 +14,7 @@
   <div id="h1"><span class="smallh1">两小时快速入门php</span></div>
   <div id="body">
     <h2>一、前言</h2>
-      在这两小时内初步了解 php。
+      在这两小时内初步了解php并利用其实现一个留言板的功能。
       <details>
         <summary>php能干什么？</summary>
         php可以进行所有服务器端的编程，但同时它也可以用来开发网站，即Web开发。下面是一段php经典代码:
@@ -78,30 +78,28 @@
       </p>
     <h2>三、运算符</h2>
       <p>
-        常用的几个和C语言完全一样。
+        和C语言完全一样。
       </p>
     <h2>四、三大控制结构</h2>
       <p>
         顺序、选择、循环。<br>
         顺序即从上到下顺序执行。<br>
-        选择,例如 if 语句。<br>
-        循环,像 C 一样，while(条件){循环体};<br>
+        选择,例如if语句。<br>
+        循环,像C一样，while(条件){循环体};<br>
       </p>
-    <h2>五、变量类型</h2>
+    <h2>五、浏览器预定义数组:GET、POST</h2>
       <p>
-
-      </p>
-    <h2>六、字符串</h2>
-      <p>
-
-      </p>
-    <h2>七、数组</h2>
-      <p>
-
-      </p>
-    <h2>八、如何高效学习编程</h2>
-      <p>
-        
+        浏览器有一些已经定义好的数组，_GET、_POST就是其中的两个,分别起获取、提交功能。<br>
+        <details>
+          <summary>_GET</summary>
+          _GET在地址栏中使用，它的使用格式如下:<br>
+          在地址栏末尾加上:？key=值;<br>
+          其中key是事先在php文件中定义好的，而key的值是在地址栏中输入的，通过在浏览器地址栏输入对应的key值来调用数组中对应的变量<br>
+        </details>
+        <details>
+          <summary>_POST</summary>
+          POST用于接受用户提交的数据，和表单配合使用。
+        </details>
       </p>
   </div>
 </body>
