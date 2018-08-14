@@ -97,7 +97,7 @@
     <div id=kuai1></div><div id="kuai2"></div>
     <h2>一、 CSS背景渐变效果</h2>
       <p>
-        背景渐变使用的 CSS 属性是 background-image<br>
+        背景渐变使用的 CSS 属性是 background-image，这个属性可以同时使用渐变和引用图片，只要先写渐变再引用图片，并用逗号隔开就好。<br>
         CSS背景渐变主要有两种方式:线性渐变、径向(放射性)渐变。<br>
         <details>
           <summary>线性渐变</summary>
@@ -172,6 +172,7 @@
           border-image-outset:20px;
         </details>
         <br>
+        最后有一点要强调，边框图片和边框不能一起用，否则只显示边框（设置边框为透明也不行）。<br>
         以上代码最终可简写为: border-image:url(../图片/边框图片素材.PNG) 27 fill/20px/20px round;<br>
       </div>
     <h2>三、CSS变形效果</h2>
