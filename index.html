@@ -65,6 +65,7 @@
       position:absolute;
       top:95px;
       left:130px;
+      opacity:0.5;
     }
     #face{
       display:inline-block;
@@ -77,26 +78,52 @@
       top:10px;
       left:16px;
     }                                                                         /*左上角头像的样式*/
+    table{
+      border-collapse:collapse;
+      margin:10px 3% 10px 12%;
+      width:84%;
+      color:rgb(60,60,60);
+      position:absolute;
+      z-index:-1;
+      top:5%;
+      opacity:0.1;
+      transition:all 1.5s;
+    }
+    table caption{ visibility:hidden; }
+    table:hover{ color:white; opacity:0.7; }
+    table:hover caption{ visibility:visible; }
+    table tr{ height:38px; text-align:center; }
+    table tr td:nth-child(2){ padding:0px 15px; text-align:left; text-indent:2em; }
+    table caption{ font-size:30px; letter-spacing:0.6em; }
+    table:hover .em {
+      color: rgb(250, 30, 30);
+      font-weight: bold;
+      border-bottom:2px solid rgb(200, 30, 30);
+      padding:1px;
+    }                                                                          /*重点*/
     @media screen and (max-device-width:600px){
       html{ height:100%; width:100%; }
       body{ background:url(图片/请不要打扰我晒太阳.PNG) no-repeat top left/100%; }
-      #h1 .smallh1{ font-size:28px; color:rgb(20,20,20) }                   /* "刃舞's 书房" 这段文字在移动端下的样式*/
+      #h1 .smallh1{ font-size:28px; color:rgb(20,20,20) }                    /* "刃舞's 书房" 这段文字在移动端下的样式*/
       #llx{
         display:inline-block;
         margin:35px 0px 10px 10px;
         font-size:30px;
       }                                                                       /*确定移动端下 "浏览项" 三字的位置*/
       #time2,#shu2{ width:750px !important; }                                 /*移动端下后两个 iframe 的宽度*/
+      table{ visibility:collapse; }
     }
   </style>
 </head>
 
 <body>
   <div id="face"></div>
+
   <div id="h1">
     <span class="smallh1">刃舞's 书房</span><br>
     <audio src="消愁---毛不易+.mp3" controls preload="auto" loop></audio>
   </div>
+
   <div id="body">
     <h2 id="llx">浏览项</h2>
       <ul>
@@ -118,7 +145,26 @@
           <iframe id="shu2" style="width:1100px;" src="面向考试编程/index.html"></iframe></li>
       </ul>
   </div>
-  
+
+  <table border="1">
+    <caption>大致时间表</caption>
+    <tr><td colspan="3">拿到二级证与 PAT 乙级，九月二十日前到家。</td></tr>
+    <tr><th style="width:18%;">日期（整月以第一日计）</th><th style="width:60%;">描述</th><th style="width:5%;">天数</th></tr>
+    <tr><td>9 月 20 日 ~ 10月 10 日</td><td>熟悉 es5，<span class="em">调整状态逐步适应高强度学习</span></td><td>20</td></tr>
+    <tr><td>10 月 10 日 ~ 12 月 15 日</td><td><span class="em">熟练掌握原生 JS 开发</span>，至少完成三个以上练手项目</td><td>65</td></tr>
+    <tr><td>12 月 15 日 ~ 2 月</td><td>熟练使用 JQ、bootstrap、ajax，至少完成四个以上练手项目</td><td>45</td></tr>
+    <tr><td colspan="3">2019 年</td></tr>
+    <tr><td>2 月 ~ 3 月</td><td>上手 Vue，使用 Vue 写一个完整项目</td><td>30</td></tr>
+    <tr><td>3 月 ~ 4 月</td><td>掌握 Vue 全家桶，<span class="em">并使用 Vue 完成博客重构</span></td><td>30</td></tr>
+    <tr><td>4 月 ~ 6 月</td><td><span class="em">在 mac 上用原生 PHP 搭建后台系统（PHP、mysql、apache 或 nginx）</span></td><td>60</td></tr>
+    <tr><td>6 月 ~ 7 月</td><td>搭建一个初级论坛系统并上线</td><td>30</td></tr>
+    <tr><td>7 月 ~ 8 月</td><td><span class="em">将所有笔记分类整合、把博客移植到自己电脑并为其增添后台系统</span>，同时完善论坛系统，制作
+    动态简历</td><td>30</td></tr>
+    <tr><td>8 月 ~ 9 月</td><td>了解 React、小程序等，制作简历，刷面试题</td><td>30</td></tr>
+    <tr  style="height:60px;"><td>9 月 ~ 11 月</td><td colspan="2">找实习，若有 6K 以上的实习便去工作；若达不到 6K 以上便回去补计算机基础
+    课程（线代、离散、概率、计原、操作系统、网络、编译、数据结构与算法等）并着手兴趣班的实施。</td></tr>
+    <tr><td>11 月 ~ 未知月</td><td colspan="2">实习期，<span class="em">转正后若工资达到 1W 以上便考虑留任</span>，否则辞职开兴趣班</td></tr>
+  </table>
 </body>
 
 </html>

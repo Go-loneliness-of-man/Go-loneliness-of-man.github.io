@@ -2,60 +2,66 @@
 <html>
 
 <head>
-  <title></title>
-  <link rel="stylesheet" href="../../样式表.css">
+  <title>git错误记录</title>
   <meta charset="utf-8">
   <style type="text/css">
     body{
       background:rgb(210,210,210);
-      margin:5% 10% 10% 10%;
+      margin:5% 5% 10% 5%;
       border:2px solid gray;
       padding:20px;
+      line-height:1.6em;
     }
+    code { white-space: pre; }                     /*代码*/
   </style>
 </head>
 
 <body>
-  <div id="h1"><span class="smallh1">git错误记录</span></div>
+  <div id="h1"><span class="smallh1">git 错误记录</span></div>
   <div id="body">
-    <p>
-      <details>
-        <summary>1.git commit提交时要写注释，可以这样解决：</summary> 
-        git commit -m "注释"<br>
-      </details>
-      <details>
-        <summary>2.git push时提示Logon failed......字样，并让你在命令行界面重新键入用户名密码</summary>
-        是因为第一次输错了密码。crtl+c退出，重新push。<br>
-      </details>
-      <details>
-        <summary>3.git push时提示everything up-to-date</summary>
-        有三种情况:未add、未commit、远程仓库没有分支.<br>
-      </details>
-      <details>
-        <summary>4.git push时提示“失败”且让你在命令行重新键入用户名和密码</summary>
-        在本地git仓库文件夹下搜索config文件(不搜索是看不到的)，打开后修改url选项:在http://后加上这个格式“用户名:密码@”即可，如下图:<br>
-        <img src="../示例/config文件.PNG" alt="修改示例"><br>
-        这样就可以正常push了。
-      </details>
-      <details>
-        <summary>push到github时出现问题，提示could not resolve host:github.com</summary>
-        是因为github.com没有被主机给解析，解决办法:<br>
-        直接修改/etc/hosts文件，windows系统应该也一样，直接修改 C:\Windows\System32\drivers\etc\host 文件即可，在底部添加 :<br>
-        <span style="color:red; font-size:24px;">192.30.253.112 github.com</span>
-      </details>
-      <details>
-        <summary>push 时提示 error failed to push some refs to"仓库地址"....</summary>
-        这是由于你在远程仓库上在线改动，造成本地库与远程仓库分成了两条文件线，解决方法是拉取远程仓库到本地进行合并，然后再提交推送，命令依次是：<br>
-        <code>
-          git fetch 仓库名 分支名
-          git diff 仓库名 分支名
-          git merge 仓库名 分支名
-          git add .
-          git commit -m "注释"
-          git push 仓库名 分支名
-        </code>
-      </details>
-    </p>
+    <details>
+      <summary>1. git commit 提交时要写注释，可以这样解决：</summary> 
+      git commit -m "注释"<br>
+    </details>
+    <details>
+      <summary>2. git push 时提示 Logon failed...... 字样，并让你在命令行界面重新键入用户名密码</summary>
+      是因为第一次输错了密码。crtl + c 退出，重新 push。<br>
+    </details>
+    <details>
+      <summary>3. git push 时提示 everything up-to-date</summary>
+      有三种情况:未 add、未 commit、远程仓库没有分支.<br>
+    </details>
+    <details>
+      <summary>4. git push 时提示“失败”且让你在命令行重新键入用户名和密码</summary>
+      在本地 git 仓库文件夹下搜索 config 文件(不搜索是看不到的)，打开后修改 url 选项:在 http:// 后加上这个格式 “用户名:密码@” 即可，如下图:<br>
+      <img src="../示例/config文件.PNG" alt="修改示例"><br>
+      这样就可以正常 push 了。
+    </details>
+    <details>
+      <summary>5. push 到 github 时出现问题，提示 could not resolve host:github.com</summary>
+      是因为 github.com 没有被主机给解析，解决办法:<br>
+      直接修改 /etc/hosts 文件，直接修改 C:\Windows\System32\drivers\etc\host 文件即可，在底部添加 :<br>
+      <span style="color:red; font-size:24px;">192.30.253.112 github.com</span>
+    </details>
+    <details>
+      <summary>6. push 时提示 error failed to push some refs to"仓库地址"....</summary>
+      这是由于你在远程仓库上在线改动，造成本地库与远程仓库分成了两条文件线，解决方法是拉取远程仓库到本地进行合并，然后再提交推送，命令依次是：<br>
+      <code>
+        git fetch 仓库名 分支名
+        git diff 仓库名 分支名
+        git merge 仓库名 分支名
+        git add .
+        git commit -m "注释"
+        git push 仓库名 分支名
+      </code>
+    </details>
+    <details>
+      <summary>7. git clone 太慢的解决办法</summary>
+      git 在 clone 时会默认下载项目的所有记录，即所有历史版本，如果你只想要当前版本的代码，用这个命令：git clone --de<br>
+      前后效果如下：<br>
+      <img src="../示例/gitclone默认.png" title="默认" style="width:49%;"><img src="../示例/gitclone一个.png" title="设置后" style="width:49%;"><br>
+      可以看出下载量由 55 万 + 个锐减到了六千五百多个
+    </details>
   </div>
 </body>
 
