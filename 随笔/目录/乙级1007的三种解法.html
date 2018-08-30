@@ -5,6 +5,7 @@
   <title></title>
   <meta charset="UTF-8">
   <style>
+    body{ background:rgb(200,200,200); padding:2%; }
     code { white-space: pre; }                     /*代码*/
     .em {
       color: rgb(250, 30, 30);
@@ -12,11 +13,18 @@
       border-bottom:2px solid rgb(250, 30, 30);
       padding:1px;
     }                                              /*重点*/
+    #h1{
+      text-align:center;
+      margin:3%;
+      font-size:30px;
+      font-weight:bold;
+    }                                              /*页面标题 "#h1" 的样式*/
   </style>
 </head>
 
 <body>
   <div id="h1"><span class="smallh1">乙级 1007 的三种解法</span></div>
+  <img src="../images/1007题目.png" t="1007题目" style="width:95%;">
   <div id="body">
     <p>
       共四种算法，前两种求素数的方法类似，算一种，后两种运用了经典算法。运算时间以 PAT 网站测试样例 5 的运算时间为衡量标准。<br>
@@ -165,7 +173,7 @@ int main()
 */
       </code>
     </p>
-    <h2>四、利用欧拉筛减少更多运算量</h2>
+    <h2>四、利用欧拉筛法减少更多运算量</h2>
     <p>
       埃氏筛在过程中还是有很多重复，例如重复去掉 2、3 的共同倍数，而欧拉筛可彻底避免重复，欧拉筛法的思想是确保每个数只被其最小的质因数筛去一次。<br>
       样例 5 运行时间是 未知 ms
