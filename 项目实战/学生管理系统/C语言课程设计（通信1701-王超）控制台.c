@@ -3,28 +3,29 @@
 #include<windows.h>
 #include<conio.h>
 /*
-**程序名称：		高中学生信息管理系统（控制台版）
+**程序名称：							高中学生信息管理系统（控制台版）
 
 ********************************************** 功能 *********************************************************
 
-	录入、打印所有学生信息				查找（按学号、姓名）学生				修改、删除学生信息			退出系统
+	录入、打印所有学生信息			查找（按学号、姓名）学生			修改、删除、插入学生信息			退出系统
 
-	计算各科目平均分					对平均分进行排序输出				统计每门课程及格率
-
-	输出 60 分以下名单					将学生按学号大小进行排序
-
-	有账户名和密码，可修改，程序运行需要登录，输入错误则退出。
+	计算各科目平均分、统计及格率（及格分可自定义）、输出不及格名单		根据学号大小、科目成绩等对学生进行排序
+	
+	系统具有账户名、密码，可修改，可找回
 
 	*** 初始账户名：123 ***			*** 初始密码：123 ***
 
 ************************************************************************************************************
 
-**编译环境：		Visual Studio 2015	&&	Win 7
-**开发者：		西安石油大学——通信1701——王超
-**应用知识：		C 语言、Windows API、数据结构（单向链表）
-**完成日期：
-**版权声明：      本软件由本人独立开发，未经本人允许不可用作商业用途，若有侵权，必通过法律途径维权！
+**编译环境：			Visual Studio 2015	&&	Win 7
+**开发者：			西安石油大学——通信1701——王超
+**应用知识：			C 语言、Windows API（控制台版未应用）、数据结构（双向链表）
+**第一版完成日期：		1.0 版	2018 年 7 月 2 日
+**当前版本号：			1.1 版
+**更新：				更新项目数据结构为双向链表，并稍微缩了缩代码量
+**版权声明：			本软件由本人独立开发，未经本人允许不可用作商业用途，若有侵权，必通过合法途径维权！
 */
+
 typedef struct students {			//学生信息 
 	char id[31];					//学号
 	char name[21];					//姓名
@@ -36,6 +37,7 @@ typedef struct students {			//学生信息
 	char class[41];					//年级、班级
 	double score[11];				//各科考试成绩,顺序是语、数、英、理、化、生、政、史、地、总分、平均分
 	struct students *next;			//指向下一个结点
+	struct students *last;			//指向上一个结点
 }s;
 
 s *head,*tail;						//头指针、尾指针，分别指向表头、尾结点
@@ -64,8 +66,6 @@ void opoint(s *x);									//打印一个结点的所有信息
 
 int scbj(char *x, char *y);							//比较两字符串数字的大小，若前者大于后者返回 1，否则 0
 
-s *czq(s *x, char *y);								//遍历链表，返回具有指定学号结点的前一个结点的地址或空指针
-
 void jh(s* x, s *y);								//交换两结点的数据域
 
 s *lbcz(s *x, int y);								//从指定结点向后查找，返回其后具有最大/最小学号的结点地址，1 最大，2最小
@@ -78,13 +78,13 @@ void order2(s *x, int y, int z);					//按科目排序、头指针、排序方向、科目代号
 
 double pjz(s *x, int y);							//计算一门科目的平均值
 
-//******************************************* 结构型函数声明
+//************************************************************************************* 结构型函数声明
 
-void login(), read(s *x), get(), del(), reset(), czmk(), out(s *x), orders(), pj(), infix(), revise()
+void login(), read(s *x), get(), del(), reset(), czmk(), out(s *x), orders(), tj(), infix(), revise()
 	 , exits(), lfor();
 /*
   依次是登录模块、读取数据文件并建立链表模块、新增学生信息模块、按学号删除模块、修改学生信息模块、按条件查找模块、
-  打印所有信息模块、按条件排序模块、求各科目平均值模块、插入学生信息模块、修改账户名密码模块、退出系统模块、
+  打印所有信息模块、按条件排序模块、统计模块、插入学生信息模块、修改账户名密码模块、退出系统模块、
   密保问题重置账户名密码模块、
 */
 char user[101] = "123", password[101] = "123\r";		//初始账户名、密码
@@ -115,7 +115,7 @@ int main()
 			case 4: czmk();	break;						//调用查找模块
 			case 5: out(head);	break;					//调用输出全部信息模块
 			case 6: orders();  break;					//调用排序模块
-			case 7: pj();	break;						//调用平均值模块
+			case 7: tj();	break;						//调用统计模块
 			case 8: infix();  break;					//调用插入模块
 			case 9: revise();	break;					//调用修改账户模块
 			case 0: exits(); break;						//调用退出模块
@@ -145,7 +145,7 @@ void ui()													//打印一次用户 UI
 		   "                                         4. 按条件查找学生信息\n\n"
 		   "                                         5. 打印输出所有学生信息\n\n"
 		   "                                         6. 按条件对所有学生信息进行排序\n\n"
-		   "                                         7. 求各科目平均成绩\n\n"
+		   "                                         7. 求平均分、及格率、不及格名单\n\n"
 		   "                                         8. 在某学生后插入学生信息\n\n"
 		   "                                         9. 修改账户名和密码\n\n"
 		   "                                         0. 退出\n\n"
@@ -174,6 +174,7 @@ s *new(char *id, char *name, char *xb,char *age, char *sfz, char *addr, char* ph
 {
 	s *stdp = (s*)malloc(sizeof(s));						//创建一个新结点，存储其地址在 stdp
 	stdp->next = NULL;										//初始化新结点的 next
+	stdp->last = NULL;										//初始化新结点的 last
 	scp(stdp->id, id, 31);
 	scp(stdp->name, name, 21);
 	scp(stdp->xb, xb, 9);
@@ -224,21 +225,6 @@ s *cz(s *x, char *y)										//遍历链表，返回具有指定学号的结点地址或空指针
 		return NULL;
 	else													//结点学号与指定学号相同，返回结点地址
 		return x;											//返回查找到的结点或最后一个结点的地址
-}
-
-s *czq(s *x, char *y)										//遍历链表，返回具有指定学号结点的前一个结点的地址或空指针
-{
-	s* z = NULL;											//保存指定学号结点的前一个结点的地址
-	if ((x->next) == NULL)	return z;						//第一个结点若为空，返回 NULL
-	//循环，遍历完整个链表后跳出，z 始终保存 x 结点的前一个结点地址
-	for (z = x, x = x->next; x->next != NULL; z = x, x = x->next)
-	{
-		if (strbj(x->id, y)) break;							//检测是否遍历到指定结点，若是，跳出
-	}
-	if (x->next == NULL && !(strbj(x->id, y)))				//如果是最后一个结点且学号不同于指定学号，返回 NULL
-		return NULL;
-	else													//结点学号与指定学号相同，返回结点地址
-		return z;											//返回查找到的结点或最后一个结点的前一个结点的地址
 }
 
 s *czn(s *x, char *y)
@@ -310,28 +296,21 @@ s *lbcz(s *x,int y)
 	{
 		for (bj = cz; 1; cz = cz->next)
 		{
-			if (scbj(cz->id, bj->id))							//若标记结点小于查找结点，更新指针的指向
-				bj = cz;
-			if (cz->next == NULL)
-				break;											//链表已到终点，跳出
+			if (scbj(cz->id, bj->id))	bj = cz;				//若标记结点小于查找结点，更新指针的指向
+			if (cz->next == NULL)	break;						//链表已到终点，跳出
 		}
-		if (bj == x)
-			return NULL;
-		else
-			return bj;
+		if (bj == x)	return NULL;
+		else	return bj;
 	}
 	else if (y == 2)											//找出最小者
 	{
 		for (bj = cz; 1; cz = cz->next)
 		{
-			if (scbj(bj->id, cz->id))							//若标记结点大于查找结点，更新指针的指向
-				bj = cz;
+			if (scbj(bj->id, cz->id))	bj = cz;				//若标记结点大于查找结点，更新指针的指向
 			if (cz->next == NULL)	break;						//链表已到终点，跳出
 		}
-		if (bj == x)
-			return NULL;
-		else
-			return bj;
+		if (bj == x)	return NULL;
+		else	return bj;
 	}
 }
 
@@ -348,12 +327,11 @@ void order(s *x, int y)										//将链表排序，输入数值 1 升序（从大到小），2 降
 			break;											//链表末尾，跳出
 		}
 		jhstd = lbcz(x, y);									//查找出 x 结点后方的具有最大学号的结点
-		if (jhstd != NULL)									//若找到，则交换两结点数据域
-			jh(x, jhstd);
+		if (jhstd != NULL)	jh(x, jhstd);					//若找到，则交换两结点数据域
 	}
 }
 
-//从指定结点向后查找，返回其后具有最大/最小值的结点地址的前一个结点的地址，1 最大，2最小
+//从指定结点向后查找，返回其后具有最大/最小值的结点的地址，1 最大，2最小
 s* lbcz2(s* x, int y, int z)									//按科目查找，头指针、排序方向、科目代号
 {
 	s *cz, *bj;													//用于查找的指针
@@ -363,27 +341,21 @@ s* lbcz2(s* x, int y, int z)									//按科目查找，头指针、排序方向、科目代号
 	{
 		for (bj = cz; 1; cz = cz->next)
 		{
-			if (bj->score[z] < cz->score[z])					//若标记结点小于查找结点，更新指针的指向
-				bj = cz;
+			if (bj->score[z] < cz->score[z])	bj = cz;		//若标记结点小于查找结点，更新指针的指向
 			if (cz->next == NULL)	break;						//链表已到终点，跳出
 		}
-		if (bj == x)
-			return NULL;
-		else
-			return bj;
+		if (bj == x)	return NULL;
+		else	return bj;
 	}
 	else if (y == 2)											//找出最小者
 	{
 		for (bj = cz; 1; cz = cz->next)
 		{
-			if (bj->score[z] > cz->score[z])					//若标记结点大于查找结点，更新指针的指向
-				bj = cz;
+			if (bj->score[z] > cz->score[z])	bj = cz;		//若标记结点大于查找结点，更新指针的指向
 			if (cz->next == NULL)	break;						//链表已到终点，跳出
 		}
-		if (bj == x)
-			return NULL;
-		else
-			return bj;
+		if (bj == x)	return NULL;
+		else	return bj;
 	}
 }
 
@@ -400,15 +372,14 @@ void order2(s *x, int y, int z)								//按科目排序、头指针、排序方向、科目代号
 			break;											//链表末尾，跳出
 		}
 		jhstd = lbcz2(x, y, z);								//查找出 x 结点后方的具有最大学号的结点
-		if (jhstd != NULL)										//若找到，则交换两结点数据域
-			jh(x, jhstd);
+		if (jhstd != NULL)	jh(x, jhstd);					//若找到，则交换两结点数据域
 	}
 }
 
 double pjz(s *x, int y)										//计算一门科目的平均值
 {
-	int i;	 double add;	x = x->next;					//循环变量、和、移动到第一个结点
-	for (i = 0, add = 0; 1; x = x->next)					//循环求和
+	int i;	 double add;									//循环变量、和
+	for (i = 0, add = 0, x = x->next; 1; x = x->next)		//循环求和
 	{
 		add += x->score[y];
 		i++;
@@ -487,10 +458,12 @@ void read(s *x)													//读取数据文件模块
 	Sleep(500);
 	x->next = (s*)malloc(sizeof(s));							//在表头后新建一个空结点
 	scp((x->next)->id, "0", 2);									//标记空结点，便于接下来判断数据文件是否为空
-	//每次循环在表尾创建一个空结点并更新指针指向空结点，同时初始化空结点 next 成员，执行循环，读取整个链表
-	for (x = x->next, x->next = NULL; 1; x = x->next, x->next = NULL)
+	//每次循环在表尾创建一个空结点并更新指针指向空结点，循环读取整个链表
+	s *xq = head;												//当前结点的前一结点
+	for (x = x->next; 1; xq = x, x = x->next)
 	{
 		fread(x, sizeof(s), 1, f);								//读取一个结构体，拷贝到空结点中
+		x->last = xq;											//指向上一结点
 		if (x->next == NULL) break;								//检测链表是否读取完毕，若是，跳出
 		x->next = (s*)malloc(sizeof(s));						//在表尾添加一个空结点，以备下次循环赋值
 	}
@@ -509,7 +482,8 @@ void get()														//新增学生信息模块
 	int pd;														//判断是否继续录入
 	for (pd = 1; pd;)
 	{
-		int i;	s *std = (s*)malloc(sizeof(s));					//循环变量 i、创建临时结点并将其地址返回给 std
+		//循环变量 i、创建临时结点并将其地址返回给 std、交换指针 temp
+		int i;	s *std = (s*)malloc(sizeof(s)), *temp;
 		//开始获取数据
 		printf("\n  现在录入一名学生的信息，每输入一项按一次回车键：\n\n");
 		for (; 1;)
@@ -568,14 +542,16 @@ void get()														//新增学生信息模块
 		{
 			head->next = new(std->id, std->name, std->xb, std->age, std->sfz, std->addr, std->phone, std->class, std->score);
 			tail = head->next;									//更新尾结点地址
+			tail->last = head;									//last 指向表头
 		}
 		else
 		{
 			tail->next = new(std->id, std->name, std->xb, std->age, std->sfz, std->addr, std->phone, std->class, std->score);
-			tail = tail->next;									//更新尾结点地址
-			tail->next = NULL;									//初始化尾结点 next 成员
+			temp = tail;										//临时保存当前结点地址
+			tail = tail->next;									//更新尾指针指向
+			tail->last = temp;									//last 指向上一结点
 		}
-		free(std);												//拼接完毕，释放临时结点占用的内存
+		free(std);												//录入完毕，释放临时结点占用的内存
 		printf("\n\n  若要继续录入下一个学生信息请输入任意数字，若要返回主界面请输入 0： ");
 		scanf_s("%d", &pd);		getchar();
 		system("cls");
@@ -595,7 +571,8 @@ void out(s *x)													//打印模块
 		printf("\n\n  您还没有录入学生信息\n  ");
 	else														//数据文件不为空，打印
 	{
-		for (x = x->next; 1; x = x->next)						//循环，打印整个链表的所有结点
+		int count;												//统计人数
+		for (x = x->next, count = 1; 1; x = x->next, count++)	//循环，打印整个链表的所有结点
 		{
 			printf("\n\n  学号：%s\n  姓名：%s\t性别：%s\t年龄：%s\n  身份证号码：%s\n  家庭住址：%s\n  手机号：%s\t\t年级及班级：%s\n"
 					, x->id, x->name, x->xb, x->age, x->sfz, x->addr, x->phone, x->class);
@@ -610,6 +587,7 @@ void out(s *x)													//打印模块
 			printf(" %.1lf", x->score[i]);
 			if (x->next == NULL) break;							//检测是否已打印完整个链表，若是，跳出
 		}
+		printf("\n\n  共计 %d 人", count);
 	}
 	printf("\n\n  按回车键返回主界面");
 	getchar();
@@ -713,46 +691,20 @@ void czmk()														//查找模块
 	else
 	{
 		char name2[21];		s *czstd = head;					//创建对比字符串、查找指针
-		//接下来创建查找链表，这里创建链表的头指针和表头、尾指针
-		s *czhead = (s*)malloc(sizeof(s)), *cztail;
 		printf("\n  请输入要查找的学生的姓名（会查找出所有同名的学生）： ");
 		gets_s(name2, 21);
-		for (czhead->next = NULL; 1;)							//每次循环完后更新尾指针到表尾
+		if ((czstd = czn(head, name2)) != NULL)
 		{
-			czstd = czn(czstd, name2);							//找出 czstd 所指向结点的后方一个具有指定姓名的结点
-			if (czhead->next == NULL)
+			printf("\n  查找到具有该姓名的学生如下：\n");
+			for (; czstd != NULL; czstd = czn(czstd, name2))	//循环打印出所有同名学生
 			{
-				czhead->next = new(czstd->id, czstd->name, czstd->xb, czstd->age, czstd->sfz, czstd->addr, czstd->phone, czstd->class, czstd->score);
-				cztail = czhead->next;							//移动尾指针到表头后
+				opoint(czstd);
+				printf("\n");
 			}
-			else
-			{
-				cztail->next = new(czstd->id, czstd->name, czstd->xb, czstd->age, czstd->sfz, czstd->addr, czstd->phone, czstd->class, czstd->score);
-				cztail = cztail->next;							//更新尾指针到表尾
-			}
-			if (czstd->next == NULL)	break;					//已遍历完整个链表，跳出
 		}
-		if (czhead->next != NULL)
-			for (cztail = czhead->next; 1; cztail = cztail->next)	//初始化尾指针到表头后，输出整个查找链表
-			{
-				opoint(cztail);									//输出查找链表的一个结点
-				printf("\n");									//在打印的结点信息间换行
-				if (cztail->next == NULL)	break;				//已打印完整个查找链表，跳出
-			}
 		else
 			printf("\n  未查找到具有该姓名的学生或数据文件为空");		//输出未找到的情况
 		printf("\n  请按回车键返回主界面");
-		for (; 1;)												//循环释放结点，遍历查找链表一次
-		{
-			tail = czhead->next;								//移动尾指针到头指针后
-			free(czhead);										//释放头指针指向的结点
-			if (cztail->next == NULL)							//检测是否已释放完查找链表，若是释放尾结点并跳出
-			{
-				free(cztail);									//释放查找链表尾结点
-				break;											//跳出
-			}
-			czhead = cztail;									//移动查找链表头指针到查找链表尾指针的位置
-		}
 		getchar();
 	}
 }
@@ -767,7 +719,7 @@ void del()
 		s *stdq;												//存储匹配结点的前一个结点的地址
 		printf("\n  请输入要删除的学生的学号： ");
 		gets_s(id2, 31);
-		stdq = czq(head, id2);									//找到匹配结点的前一个结点的地址
+		stdq = (cz(head, id2))->last;							//找到匹配结点的前一个结点的地址
 		if (stdq == NULL)
 			printf("\n  没有匹配到具有该学号的学生");
 		else
@@ -779,7 +731,7 @@ void del()
 			if (strbj(enter, "Enter"))
 			{
 				//使匹配结点的前一个结点直接连到后一个结点，即跳过匹配结点，达到删除目的
-				stdq->next = ((stdq->next)->next);
+				stdq->next = (stdq->next->next);
 			}
 			else
 				printf("\n  不删除该学生信息");
@@ -796,17 +748,15 @@ void del()
 			printf("\n  学号不在已有数据范围之内！");
 		else
 		{
-			for (; 1; stdq = stdq->next)
-				if (scbj(((stdq->next)->next)->id, id2)) break;			//已找到 id2 前一结点所在位置，跳出
-			stdq2 = stdq;												//保存 id2 前一结点地址
+			stdq2 = stdq = (cz(head, id2))->last;						//保存 id2 前一结点地址
 			for (stdq = stdq->next; 1; stdq = stdq->next)
 			{
 				if (scbj(stdq->id, id3))								//到达 id3 后一结点，保存，跳出
 				{
-					stdq3 = stdq;										// id3 后一结点地址
+					stdq3 = stdq;										//保存 id3 后一结点地址
 					break;												//打印了 id2 到 id3 的所有学生，跳出
 				}
-				opoint(stdq);
+				opoint(stdq);											//打印一个区间内的结点
 				printf("\n");
 			}
 			printf("\n\n  匹配到以上学生，确定要删除么？"
@@ -814,13 +764,10 @@ void del()
 			gets_s(enter, 6);
 			if (strbj(enter, "Enter"))
 			{
-				s *stdq4;
 				stdq = stdq2;											//还原 stdq 到 id2 的前一结点
-				for (stdq = stdq->next; stdq != stdq3; stdq = stdq4)	//循环释放要删除的结点
-				{
-					stdq4 = stdq->next;									//保存下一结点地址
-					free(stdq);											//释放该结点内存
-				}
+				//循环释放要删除的结点
+				for (stdq = stdq->next->next; stdq != stdq3; stdq = stdq->next)
+					free(stdq->last);									//释放上一结点内存
 				stdq2->next = stdq3;									//将 id2 前一结点与 id3 后一结点相连
 			}
 			else
@@ -853,7 +800,7 @@ void del()
 		else
 			printf("\n  不删除学生信息");
 	}
-	if (head->next == NULL)
+	if (head->next == NULL)												//预防链表为空的情况
 	{
 		tail = (s*)malloc(sizeof(s));									//创建表尾
 		scp(tail->id, "0", 2);											//标记表尾
@@ -1059,7 +1006,7 @@ void reset()												//修改模块，修改某学生信息
 void lfor()														//使用密保问题重置账户模块
 {
 	system("cls");
-	char user2[101], password2[101], ques[101], as[101], as2[101];	int a, b, c, d;
+	char ques[101], as[101], as2[101];	int a, b, c, d;
 	FILE *f;													//创建文件指针
 	f = fopen("user.txt", "rb");								//以只读方式打开用户文件夹
 	fread(&a, sizeof(int), 1, f);								//读取账户名的长度
@@ -1116,38 +1063,89 @@ void lfor()														//使用密保问题重置账户模块
 	}
 }
 
-void pj()
+void temp(int x, double line, char *xz)				//统计模块所需的临时函数
 {
-	char xz[21];	s *czstd;
-	printf("\n  求平均成绩，可选的有“语文”、“数学”、“英语”、“物理”、\n  “化学”、“生物”、“政治”、“历史”、“地理”、“总分”、“全部”。"
-		   "\n\n  请输入选择求哪一项的平均成绩： ");
+	s *bl;		double bjg = 0, nums = 0;			//查找不及格结点的指针、不及格人数、总人数
+	for (bl = head->next, nums++; ; bl = bl->next, nums++)
+	{
+		if (bl->score[x] < line)
+		{
+			printf("\n  学号：%s\n  姓名：%s\t\t年级及班级：%s\n  %s成绩： %g\n"
+				, bl->id, bl->name, bl->class, xz, bl->score[x]);
+			bjg++;
+		}
+		if (bl->next == NULL)	break;
+	}
+	printf("\n  以上是不及格名单\n  总人数： %g\t不及格人数： %g", nums, bjg);
+	printf("\n  及格线： %g\n  %s的及格率是： %.2lf%%\n", line, xz, 100 * (1 - (bjg / nums)));
+}
+void tj()
+{
+	char xz[21];	double line;
+	printf("\n  求平均成绩、及格率、打印全部不及格名单\n  "
+		   "请选择科目，可选的有“语文”、“数学”、“英语”、“物理”、\n  "
+		   "“化学”、“生物”、“政治”、“历史”、“地理”、“总分”、“全部”(只显示平均分)。"
+		   "\n\n  请输入科目名称： ");
 	gets_s(xz, 21);
+	printf("\n  请输入及格线： ");
+	scanf_s("%lf", &line);	getchar();
+	system("cls");
 	if (strbj(xz, "语文") || strbj(xz, "数学") || strbj(xz, "英语") || strbj(xz, "物理") || strbj(xz, "化学")
 		|| strbj(xz, "生物") || strbj(xz, "政治") || strbj(xz, "历史") || strbj(xz, "地理") || strbj(xz, "总分"))
 	{
 		double value;
+		void temp(int x,double line);					//定义函数，根据参数选择科目，计算及格率并输出不及格名单
 		if (strbj(xz, "语文"))
-			value = pjz(head, 0);
+		{
+			value = pjz(head, 0);						//计算平均值
+			temp(0, line, xz);
+		}
 		else if (strbj(xz, "数学"))
+		{
 			value = pjz(head, 1);
+			temp(1, line, xz);
+		}
 		else if (strbj(xz, "英语"))
+		{
 			value = pjz(head, 2);
+			temp(2, line, xz);
+		}
 		else if (strbj(xz, "物理"))
+		{
 			value = pjz(head, 3);
+			temp(3, line, xz);
+		}
 		else if (strbj(xz, "化学"))
+		{
 			value = pjz(head, 4);
+			temp(4, line, xz);
+		}
 		else if (strbj(xz, "生物"))
+		{
 			value = pjz(head, 5);
+			temp(5, line, xz);
+		}
 		else if (strbj(xz, "政治"))
+		{
 			value = pjz(head, 6);
+			temp(6, line, xz);
+		}
 		else if (strbj(xz, "历史"))
+		{
 			value = pjz(head, 7);
+			temp(7, line, xz);
+		}
 		else if (strbj(xz, "地理"))
+		{
 			value = pjz(head, 8);
+			temp(8, line, xz);
+		}
 		else if (strbj(xz, "总分"))
-			value = pjz(head, 0) + pjz(head, 1) + pjz(head, 2) + pjz(head, 3) + pjz(head, 4) + pjz(head, 5)
-					+ pjz(head, 6) + pjz(head, 7) + pjz(head, 8);
-		printf("\n  %s 的平均成绩是： %g", xz, value);
+		{
+			value = pjz(head, 9);
+			temp(9, line, xz);
+		}
+		printf("  %s的平均成绩是： %g", xz, value);
 	}
 	else if (strbj(xz, "全部"))
 	{
@@ -1226,9 +1224,10 @@ void infix()												//插入模块，在某结点后插入一个结点
 	for (i = 0, std->score[9] = 0; i < 9; i++) std->score[9] += std->score[i];		//计算总分
 	std->score[10] = std->score[9] / 6.0;											//计算平均分
 	//获取数据完毕，创建一个新结点保存临时结点所有数据，插入到指定位置
-	temp = czstd->next;
+	temp = czstd->next;											//保存查找结点下一结点的地址
 	czstd->next = new(std->id, std->name, std->xb, std->age, std->sfz, std->addr, std->phone, std->class, std->score);
-	czstd->next->next = temp;
+	czstd->next->next = temp;									//使新结点的 next 指向其下一结点
+	czstd->next->last = czstd;									//使新结点的 last 指向其上一结点
 	write(head);
 	printf("\n\n  已将该学生信息插入到数据文件中");
 	printf("\n\n  请按回车键返回主界面");
@@ -1259,6 +1258,5 @@ void exits()													//在关闭程序时，释放所有存储链表所占用的内存空间
 	 2. 使用链表时，时刻要记得更新尾指针指向尾结点
 	 3. 链表每个新创建的结点，其 next 成员要初始化为 NULL
 	 4. 所有字符型数据用 gets_s()，所有数值型数据用 scanf_s()
-	 5. 高效的算法也往往是简洁的，它的基本原理必须是简洁的，不然人类无法做到思考基本原理复杂的算法，BUG 太多
-
+	 5. 高效的算法也往往是简洁的，它的基本原理必须是简洁甚至简单的，不然人类无法做到思考基本原理就很复杂的算法，BUG 太多
 */

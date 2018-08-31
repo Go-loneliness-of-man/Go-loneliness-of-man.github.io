@@ -1,0 +1,169 @@
+@charset "utf-8";
+
+/*公共样式开始*/
+*{ margin:0px; padding:0px; }
+html{ font-family:'微软雅黑'; }
+a{ text-decoration:none; }
+body{
+  margin:0% auto;
+  width:100%;
+  min-width:900px;
+  max-width:1380px;                                              /*当屏幕过宽或过窄时，限制页面整体的宽度*/
+}
+.center{ text-align:center; }
+ul{ list-style: none outside none; }
+/*公共样式结束*/
+
+/*头部开始*/
+header {
+  box-shadow: 0px 3px 10px 0px black;
+  position: fixed;
+  z-index: 9999;
+  width: 100%;
+  min-width: 900px;
+  max-width: 1380px;                                            /*当屏幕过宽或过窄时，限制页面整体的宽度*/
+}
+nav{ background:rgb(30,30,30); height:50px; }
+nav ul {
+  list-style: none outside none;
+  line-height: 50px;
+  margin: 0px 80px 0px 0px;
+}
+nav ul li a{
+  float:right;
+  width:130px;
+  text-align:center;
+}                                                         /*注意这里设置的是 a 的宽度，这样可以使整块区域都可以被点击*/
+nav ul li a{ color:rgb(200,200,200); }
+nav ul li a:hover{ background:black; }
+nav ul li a.active{ background:black; }                 /*在导航栏上表示现在的页面是"首页"*/
+/*头部结束*/
+
+/*顶部图片开始*/
+#navimg{
+  width: 100%;
+  min-width: 900px;
+  max-width: 1380px;                                       /*当屏幕过宽或过窄时，限制页面整体的宽度*/
+  height: 270px;
+  background:linear-gradient(to bottom right,rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0)),url(../img/search.jpg) no-repeat center/cover;
+  position: relative;
+  top: 40px;
+  margin: 0px 0px 80px 0px;
+}
+#navimg hgroup{
+  padding:80px 0px 0px 110px;
+  color:rgb(220,220,220);
+  letter-spacing:0.4em;
+  line-height:2.5em;
+}
+/*顶部图片结束*/
+
+/*内容区开始*/
+aside,#main{ display:inline-block; vertical-align:top; }
+  /*侧栏开始*/
+  aside{ width:23%; margin:0px 2% 0px 0%; position:relative; top:-10px; }
+  #recommend,#hot,#treasure {
+    border: 1px solid rgb(190, 190, 190);
+    width: 96%;
+    margin:10px;
+    padding:10px;
+  }
+  #recommend h2,#hot h2,#treasure h2{ font-size:16px; color:rgb(120,120,120); padding:0px 0px 7px 0px; }
+  #recommend ul li { display:inline-block; width: 32%; }
+  #recommend ul li a {
+    display:inline-block;
+    color: rgb(130, 130, 130);
+    font-size: 13px;
+    width: 100%;
+    height:30px;
+    line-height: 30px;
+    text-align:center;
+  }
+  #recommend a:hover{ background:rgb(19, 134, 9); color:rgb(200,200,200); }
+
+  #hot figure{ display:inline-block; width:45%; margin:7px 5px; }
+  #hot figure img{ width:100%; height:90px; }
+  #hot figure figcaption a{
+    display:block;
+    color:rgb(120,120,120);
+    text-align:center;
+    font-size:14px; }
+
+  #treasure ul li{ display: inline-block; width: 49%; }
+  #treasure ul li a{
+    display: inline-block;
+    color: rgb(120, 120, 120);
+    font-size: 16px;
+    width: 100%;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+  }
+  #treasure ul > li:nth-child(1) a{ background:url(../img/天气预报.png) no-repeat left center/20px 20px; }
+  #treasure ul > li:nth-child(2) a{ background:url(../img/火车.png) no-repeat left center/20px 20px; }
+  #treasure ul > li:nth-child(3) a{ background:url(../img/飞机.png) no-repeat left center/20px 20px; }
+  #treasure ul > li:nth-child(4) a{ background:url(../img/地铁.png) no-repeat left center/20px 20px; }
+  /*侧栏结束*/
+  /*主栏开始*/
+  #main {
+    width: 69%;
+    padding: 0px 0px 0px 5%;
+    height: 990px;
+    color: rgb(85, 85, 85);
+  }
+  #main h3 {
+    font-weight: normal;
+    font-size: 22px;
+    border-bottom: 1px dashed rgb(120, 120, 120);
+    padding: 0px 0px 10px 0px;
+    margin-bottom: 20px;
+  }
+  #view{ height:980px; overflow-y:scroll; }
+  #view figure{
+    width:46%;
+    height:300px;
+    float:left;
+    margin:0px 30px 20px 0px;
+    cursor:pointer;
+  }
+  #view figure img{ width:100%; height:85%; }
+  #view figure figcaption{ text-align:center; }
+  #view div{ text-align:center; cursor:pointer; font-size:20px; }
+  /*主栏结束*/
+/*内容区结束*/
+
+/*底部开始*/
+footer {
+  height: 241px;
+  margin-top: 20px;
+  width: 100%;
+  min-width: 900px;
+  max-width: 1380px;                                      /*当屏幕过宽或过窄时，限制页面整体的宽度*/
+}
+#top{
+  height:83%;
+  background:rgb(25,25,25);
+}
+#top > ul{
+  display:inline-block;
+  vertical-align:top;
+  margin:20px 3%;
+  width:25%;
+}
+#top > ul:nth-child(1){ margin:20px 2% 20px 6%; }
+#top > ul > li > a{
+  display:block;
+  margin-bottom:6px;
+  color:rgb(100,100,100);
+  font-size:13px;
+}
+#top > ul > li:nth-child(1){
+  border-bottom:1px dashed rgb(100,100,100);;
+  padding-bottom:6px;
+  color:rgb(230, 230, 230);
+  font-size:18px;
+}
+#top > ul > li:nth-child(2){ margin:6px 0px 6px 0px; }
+#bottom{ background:black; border-top:2px solid rgb(60,60,60); }
+#bottom p{ line-height:60px; color:rgb(120,120,120); font-size:12px;}
+/*底部结束*/

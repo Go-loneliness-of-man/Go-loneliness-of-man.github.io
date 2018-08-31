@@ -48,14 +48,20 @@ nav ul li a.active{ background:black; }                 /*在导航栏上表示�
   background:linear-gradient(to bottom right,rgba(0, 0, 0, 0.6),rgba(0, 0, 0, 0)),url(../img/search.jpg) no-repeat center/cover;
   position: relative;
   top: 40px;
-  margin: 0px 0px 60px 0px;
+  margin: 0px 0px 80px 0px;
 }
-#navimg hgroup{ padding:80px 0px 0px 110px; color:rgb(220,220,220); letter-spacing:0.4em; line-height:2.5em; }
+#navimg hgroup{
+  padding:80px 0px 0px 110px;
+  color:rgb(220,220,220);
+  letter-spacing:0.4em;
+  line-height:2.5em;
+}
 /*顶部图片结束*/
 
 /*内容区开始*/
+aside,#main{ display:inline-block; vertical-align:top; }
   /*侧栏开始*/
-  aside{ display:inline-block; width:23%; margin:0px 2% 0px 3%; }
+  aside{ width:23%; margin:0px 2% 0px 3%; position:relative; top:-10px; }
   #recommend,#hot,#treasure {
     border: 1px solid rgb(190, 190, 190);
     width: 96%;
@@ -98,138 +104,91 @@ nav ul li a.active{ background:black; }                 /*在导航栏上表示�
   #treasure ul > li:nth-child(3) a{ background:url(../img/飞机.png) no-repeat left center/20px 20px; }
   #treasure ul > li:nth-child(4) a{ background:url(../img/地铁.png) no-repeat left center/20px 20px; }
   /*侧栏结束*/
-
   /*主栏开始*/
-  #main { width: 66%; float:left; padding:0px 0px 0px 5%; }
-    /*子导航开始*/
-    #zinav > ul,#zinav>ul li,#zinav > ul li a{ display: inline-block; color:rgb(120, 120, 120); }
-
-    #zinav > ul:nth-child(2) li a{
-      width:110px;
-      padding:7px 10px;
+  #main {
+    width: 66%;
+    padding: 0px 0px 0px 5%;
+    height: 990px;
+    color: rgb(85, 85, 85);
+  }
+  h3 {
+    font-weight: normal;
+    font-size: 22px;
+    border-bottom: 1px dashed rgb(120, 120, 120);
+    padding: 0px 0px 10px 0px;
+    margin-bottom: 20px;
+  }
+    /*机票预订开始*/
+    #destine{ margin-bottom:120px; position:relative; }
+    #destine form ul:nth-child(1) > li{
       font-size:15px;
-      margin:0px 10px;
-    }
-    #zinav > ul:nth-child(2) li:nth-child(1) a{ border-top:2px solid green; }
-
-    #zinav > ul:nth-child(3){ float:right; }
-    #zinav > ul:nth-child(3) li a{
-      width:50px;
-      padding:2px 3px;
-      margin:0px 7px;
-      font-size:15px;
-      position:relative;
-      top:5px;
-    }
-    #zinav > ul:nth-child(3) li a:hover{ background:rgb(50, 151, 10); color:white; }
-    /*子导航结束*/
-
-    /*内容开始*/
-    #nr{ width:100%; height:900px; overflow:auto; }
-    #nr figure{ width:100%; height:200px; margin:20px 0; position:relative; }
-    #nr figure img{ width:40%; height:100%;}
-    #nr figcaption{
-      width:50%;
-      float:right;
-      font-size:13px;
-      line-height:1.2em;
-      color:rgb(80,80,80);
-      padding:5px 10px;
-      margin:0px 2% 0px 0px;
-    }
-    #nr figure figcaption .title {
-      font-weight: bold;
-      color: rgb(120, 120, 120);
-      letter-spacing: 0.2em;
-      font-size: 17px;  
-    }
-    #nr figure figcaption .title::after{
-      position:absolute;
-      left:94%;
-      font-size:12px;
-      font-weight:normal;
-      transform:rotate(45deg);
-      color:rgb(235, 99, 20);
-    }
-    #nr figure:nth-child(2) figcaption .title::after{ content:'7.5折'; }
-    #nr figure:nth-child(3) figcaption .title::after{ content:'8.5折'; }
-    #nr figure:nth-child(4) figcaption .title::after{ content:'8.5折'; }
-    #nr figure:nth-child(5) figcaption .title::after{ content:'8.0折'; }
-    #nr figure:nth-child(6) figcaption .title::after{ content:'8.0折'; }
-    #nr figure:nth-child(7) figcaption .title::after{ content:'8.5折'; }
-    #nr figure:nth-child(8) figcaption .title::after{ content:'8.5折'; }
-    #nr figure:nth-child(9) figcaption .title::after{ content:'8.0折'; }
-
-    #nr figure figcaption .price {
-      position:absolute;
-      top:27%;
-      left:81%;
-      font-size: 26px;
-      font-weight: bold;
-      color: rgb(235, 99, 20);
-    }
-    #nr > figure figcaption .price::after{
-      margin:0px 0px 0px 6px;
-      font-size: 12px;
-      font-weight:normal;
-      color: rgb(150,150,150);
-      text-decoration:line-through;
-    }
-    #nr > figure:nth-child(2) figcaption .price::after{ content:'￥3499'; }
-    #nr > figure:nth-child(3) figcaption .price::after{ content:'￥3199'; }
-    #nr > figure:nth-child(4) figcaption .price::after{ content:'￥2199'; }
-    #nr > figure:nth-child(5) figcaption .price::after{ content:'￥5999'; }
-    #nr > figure:nth-child(6) figcaption .price::after{ content:'￥2599'; }
-    #nr > figure:nth-child(7) figcaption .price::after{ content:'￥3999'; }
-    #nr > figure:nth-child(8) figcaption .price::after{ content:'￥5999'; }
-    #nr > figure:nth-child(9) figcaption .price::after{ content:'￥2899'; }
-    #nr > figure figcaption .price a{
-      position:absolute;
-      top:160%;
-      left:0%;
+      display:inline-block;
+      margin-right:10px;
+      padding:3px 7px;
       border-radius:3px;
-      font-size:17px;
-      color:white;
-      width:152px;
-      height:36px;
-      line-height:36px;
-      text-align:center;
-      background:rgb(231, 114, 4);
     }
-
-    #nr figure figcaption .type{
+    #destine form ul:nth-child(1) > .active{ background:rgb(19, 134, 9); color:white; }
+    #destine form ul:nth-child(2){ width:85%; margin-left:5px; }
+    #destine form ul:nth-child(2) li{ float:left; }
+    #destine form ul:nth-child(2) li input{ margin:22px 40px 0px 10px; height:25px; }
+    #destine form > button {
       position:absolute;
-      top:0px;
-      left:0px;
+      top:108px;
+      right:50px;
       width:80px;
-      height:25px;
-      line-height:25px;
-      background:rgb(36, 153, 36);
+      height:80px;
+      background:#f60;
+      border-radius:9px;
       color:white;
-      font-size:13px;
+      line-height:80px;
       text-align:center;
-    }
-
-    #nr figure figcaption ul{ position:absolute; top:66%; left:46%; }
-    #nr figure figcaption ul li{ margin:10px 0px; }
-    #nr figure figcaption ul li span{
-      width:30px;
-      height:18px;
-      line-height:18px;
-      border:1px solid rgb(120,120,120);
-      border-radius:3px;
-      padding:0px 2px;
-      margin:0px 6px;
-    }
-
-    #more{
-      margin:30px;
-      text-align:center;
-      color:rgb(120, 120, 120);
-      font-size:18px;
       cursor:pointer;
+      transition:all 0.5s ease 0s;
     }
-    /*内容结束*/
+    #destine form>button:hover {
+      border-radius:11px;
+      top: 105px;
+      right: 45px;
+      width: 90px;
+      height: 90px;
+      line-height:90px;
+      font-size:18px;
+    }
+    /*机票预订结束*/
+    /*最新机票开始*/
+    #fresh{ clear:both; }
+    #fresh ul > li{
+      font-size:15px;
+      display:inline-block;
+      margin-right:10px;
+      padding:3px 7px;
+      border-radius:3px;
+    }
+    #fresh ul > .active{ background:rgb(19, 134, 9); color:white; }
+    table{ margin:20px 0px; }
+    table th,table td{
+      text-align:center;
+      height:35px;
+      line-height:35px;
+      font-size:14px;
+      color:rgb(100,100,100);
+    }
+    table tr > td:nth-child(3){ color:#f60; }
+    table tr > td:nth-child(7) span{
+      display:inline-block;
+      text-align:center;
+      background:#f60;
+      width:80px;
+      height:28px;
+      line-height:28px;
+      border-radius:3px;
+      color:white;
+      cursor:pointer;
+      transition:all 0.5s ease 0s;
+    }
+    table tr>td:nth-child(7) span:hover{ height:32px; line-height:32px; font-size:16px; width:90px; }
+    table tr:last-child td{ font-size:20px; cursor:pointer; height:40px; line-height:40px; }
+    /*最新机票结束*/
   /*主栏结束*/
 /*内容区结束*/
 

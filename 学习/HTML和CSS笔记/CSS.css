@@ -5,7 +5,6 @@ html{ line-height:1.7em; padding:10px 30px; }
 a{ text-decoration:none; font-size:18px; transition:all 0.3s; color:rgb(26, 36, 34); }
 a:hover{ color:white; font-size:22px; }
 a:active{ font-size:21px; }
-a:visited{ color:black; }
 
 #h1{ text-align: center; }
 summary{ clear:both; }                                                    /*清除 summary 旁边的浮动*/
