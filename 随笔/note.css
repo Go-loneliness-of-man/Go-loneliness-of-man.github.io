@@ -20,7 +20,7 @@ table {
 }                                              /*表格*/
 
 #body {
-  margin:0% 10% 2% 15%;
+  margin:0% 10% 2% 10%;
   line-height:1.7em;
 }                                              /*文章主体*/
 
@@ -37,5 +37,5 @@ table {
 
 p{ text-indent:2em; }                          /*段落首行缩进*/
 
-a{ text-decoration:none; }
+a{ text-decoration:none; font-size:20px; }
 a:hover{ color:rgb(200,200,200) }            /*a元素样式*/
