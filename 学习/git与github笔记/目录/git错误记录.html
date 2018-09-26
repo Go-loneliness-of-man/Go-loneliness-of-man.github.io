@@ -57,7 +57,7 @@
     </details>
     <details>
       <summary>7. git clone 太慢的解决办法</summary>
-      git 在 clone 时会默认下载项目的所有记录，即所有历史版本，如果你只想要当前版本的代码，用这个命令：git clone --de<br>
+      git 在 clone 时会默认下载项目的所有记录，即所有历史版本，如果你只想要当前版本的代码，用这个命令：git clone --depth=1 地址<br>
       前后效果如下：<br>
       <img src="../示例/gitclone默认.png" title="默认" style="width:49%;"><img src="../示例/gitclone一个.png" title="设置后" style="width:49%;"><br>
       可以看出下载量由 55 万 + 个锐减到了六千五百多个
