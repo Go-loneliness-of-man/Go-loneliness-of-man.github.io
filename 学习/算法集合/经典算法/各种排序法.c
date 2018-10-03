@@ -9,7 +9,7 @@ int main()
 	printf(" 数列长度： %d\n ", len);
 	for (i = 0; i < len - 1; i++)
 	{
-		for (i2 = 0; i2 < len - 1 - i; i2++)					//注意，一共交换 10-1-i 次,因为需要交换的次数随着遍历次数的增加而减少了
+		for (i2 = 0; i2 < len - 1 - i; i2++)				//注意，一共交换 len-1-i 次,因为需要交换的次数随着遍历次数的增加而减少了
 		{
 			if (nums[i2] > nums[i2 + 1])
 			{
@@ -33,31 +33,31 @@ int main()
 PS:if 的条件表达式决定了排列的方向，若是 > 从小到大，反之从大到小
 */
 
-/*
+
 //选择排序法
-int nums[100], i, j, len, min, temp;
-//数列、循环变量 i, j、字符串长度 len、储存最小数字数组下标的 min
 int  main()
 {
+	int nums[100], i, j, len, min, temp;	//数列、循环变量 i, j、字符串长度 len、储存最小数字数组下标的 min
 	printf("\n 请输入一列数字，每个数字前加个空格（包括第一个）: ");
 	for (len = 0; getchar() != '\n'; len++)	scanf_s("%d", &nums[len]);
 	printf(" 数列长度： %d\n ", len);
-	for (i = 0; i < len - 1; i++)						//一共遍历数组 len-1 次
+	for (i = 0; i < len - 1; i++)			//一共遍历数组 len-1 次
 	{
-		for (j = i + 1, min = i; j < len; j++)			//初始化 min 的值，每次遍历找出数组剩余部分的最小数
-		{
-			if (nums[j] <= nums[min])					//判断 nums[j+1] 是否小于 nums[min]
-				min = j;								//更换下标,更新临时最小数的值
-		}
+		for (j = min = i; j < len; j++)		//初始化 min、j 的值，遍历找出数组剩余部分的最小数
+			if (nums[min] >= nums[j])		//判断 nums[min] 是否大于等于 nums[j]
+				min = j;					//更新下标
+		if (min == i)	continue;			//未找到，不进行交换，跳过
 		temp = nums[i];
 		nums[i] = nums[min];
-		nums[min] = temp;								//交换位置
+		nums[min] = temp;					//交换位置
 	}
-	printf("排序后数列: "); for (i = 0; i < len; i++)	printf("%d <=", nums[i]); printf("\n ");	//输出数组
+	printf("排序后数列: ");
+	for (i = 0; i < len; i++)				//输出数组
+		printf("%d <=", nums[i]);
+	printf("\n ");
 	return 0;
 }
 /*
 思路:
-
 一句话总结:从第一个数组元素开始，找出数组中的最小数字与它交换，若没有，则不进行操作。接着对下一个数组元素如法炮制，直到倒数第二个数组元素。
 */

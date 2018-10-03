@@ -77,15 +77,11 @@ int* twoSum(int* nums, int numsSize, int target)
 	{
 		b[0] = nums[i];		r = numsSize - 1;
 		if (PD(i, r, target)) { b[1] = nums[r]; break; }		//判断右端点
-		for (l = i; 1;)											//对 nums[i] 进行一次二分查找。
+		for (l = i, mid = (l + r) / 2; mid != l; mid = (l + r) / 2)				//对 nums[i] 进行一次二分查找。
 		{
-			if ((l + r) % 2 == 1)	mid = (l + r) / 2 + 1;		//计算中点，当无中点时取中间靠右的一点
-			else	mid = (l + r) / 2;
 			if (PD(i, mid, target) && mid != r) { b[1] = nums[mid]; break; }	//判断中点
 			if (nums[i] + nums[mid] > target)	r = mid;		//和大于目标，更新右端点
 			else	l = mid;									//和小于目标，更新左端点
-			if ((l + 1 == r) && (PD2(i, l, target) || PD2(i, r, target)))	break;
-			//当两端点相邻且两端点都不满足条件，则跳出循环
 		}
 		if (b[0] + b[1] == target)	break;						//判断是否已查找到，是则跳出
 	}
@@ -108,6 +104,6 @@ int main()
 /*
 思路：二分法查找
 先从小到大排序，然后遍历一遍数组。遍历时对每一个元素进行二分查找，检查数组中是否有满足题意的另一数字。
-二分查找：初始区间以该元素下标为左端点，数组末尾为右端点。每次查找区间中点，若满足题意则结束，若不满足。比较二者之和与要求数字的大小，若
+二分查找：初始区间以该元素下标为左端点，数组末尾为右端点。每次判断区间中点，若满足题意则结束，若不满足。比较二者之和与要求数字的大小，若
 大于则取右边区间进行下一次循环，否则取左边区间进行循环。
 */
