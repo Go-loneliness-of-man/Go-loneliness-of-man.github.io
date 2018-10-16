@@ -28,7 +28,7 @@ void scp(char *x, char *y, int size)
 1. 每次创建的新结点都要初始化 next 成员为 NULL。
 2. 始终保持尾指针在表的末尾，即每次将新结点连接到表尾后都要更新尾指针指向新结点
 */
-/*
+
 //单向链表
 typedef struct std {								//定义结点结构体类型
 	char number[21];								//编号
