@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>排列组合</title>
+  <meta charset="UTF-8">
+  <style>
+    table{ margin:10px auto; border-collapse:collapse; }
+    th,td{ width:50px; text-align:center; }
+  </style>
+</head>
+
+<body>
+  <div id="h1"><span class="smallh1">排列组合</span></div>
+  <div id="body">
+    <details>
+      <summary>分类加法、分步乘法原理</summary>
+      分类加法：从点 A 走到点 B 有两条主路，主路1 又有三条岔路，主路2 有两条岔路，那么从 A 到 B 总共就有五条路径。这就是分类加法，重点是不重复、不
+      漏计。<br>
+      分步乘法：从 A 到 C，中间要经过点 B，A 到 B 有两条路径，B 到 C 有三条路径，那么 A 到 C 就有 2 乘 3 等于 6 条路径。这就是分步乘法，重点是确
+      保步骤“完整”。<br>
+      例题：<br><br>
+      一、一个小组中有 3 男 5 女，任选一个参加比赛有多少种方法？<br>
+      答：这个问题中选男选女对结果没有任何影响，所以选男选女是相同的。是分类加法，共 8 种。<br><br>
+      二、一个小组中有 3 男 5 女，从中选 1 男 1 女参加比赛有多少种方法？<br>
+      答：这个就涉及到组合问题，分两个集合，两个集合中各选一个，选择的先后并没有区别，假设先选男生再选女生，这样就是两步，第一步有三种可能，第二步有五
+      种可能，便是 3 乘 5 等于 15 种选法。<br><br>
+      三、从 0，1，2，3，4，5 中任选两个数相加，结果为偶数的不同取法有多少种？<br>
+      答：这题是典型的组合题，有两种解法：<br>
+      1：选两个数，这种只涉及到二维的关系一般可以通过画表格来解决。
+      <table border="1">
+        <tr><th></th><th>0</th><th>1</th><th>2</th><th>3</th><th>4</th><th>5</th></tr>
+        <tr><td>0</td><td>0</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td></tr>
+        <tr><td>1</td><td>1</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td></tr>
+        <tr><td>2</td><td>2</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td></tr>
+        <tr><td>3</td><td>3</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td></tr>
+        <tr><td>4</td><td>4</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td></tr>
+        <tr><td>5</td><td>5</td><td>6</td><td>7</td><td>8</td><td>9</td><td>10</td></tr>
+      </table>
+      数字不能重复选，所以先去掉一条对角线的 6 个。再仔细看发现对角线两侧的组合是相同的，所以只需看一侧即可。数出结果共有 6 个偶数。<br>
+      2：分析，将数字分为奇数、偶数两种，奇数加奇数是偶数，奇数加偶数是奇数，偶数加偶数是偶数，所以只需计算奇数和奇数、偶数和偶数共有多少种组合即可。<br>
+      计算方法：奇数有 1，3，5，从中任选两个组成一组。像这种组合的计算方法很简单，第一个数字有 2 个可选择的组合对象，而第二个数字可选择的组合对象只有
+      1 个，可以发现每次的可选择组合对象是依次减少 1 个的，所以这类问题的计算公式就是 (n - 1) + (n - 2) + ...... + 2 + 1。<br>
+      所以总数就是 2 * (2 + 1) = 6 种。这个同时用到了分步乘法和分类加法。<br><br>
+      四、从 n 个人中选出 m 个人，有多少种排列方法？<br>
+      答：分步乘法，选第一个人有 n 个选择，第二个有 n - 1 个选择，依此类推，将每次选人看成一步，就能得出公式：(n - 1)(n - 2)...(n - m + 1)<br>
+      上式在数学中可被表示为 A<sup>m</sup><sub>n</sub><br><br>
+      五、从 n 个人中选出 m 个人，有多少种组合方法？<br>
+      答：这题要算的是组合数，与顺序无关，所以只要去掉顺序即可。算出 n 个人中选出 m 个人的排列数，再除以这 m 个人本身的排列数即可算出组合数。由于
+      m 个人的排列方式有 A<sup>m</sup><sub>m</sub>种，所以组合数即 A<sup>m</sup><sub>n</sub>/A<sup>m</sup><sub>m</sub>，这个式子在数
+      学中又被表示为 C<sup>m</sup><sub>n</sub>。
+      <br><br>
+    </details>
+    <details>
+      <summary></summary>
+      
+    </details>
+    <details>
+      <summary></summary>
+      
+    </details>
+    <details>
+      <summary></summary>
+      
+    </details>
+    <details>
+      <summary></summary>
+      
+    </details>
+    <details>
+      <summary></summary>
+      
+    </details>
+  </div>
+</body>
+
+</html>

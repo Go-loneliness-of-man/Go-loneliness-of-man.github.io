@@ -44,24 +44,13 @@ int main()
 
 //二分法：
 #define PD(x,y,z) ((nums[x]+nums[y])==z)
-#define PD2(x,y,z) ((nums[x]+nums[y])!=z)
 
-int* twoSum(int* nums, int numsSize, int target)
+int *twoSum(int *nums, int numsSize, int target)
 {
-	int *b = (int*)malloc(sizeof(int) * 2), *c = (int*)malloc(sizeof(int)*numsSize);
+	int *b = (int*)malloc(sizeof(int) * 2), *c = (int*)malloc(sizeof(int)*numsSize);b[0] = b[1] = 100000;
 	//用来返回结果的动态数组 b、存储数组原顺序的动态数组 c
 	int i, j, min, temp, l, r, mid;
 	//循环变量 i 和 j、排序 min、临时变量 temp、二分区间左、中、右端点 l 和 mid 和 r
-	for (i = 0; i < numsSize; i++)								//检查 nums 中是否有元素等于 target
-		if (target == nums[i])									//若有的情况
-			for (j = 0; j < numsSize; j++)						//检查 nums 中是否有 0
-				if (nums[j] == 0 && j != i)						//若有，则返回该元素和 0 的下标
-				{
-					b[0] = i;
-					b[1] = j;
-					return b;
-				}
-				else	nums[i] = 10000000000000;				//若没有 0，将该元素从数组中去掉
 	for (i = 0; i < numsSize; i++)		c[i] = nums[i];			//复制 nums 到 c
 	for (i = 0; i < numsSize; i++)								//从小到大排序
 	{
@@ -72,14 +61,13 @@ int* twoSum(int* nums, int numsSize, int target)
 		nums[i] = nums[min];
 		nums[min] = temp;
 	}
-	if (nums[i - 1] == 10000000000000)	numsSize--;
 	for (i = 0; i < numsSize; i++)								//依次对数组元素进行二分查找
 	{
 		b[0] = nums[i];		r = numsSize - 1;
 		if (PD(i, r, target)) { b[1] = nums[r]; break; }		//判断右端点
 		for (l = i, mid = (l + r) / 2; mid != l; mid = (l + r) / 2)				//对 nums[i] 进行一次二分查找。
 		{
-			if (PD(i, mid, target) && mid != r) { b[1] = nums[mid]; break; }	//判断中点
+			if (PD(i, mid, target) && mid != l) { b[1] = nums[mid]; break; }	//判断中点
 			if (nums[i] + nums[mid] > target)	r = mid;		//和大于目标，更新右端点
 			else	l = mid;									//和小于目标，更新左端点
 		}
@@ -95,7 +83,7 @@ int* twoSum(int* nums, int numsSize, int target)
 
 int main()
 {
-	int nums[4] = { 2,5,5,11 }, target = 10, *a;
+	int nums[4] = { -10, -1, -18, -19 }, target = -19, *a;
 	a = twoSum(nums, 4, target);
 	printf("%d %d", a[0], a[1]);
 	free(a);
