@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title></title>
+  <meta charset="UTF-8">
+  <style>
+    body{ position:relative; height:620px;}
+    div{
+      width:500px;
+      height:200px;
+      border-radius:20px;
+      background:rgb(200,200,200);
+      text-align:center;
+      position:absolute;
+      top:30%;
+      right:31%;
+    }
+    #x{
+      width:400px;
+      height:60px;
+      line-height:60px;
+      font-size:30px;
+      color:rgb(50,50,50);
+      position:absolute;
+      top:31%;
+      right:33%;
+    }
+    button{
+      font-size:18px;
+      width:300px;
+      height:40px;
+      position:absolute;
+      top:43%;
+      right:40%;
+    }
+    body > button:nth-child(2):hover{ font-size:20px; }
+    @media screen and (max-device-width:700px){
+      body{ height:900px;}
+      div{ height:250px; }
+      button{ top:43%; right:40%; }
+    }
+  </style>
+</head>
+
+<body>
+  <div></div>
+  <div id = "x">小妹妹，跟叔叔走好伐？</div>
+  <button onclick="z();">好的 ...</button>
+  <button onmouseover="y(this);" style="top:51%; right:40%;">走开，你这个坏淫！</button>
+  <script>
+    window.count = 0;
+    function y(s)
+    {
+      var z = s.getAttribute("style"),x=/[\d]+%/g,i,y,m=[],l;
+      y=z.match(x);
+      for(l=1;parseInt(y[0])>=100 || l;)                   //检测是否出现了乱值，确保值小于 100%
+      {
+        for(i=0;i<y.length;i++)
+        {
+          if(i==0)
+            m[i]=Math.floor(Math.random()*90)+"%";
+          else
+            m[i]=Math.floor(Math.random()*90)+"%";
+          z=z.replace(y[i],m[i]);
+        }
+        y=z.match(x);
+        l=0;
+      }
+      s.setAttribute("style",z);
+      window.count++;
+      if(window.count==6)  alert("小妹妹，别拒绝啊");
+      if(window.count==12)  alert("还在试？执着");
+      if(window.count==20)  alert("哈哈哈，放弃吧，你跑不掉的~");
+    }
+    function z()
+    {
+      alert("嘿嘿，走走，叔叔带你去小树林里吃好吃的~~");
+    }
+  </script>
+</body>
+
+</html>
