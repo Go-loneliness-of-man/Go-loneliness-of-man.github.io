@@ -155,8 +155,7 @@ int main()
 				k = 0;									//标记状态，i 不是素数
 				break;									//不是素数，跳出
 			}
-		if (k == 0)		continue;						//未循环到数组末尾便跳出或到末尾，不是素数，跳过此次循环
-		nums[++x] = i;									//赋值素数到 nums
+		if(k) nums[++x] = i;				//赋值素数到 nums
 	}
 	for (i = k = 0; nums[i] != 0; i++)
 		if (nums[i + 1] - nums[i] == 2)		k++;		//二者是相邻且差值为 2 的素数对，满足条件

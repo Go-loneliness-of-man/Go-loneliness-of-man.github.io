@@ -27,7 +27,9 @@ int* twoSum(int* nums, int numsSize, int target)
 				b[1] = j;
 				return b;
 			}
+	return 0;
 }
+
 int main()
 {
 	int nums[4] = { 0,4,3,0 }, target = 0, *a;
