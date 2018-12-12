@@ -3,9 +3,11 @@
 
 /*
 //辗转相除法算法一:
-int m, n, r1, r2, same(int x, int y);			//声明两整数变量、临时变量、求最大公因数的 same() 函数
+int same(int x, int y);							//求最大公因数的 same() 函数
+
 int main()
 {
+	int m, n, r1;								//声明两整数变量、最大公因数
 	printf("\n 请依次输入两个数，用空格隔开: ");
 	scanf_s("%d %d", &m, &n);
 	r1 = same(m, n);							//求两数的最大公因数
@@ -14,7 +16,15 @@ int main()
 }
 int same(int x, int y)							//定义same函数()
 {
-	for (r1 = x % y; r1 != 0; r1 = r2 % r1)		//x%y 赋值给r1，只要 r1 != 0 则继续循环，循环后将 r2%r1 赋值给r1
+	int r1, r2;
+	if (x > y)
+		r1 = x % y;
+	else
+	{
+		r1 = y % x;
+		y = x;
+	}
+	for (; r1 != 0; r1 = r2 % r1)		//x%y 赋值给r1，只要 r1 != 0 则继续循环，循环后将 r2%r1 赋值给r1
 	{
 		r2 = y;									//将上一次运算的除数赋值给 r2，作为这次的被除数来除以上一次的余数 r1
 		y = r1;									//利用 y 保存上一次运算的除数 r1 的值
@@ -37,13 +47,19 @@ int main()
 }
 int maxfactor(int x, int y)
 {
-		r1 = y%x;										//计算余数
-		r1 == 0 ? r1 = x : maxfactor(x, r1);			//递归
-		return r1;										//递归完毕后返回除数 r1
+	if (x > y)
+		r1 = x % y;
+	else
+	{
+		r1 = y % x;
+		y = x;
+	}
+	r1 == 0 ? r1 = x : maxfactor(x, r1);			//递归
+	return r1;										//递归完毕后返回除数 r1
 }
 /**/
 
-/*
+
 //辗转相除法算法三:利用递归，代码量缩减版
 int m, n,maxfactor(int x,int y);					//被求数 m 和 n，求最大公因数函数 maxfactor()
 int  main()
@@ -55,6 +71,14 @@ int  main()
 }
 int maxfactor(int x, int y)
 {
+	int r1;
+	if (x > y)
+		r1 = x % y;
+	else
+	{
+		r1 = y % x;
+		y = x;
+	}
 	return (x%y) == 0 ? y : maxfactor(y, (x%y));	//递归，若余数为 0，则停止，否则继续
 }
 /**/

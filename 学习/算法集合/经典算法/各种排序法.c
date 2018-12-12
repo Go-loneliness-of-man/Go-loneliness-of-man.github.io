@@ -77,9 +77,9 @@ void qst(int *nums, int l, int r)
 	int left = l, right = r, key = nums[left];		//保存 l、r 的初值，确定基准点 key
 	for (; l < r;)									//一次遍历
 	{
-		for (; nums[r] > key && l < r; r--);		//向左寻找小于 key 的数
+		for (; nums[r] >= key && l < r; r--);		//向左寻找小于 key 的数
 		if (nums[r] < key)	nums[l] = nums[r];		//若找到，赋值给 l
-		for (; nums[l] < key && l < r; l++);		//向右寻找大于 key 的数
+		for (; nums[l] <= key && l < r; l++);		//向右寻找大于 key 的数
 		if (nums[l] > key)	nums[r] = nums[l];		//若找到，赋值给 r
 	}
 	nums[l] = key;									//将 key 插入到分割点
@@ -89,7 +89,7 @@ void qst(int *nums, int l, int r)
 
 int main()
 {
-	int nums[100] = { 9,8,7,6,5,4,3,2,1 }, len = 9;
+	int nums[100] = { 3,2,0,3,1 }, len = 5;
 	qst(nums, 0, len - 1);
 	printf("排序： ");
 	for (int i = 0; i < len; i++)	printf("%4d", nums[i]);
