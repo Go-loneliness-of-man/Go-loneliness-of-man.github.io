@@ -2,20 +2,409 @@
 <html>
 
 <head>
-  <title>C 实现功能强大的学生信息管理系统</title>
+  <title>C 实现功能完善的学生信息管理系统</title>
   <meta charset="UTF-8">
   <style>
-
+    html{ line-height:1.7em; }
+    .em {
+      color: rgb(250, 30, 30);
+      font-weight: bold;
+      border-bottom:2px solid rgb(250, 30, 30);
+      padding:1px;
+    }                                              /*重点*/
+    p{ text-indent:2em; }
+    code{ white-space:pre; }
   </style>
 </head>
 
 <body>
-  <div id="h1"><span class="smallh1">C 实现功能强大的学生信息管理系统</span></div>
+  <div id="h1"><span class="smallh1">C 实现功能完善的学生信息管理系统</span></div>
   <div id="body">
-    <h2></h2>
+    <h2>前言</h2>
       <p>
-        
+        当初大一第一次写项目时很是迷茫，虽然语言掌握已经可以了，但从没有过写项目的经验，大学老师是从没教过这些的。自己上网了查了很多资料也没找到能真
+        正手把手教你撸个简单 C 项目的教程，无奈我只好靠自己想象，辛苦摸索了十一天排除无数 BUG 后写出了自己的第一个控制台项目 —— 学生信息管理系统，
+        后来想着很多大一新生估计到时候也不会写，便在这写个教程，手把手教你写个项目出来，其实很久前就想过写这篇教程了，却一直没付诸行动，实在是平时
+        没时间，有时间了又突然变懒 ......
       </p>
+      <p>
+        废话不多说，下面就是教程，先介绍要写的项目是什么，该项目具有哪些模块和功能，然后便是各个模块的实现，本教程中不会提及过于简单的语法问题，所以看
+        之前你要有一定的语言基础，不然看起来是会比较吃力的，初步估计，<span class="em">如果你每天都花四小时以上时间跟着做的话，一周内应该能完成本项
+        目——也就几天的功夫。</span><br>
+        PS：如果你不知道自己基础怎么样，可以看看这本书的目录：<a href="">《面向考试编程》</a>，里面的知识点大概都清楚的话就没问题。
+      </p>
+    <details>
+      <summary>项目简介</summary>
+      <span class="em">项目名称：</span>高中学生信息管理系统<br>
+      <span class="em">项目类型：</span>Windows 控制台项目<br>
+      <span class="em">开发环境：</span>Visual Studio 2015	&&	Win 7 sp1<br>
+      <span class="em">代码量：</span>1300+<br>
+      <span class="em">功能：</span>
+        <ol>
+          <li>添加学生信息</li>
+          <li>打印所有学生信息</li>
+          <li>查找学生信息</li>
+          <li>修改学生信息</li>
+          <li>删除学生信息</li>
+          <li>插入学生信息</li>
+          <li>数据可存储、读取</li>
+          <li>退出系统</li>
+          <li>计算各科目平均分</li>
+          <li>统计及格率（及格分自定义）并输出不及格名单</li>
+          <li>依据不同条件对学生信息进行排序</li>
+          <li>具有管理员账户，有登录界面</li>
+          <li>账户名、密码可修改、可找回</li>
+        </ol>
+      <span class="em">模块划分：</span>
+      <p>
+        刚开始做时我并没有对模块进行类型划分，只是写了一个个子函数，后来发现等程序越写越大后模块间的关系就变的不好厘清，所以便对模块的类型进行了划分。
+        主体上分为结构型模块、功能型模块。整个程序都是由一个个结构型模块组成的，这些<span class="em">结构型模块组合起来便组成了程序</span>，结构
+        型模块在设计时注重的是 UI（用户界面），不怎么涉及具体的功能实现。鉴于很多功能往往是要被经常调用的，所以程序大部分的功能都被封装为一个个功能型
+        模块，<span class="em">功能型模块只负责实现一个个具体的功能，不负责任何 UI 建设，功能型模块的设计宗旨是运行快、效率高、行数少</span>。
+      </p>
+      <span class="em">结构模块：</span>
+      <p>
+        依次是登录模块、读取数据文件并建立链表模块、新增学生信息模块、按学号删除模块、修改学生信息模块、按条件查找模块、打印所有信息模块、按条件排序模块、
+        统计模块、插入学生信息模块、修改账户名密码模块、退出系统模块、密保问题重置账户名密码模块、
+      </p>
+      <span class="em">功能模块：</span>
+      <p>
+        功能型模块没必要一个个罗列出来，当教程里用到某个功能型模块时我才会写，大体上，包括几个字符串处理函数、UI 打印、新建节点、存储链表到文件、几个
+        链表查询函数、排序函数、还有个平均值计算函数。
+      </p>
+      <span class="em">数据结构：双向链表</span>
+      <p>
+        起初我是用数组存储数据的，后来发现要想让一个程序的数据能够做到灵活取用，必须使用一些数据结构，在这个项目中用了个简单的双向链表，仅使用单向链
+        表也是可以的，只是双向链表使用更方便。还不会使用链表的同学不必紧张，我会在教程里具体讲解如何实现链表，本教程只要求你<span class="em">会使用
+        C 语言的绝大部分语法即可</span>。
+      </p>
+    </details>
+    <details>
+      <summary>第一步，主函数设计</summary>
+      <p>
+        设计主函数是本项目最基础的一步，我们可以<span class="em">通过确定主函数的总体结构来确定项目的整体框架、基本功能</span>。
+      </p>
+      <p>
+        那么，主函数该如何写？设想一下程序从启动到结束的流程：登录 -> 读取数据文件并建立链表 -> 进入主界面 -> 选择要进行的操作 -> 退出程序。在这个
+        流程中隐藏着一个循环，即进入主界面 -> 选择要进行的操作 -> 进入主界面 -> 选择要进行的操作 -> 进入主界面 -> 选择要进行的操作 ... 这个循环，
+        因为<span class="em">你不可能每次启动程序都只进行一个操作就关掉</span>——那可太麻烦了，所以要将“主界面”和“选择操作”这两个步骤放在一个循环
+        内进行判断。打印主界面可定义为一个功能型模块 ui()，选择操作可用 switch() 语句实现，那么主函数大概的样子就出来了：
+      </p>
+      <code>
+        int main()
+        {
+          login();                            //登录模块
+          <span class="em">head = (s*)malloc(sizeof(s));       //创建表头</span>
+          <span class="em">head->next = NULL;                  //初始化表头 next 成员</span>
+          read(head);                         //读取数据文件模块
+          for (; 1;)
+          {
+            int pd; ui();
+            scanf_s("%d", &pd);               //由用户判断功能选择模块
+            getchar();                        //消除回车符对接下来程序运行的影响
+            system("cls");                    //清屏，重新开始打印
+            switch(pd)
+            {
+              case 1: get(); break;           //调用新增模块
+              case 2: del(); break;           //调用删除模块
+              case 3: reset(); break;         //调用修改模块
+              case 4: czmk(); break;          //调用查找模块
+              case 5: out(head); break;       //调用输出全部信息模块
+              case 6: orders(); break;        //调用排序模块
+              case 7: tj(); break;            //调用统计模块
+              case 8: infix();  break;        //调用插入模块
+              case 9: revise(); break;        //调用修改账户模块
+              case 0: exits(); break;         //调用退出模块
+            }
+            system("cls");                    //清屏
+          }
+          return 0;
+        }
+      </code><br>
+      <p>
+        上面的代码中，用红线划出来的两句用于创建链表的表头，不理解可以忽略。login()、read() 依次是登录、读取数据文件模块，接下来就是一个用户界面-
+        选择操作这个循环（我习惯使用 for，你完全可以换成 while）了，<span class="em">每次循环开始时都会调用 ui() 模块打印主界面，每次循环结束时
+        都会用 system("cls"); 语句清屏</span>，system() 是 Windows 系统提供的系统指令，定义在 Windows.h 头文件中，可以用它调用很多系统操作。
+        ui() 模块的作用很简单，打印一次主界面，其定义如下：
+        <code>
+           void ui()                                  //打印一次用户 UI
+           {
+             printf("\n\n 版权声明： 本软件由本人独立开发，未经本人允许禁止用作商业用途！若\n"
+             " 有侵权，必通过法律途径维权！");
+             printf("\n\n 版本号：1.1 | 控制台版| 图形界面目前还在做 . . .");
+             printf("\n\n 软件开发者： 西安石油大学 —— 通信 1701 —— 王超");
+             printf("\n\n         ◇ ◇ ◇ ◇ ◇ ◇ ◇ ◇ ◇ ◇ ◇ ◇ ◇ ◇\n"
+                    "        ◇                                  ◇\n"
+                    "        ◇        高中学生信息管理系统 ◇\n"
+                    "        ◇                                  ◇\n"
+                    "        ◇ ◇ ◇ ◇ ◇ ◇ ◇ ◇ ◇ ◇ ◇ ◇ ◇ ◇\n\n"
+                    "        功能选项：\n\n"
+                    "        1. 新增学生信息\n\n"
+                    "        2. 按条件删除学生信息\n\n"
+                    "        3. 修改某学生信息\n\n"
+                    "        4. 按条件查找学生信息\n\n"
+                    "        5. 打印输出所有学生信息\n\n"
+                    "        6. 按条件对所有学生信息进行排序\n\n"
+                    "        7. 求平均分、及格率、不及格名单\n\n"
+                    "        8. 在某学生后插入学生信息\n\n"
+                    "        9. 修改账户名和密码\n\n"
+                    "        0. 退出\n\n"
+                    "        注：请不要直接点击窗口关闭程序，通过本程序关闭能释放程序占用的内\n"
+                    "        存，能避免浪费电脑内存空间\n\n"
+                    "        请按下对应数字选择功能： ");
+            }</code><br>
+      很好，现在已经完成了程序的主体框架，接下来只需慢慢往里边添加功能便可。<br>
+      PS：scanf_s() 是 MS（微软）的函数，与 scanf() 稍有不同，具体百度。使用 scanf_s() 要在其后加个 getchar() 读取掉回车符，因为 scanf_s()
+      并不读回车符，而 gets_s() 会读取回车符，所以若不在 scanf_s() 后加个回车符就会影响接下来 gets_s() 的使用。
+      </p>
+    </details>
+    <details>
+      <summary>数据框架——双向链表</summary>
+      <p>
+        为了对用户输入的数据进行各种操作，首先要做的事情不是直接开始写模块，而是<span class="em">设计整个程序的数据框架</span>，由于你不可能仅仅
+        用数组同时做到这三件事情：
+      </p>
+      <ol>
+        <li>同时存储一个学生的姓名、性别、班级、家庭住址 ... 等各方面信息，C 的数组是单一类型的，做不到同时存储它们。</li>
+        <li>数据的增、删、改、查问题，要在一个数组中增加/删除一段元素，就得移动数组中非常多的其它位置的元素，效率十分低下。</li>
+        <li>数据引用问题，要在系统中频繁使用数组引用数据进行操作，你就得经常顾及下标问题，这很麻烦。</li>
+      </ol>
+      <p>
+        起初我还是用过一些方法对数组进行过尝试的，但最终放弃了，所以为了解决以上问题，我们需要用到数据结构中最简单的概念：链表。<br>
+      </p>
+      <span class="em">单链表</span>：
+      <p>
+        单链表是最基础、最简单的链表，是种线性结构，它的核心原理非常简单：<span class="em">每个节点都指向下一个节点</span>，这样，通过第一个节点
+        就能找到链表中的所有节点。那么节点是什么？节点是链表中最基本的单位，节点一般分两块区域：数据域、指针域。数据域是用来存储各种我们想要存储的信息
+        的，而指针域是用来保存下一个节点的地址的。这样，所有节点的指针域共同将所有节点都串联了起来，便组成了链表，再说的通俗点，就是<span class="em">
+        一根线将很多个点连了起来</span>。
+      </p>
+      <p>
+        有了链表的基本概念，问题就是该如何表示单个的节点了，一般用结构体来构造单个节点，例如我们这次要做的项目中的结构体定义是这样的：
+      </p>
+        <code>
+      typedef struct students {   //学生信息
+          char id[31];            //学号
+          char name[21];          //姓名
+          char xb[9];             //性别
+          char age[10];           //年龄
+          char sfz[31];           //身份证号码
+          char addr[101];         //家庭住址
+          char phone[21];         //手机号
+          char class[41];         //年级、班级
+          double score[11];       //各科考试成绩,顺序是语、数、英、理、化、生、政、史、地、总分、平均分
+          <span class="em">struct students *next;  //指向下一个结点</span>
+          <span class="em">struct students *last;  //指向上一个结点</span>
+      }s;</code><br>
+      <p>
+        其中从 id 到 score 都属于数据域，用来保存我们需要的数据，而最下方用红线划住的两个结构体指针则是分别用来指向上一个节点和下一个节点的，没错，
+        在这里指针域有两个指针，之所以这样是因为这次的项目使用的是双向链表，它和单向链表唯一的区别就是指针域多出了一个指针用来保存上一个节点的地址。实
+        际上，在单链表的基础上可以构建出许多种链表，例如还有环状链表，只要根据需要稍加修改即可。
+      </p>
+      <p>
+        光会定义节点还不够，我们需要创建这个链表，即我们<span class="em">如何创建出这些节点并将它们连起来？</span>，这是两个问题，创建节点、连起来。
+        创建节点很简单，用 malloc() 在堆区申请内存就行（函数会返回内存的地址），那么问题来了，<span class="em">该申请多大的内存呢？</span>这个不
+        需要手动输入固定值，用 sizeof() 测量结构体 s（上面已经用 typedef 重命名结构体 struct students 为 s 了）的大小就可以。其次为了访问这块
+        内存，还需要一个结构体指针接收返回值，不然申请了也无法访问，更谈不上数据读写，所以创建一个节点最基本的格式便可以写出来了：
+      </p>
+      <code>s *结构体指针名 = (s*)malloc(sizeof(s));</code>
+      <p>
+        这就完事了么？不，仅仅这样的话，当程序使用该节点时，<span class="em">程序无法判断该节点是不是最后一个节点</span>，而如果程序访问了最后一个
+        节点的 next 成员，就会造成程序崩溃。为了避免这点，需要对每个新申请的节点进行初始化，即<span class="em">新节点指针域的每个指针都要初始化为
+        NULL</span>（这点要时刻谨记，会少很多 BUG），这样，只要在访问前判断该节点的 next 成员是否等于 NULL 就能判断该节点是不是最后一个节点，因为
+        其它节点的 next 都会保存下一节点的地址，只有最后一个节点是 NULL。
+      </p>
+      <p>
+        第二个问题是连起来，一般来说，这不是一个一气呵成的操作，即不是创建很多个节点，然后再一次性全部连起来，而是<span class="em">每创建一个新节
+        点，便将它连在链表的尾部</span>。所以我们每次新建了一个节点，便将它的地址保存在上一节点的指针域：
+      </p>
+      <code>上一节点的结构体指针名 -> next = 新建节点的结构体指针名;</code>
+      <p>而对于双向链表，则要互相保存对方的地址，这便需要多一步操作：</p>
+      <code>
+        上一节点的结构体指针名 -> next = 新建节点的结构体指针名;
+        新建节点的结构体指针名 -> last = 上一节点的结构体指针名;</code><br>
+      <p>
+        很好，现在看起来，你已经可以把很多节点都连起来创建成链表了，但实际上还缺那么一丢丢的东西，那就是关于链表的一点常识，首先，一般来说链表有两个常
+        备的指针 head、tail，<span class="em">head 指向第一个节点，称为头指针，它指向的节点被称为表头，tail 始终指向最后一个节点（需要不断更新），
+        称为尾指针，它指向的节点被称为表尾。表头的数据域一般不存放数据，我们用它来判断一个表是否是空表（空表时 next 为 NULL）或传递链表到其它模块中，
+        而表尾则用来新建节点。当创建链表时，先判断表头的 next 是否为空，若是则在表头后创建节点，否则在表尾创建节点</span>。具体代码，我专门放到了这里：
+        <a href="https://go-loneliness-of-man.github.io/%E5%AD%A6%E4%B9%A0/%E7%AE%97%E6%B3%95%E9%9B%86%E5%90%88/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E5%8D%95%E3%80%81%E5%8F%8C%E5%90%91%E9%93%BE%E8%A1%A8%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E8%BE%93%E5%87%BA.c"
+           target="_blank">点击查看代码</a> 里面加了很多注释，好好看都能看懂的。
+      </p>
+    </details>
+    <details>
+      <summary>新增学生信息模块 get()</summary>
+      <p>
+        建好了数据框架，想新增学生信息就很简单了，你可以直接在“新增学生信息模块”这个结构型模块里写赋值，也可以定义个功能型函数来写赋值，我个人比较倾向
+        于将模块划分的更细，所以特别定义了功能型模块用来新建节点，但却因此而加了不少无用代码，你大可不必这么做。具体模块的实现没什么难度，每个人都有自
+        己的实现思路，这里我仅贴上自己的代码以供参考，其中用红线划住的部分在代码下方会有解释，get() 便是结构型模块，而 New() 是新建节点的功能型模块：
+      </p>
+        <code>
+    //新建一个结点，储存内容，返回新建的结点地址
+    s *New(char *id, char *name, char *xb,char *age, char *sfz, char *addr, char* phone, char* class, double *score)
+    {
+      s *stdp = (s*)malloc(sizeof(s));    //创建一个新结点，存储其地址在 stdp
+      stdp->next = NULL;                  //初始化新结点的 next
+      stdp->last = NULL;                  //初始化新结点的 last
+      scp(stdp->id, id, 31);
+      scp(stdp->name, name, 21);
+      scp(stdp->xb, xb, 9);
+      scp(stdp->age, age, 10);
+      scp(stdp->sfz, sfz, 31);
+      scp(stdp->addr, addr, 101);
+      scp(stdp->phone, phone, 21);
+      scp(stdp->class, class, 41);
+      for (int i = 0; i < 11; i++) stdp->score[i] = score[i];
+      return stdp;
+    }
+    void get()                           //新增学生信息模块
+    {
+      int pd;                            //判断是否继续录入
+      for (pd = 1; pd;)
+      {
+        //循环变量 i、创建临时结点并将其地址返回给 std、交换指针 temp
+        int i; s *std = (s*)malloc(sizeof(s)), *temp;
+        //开始获取数据
+        printf("\n 现在录入一名学生的信息，每输入一项按一次回车键：\n\n");
+        for (; 1;)
+        {
+          printf(" 学号： ");
+          <span class="em">gets_s(std->id, 31);</span>
+          if (cz(head, std->id) != NULL)
+          printf("\n 学号与现有学生重复，请重新输入！\n\n");
+          else if (strc(std->id) == 0)
+          {
+            printf("\n 学号不能为空，请重新输入！\n\n");
+            printf(" 学号： ");
+            gets_s(std->id, 31);
+          }
+          else  break;
+        }
+        printf(" 姓名： ");
+        gets_s(std->name, 21);
+        printf(" 性别： ");
+        gets_s(std->xb, 9);
+        printf(" 年龄： ");
+        gets_s(std->age, 10);
+        printf(" 身份证： ");
+        gets_s(std->sfz, 31);
+        printf(" 家庭住址： ");
+        gets_s(std->addr, 101);
+        printf(" 手机号： ");
+        gets_s(std->phone, 21);
+        printf(" 年级及班级： ");
+        gets_s(std->class, 41);
+        printf(" 现在开始录入学生考试成绩：\n");
+        printf("\n 语文： ");
+        <span class="em">scanf_s("%lf", &std->score[0]); getchar();</span>
+        printf("\n 数学： ");
+        scanf_s("%lf", &std->score[1]); getchar();
+        printf("\n 英语： ");
+        scanf_s("%lf", &std->score[2]); getchar();
+        printf("\n 物理： ");
+        scanf_s("%lf", &std->score[3]); getchar();
+        printf("\n 化学： ");
+        scanf_s("%lf", &std->score[4]); getchar();
+        printf("\n 生物： ");
+        scanf_s("%lf", &std->score[5]); getchar();
+        printf("\n 政治： ");
+        scanf_s("%lf", &std->score[6]); getchar();
+        printf("\n 历史： ");
+        scanf_s("%lf", &std->score[7]); getchar();
+        printf("\n 地理： ");
+        scanf_s("%lf", &std->score[8]); getchar();
+        for (i = 0, std->score[9] = 0; i < 9; i++) std->score[9] += std->score[i];  //计算总分
+        std->score[10] = std->score[9] / 6.0;                                       //计算平均分
+        //获取数据完毕，接下来创建一个新结点保存临时结点所有数据，再接到链表末尾
+        <span class="em">if (strbj((head->next)->id, "0"))</span>
+        //解决读入模块遇到空数据文件时，遗留的空尾结点问题，解决方法是：放弃现在这个空的尾结点，新建一个结点并赋值连在表头后
+        {
+          head->next = New(std->id, std->name, std->xb, std->age, std->sfz, std->addr, std->phone, std->class, std->score);
+          tail = head->next;                    //更新尾结点地址
+          tail->last = head;                    //last 指向表头
+        }
+        else
+        {
+          tail->next = New(std->id, std->name, std->xb, std->age, std->sfz, std->addr, std->phone, std->class, std->score);
+          temp = tail;                          //临时保存当前结点地址
+          tail = tail->next;                    //更新尾指针指向
+          tail->last = temp;                    //last 指向上一结点
+        }
+        free(std);                              //录入完毕，释放临时结点占用的内存
+        printf("\n\n 若要继续录入下一个学生信息请输入任意数字，若要返回主界面请输入 0： ");
+        scanf_s("%d", &pd); getchar();
+        system("cls");
+      }
+      <span class="em">write(head);</span>                          //保存一次整个链表
+      printf("\n\n 所有新增的学生信息已保存，1 秒后返回主界面");
+      <span class="em">Sleep(1000);</span>
+    }</code><br>
+    <span class="em">解释</span>：
+    <ol>
+      <li>gets_s() 是 MS 的函数，相比 gets() 加了边界检测，具体区别就是它需要接收第二个参数，说明第一个参数的最大长度，MS 在此类函数上都加了这种
+        检测，所以很多函数后都加了 _s 这一后缀，意为“安全的”（safe）。</li>
+      <li>scanf_s() 与 gets_s() 一样，其在获取字符串时需要另一个参数指定字符串的最大长度。</li>
+      <li>if (strbj((head->next)->id, "0")) 这个是为了解决程序读到空数据文件的问题而额外加的，下面会慢慢讲到。</li>
+      <li>write(head); 这句保存链表到数据文件中，write() 是下边要讲的一个功能型模块。</li>
+      <li>Sleep(1000); 让程序等待 1 秒钟，这个是为了 UI 效果特意加的，可以忽略，Sleep() 是 Windows.h 中的函数。</li>
+    </ol>
+    </details>
+    <details>
+      <summary>保存 write() 与读取数据 read()</summary>
+      <span class="em">保存数据：write()</span>
+      <p>
+        保存数据可利用文件操作，由此定义一个功能模块 write()，用来将此刻链表中的学生信息的（即链表的数据域）都写入到一个文件中，待下次打开读取文件内容
+        并创建链表即可实现信息的存储。
+      </p>
+    </details>
+    <details>
+      <summary></summary>
+
+    </details>
+    <details>
+      <summary></summary>
+
+    </details>
+    <details>
+      <summary></summary>
+
+    </details>
+    <details>
+      <summary></summary>
+
+    </details>
+    <details>
+      <summary></summary>
+
+    </details>
+    <details>
+      <summary></summary>
+
+    </details>
+    <details>
+      <summary></summary>
+
+    </details>
+    <details>
+      <summary></summary>
+
+    </details>
+    <details>
+      <summary></summary>
+
+    </details>
+    <details>
+      <summary></summary>
+
+    </details>
+    <details>
+      <summary></summary>
+
+    </details>
+    <details>
+      <summary>图形界面？</summary>
+
+    </details>
   </div>
 </body>
 

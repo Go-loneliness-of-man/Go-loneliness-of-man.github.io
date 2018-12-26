@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title></title>
+  <meta charset="UTF-8">
+  <style>
+
+  </style>
+</head>
+
+<body>
+  <div id="h1"><span class="smallh1">C 语言的 void*</span></div>
+  <div id="body">
+    <p>
+      C 的 void * 是个很有意思的玩意。<br>
+    </p>
+    <p>
+      C 语言中 void * 意为 “不确定类型的指针”，如：void * a; 可以接受任何类型的赋值：
+      <code>
+        void *a = NULL;
+        int *b = NULL;
+        a  =  b;            //a是void * 型指针，任意类型指针都可直接赋值给它，无需类型转换
+      </code><br>
+      可以认为 void 是张白纸，上面能写任何类型的数值。<br>
+      （2）void * 可赋值给任何类型的变量 但是需要进行强制转换：
+      <code>
+        int * a = NULL;
+        void * b;
+        a  =  （int *）b;
+      </code><br>
+      要注意的是：void * 在接收值后转换为其他数据类型赋值时，转换类型和接收类型必须保持一致。简单的说：void * 类型接受了 int * 的赋值后，这个
+      void * 不能转化为其他类型，只能转换为 int * 类型。
+    </p>
+  </div>
+</body>
+
+</html>

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title></title>
+  <meta charset="UTF-8">
+  <style>
+    html{ line-height:1.7em; }
+    body{ padding:15px; }
+    .em {
+      color: rgb(250, 30, 30);
+      font-weight: bold;
+      border-bottom:2px solid rgb(250, 30, 30);
+      padding:1px;
+    }                                              /*重点*/
+    p{ text-indent:2em; }
+    code{ white-space:pre; }
+  </style>
+</head>
+
+<body>
+  <div id="h1"><span class="smallh1"></span></div>
+  <div id="body">
+    <h2>system() 常用指令</h2>
+    <p>
+      system() 用于向操作系统传递控制台命令行，以 WINDOWS 为例，通过 system() 执行命令和在 DOS 中执行命令的效果是一样的。<br>
+      注：路径要用两个反斜杠 \\ 表示，在 fopen 中虽然可用正斜杠 / 表示目录，但 DOS 命令中正斜杠与参数有关，所以路径只能用两个反斜杠 \\
+    </p>
+    <ol>
+      <li><span class="em">/?</span>，显示帮助，可跟在任一指令后，查看其帮助文档。</li>
+      <li><span class="em">指令 &gt;&gt; 文件名</span>，用于任何指令的末尾，作用是将该指令的输出全部输入的一个文件中。</li>
+      <li><span class="em">cd</span>，显示程序的当前目录。</li>
+      <li><span class="em">cls</span>，清屏。</li>
+      <li><span class="em">cmd</span>，打开一个 cmd 窗口。</li>
+      <li><span class="em">FC data1 data2</span>，比较文件并打印不同处（加上 /n 可显示行数），后跟文件路径及名称，可使用通配符，相同返回 0，
+      不同返回 1。</li>
+      <li><span class="em">copy data1 data2</span>，文件复制，将前者复制到后者，可操作多个文件，后跟路径及名称，可使用通配符。</li>
+      <li><span class="em">del data</span>，删除文件，后跟路径及名称，可使用通配符，若指定的是文件夹则删除其下所有文件，但不删除文件夹。</li>
+      <li><span class="em">dir 目录路径</span>，显示指定目录下的所有文件、目录名，加 /b 可只显示文件名。</li>
+      <li><span class="em">exit</span>，退出 cmd.exe</li>
+      <li><span class="em">find "字符串" 文件</span>，在文件中搜索字符串，例如 "FIND \"12 35\" abc.txt /n"</li>
+      <li><span class="em">md</span>，创建文件夹。</li>
+      <li><span class="em">move 文件路径 文件夹路径</span>，移动文件到另一个目录。</li>
+      <li><span class="em">rd</span>，删除文件夹。</li>
+      <li><span class="em">ren 原名称 现名称</span>，重命名文件或文件夹。</li>
+      <li><span class="em">title</span>，设置 cmd 窗口的标题。</li>
+      <li><span class="em">type</span>，显示文本文件的内容。</li>
+      <li><span class="em"></span>，</li>
+      <li><span class="em"></span>，</li>
+    </ol>
+  </div>
+</body>
+
+</html>
