@@ -36,18 +36,14 @@ int main()
 	return 0;
 }
 
-int pdop(char x, char y)									//判断两运算符优先级，x 高返回 1，y 高或相等返回 0
+int pdop(char x, char y)									//判断两运算符优先级，x 大于等于 y 返回 1，否则返回 0
 {
-	if (x == '(' || y == '(')	return 1;
-	if ((x == '*' || x == '/') && (y != '*' && y != '/'))	return 1;
-	return 0;
-}
-
-int pdop2(char x, char y)									//判断两运算符优先级，x 高返回 1，y 高或相等返回 0
-{
-	if (x == '(' || y == '(')	return 1;
-	if ((x == '*' || x == '/') && (y != '*' && y != '/'))	return 1;
-	if ((x == '+' || x == '-') && (y == '+' || y == '-'))	return 1;
+	int i, j, k, n[2];	char s[3][3] = { { '+','-','0' },{'*','/','0'}, {'(','0'} }, z[2] = { x,y };
+	for (k = 0; k < 2; k++)
+		for (i = 0; i < 3; i++)
+			for (j = 0; s[i][j] != '0'; j++)
+				if (z[k] == s[i][j])	n[k] = i;
+	if (n[0] >= n[1])	return 1;
 	return 0;
 }
 
@@ -72,7 +68,7 @@ void zh(char *x, s *y)										//将 x 转换成后缀表达式 y
 				else										//后者优先级高
 				{
 					if (z.c[(z.top)] != '(')				//弹出 z 中优先级 >= x[i] 的操作符压入 y 中
-						for (; pdop2(z.c[z.top], x[i]) && (z.top > -1) && (z.c[z.top] != '(');)
+						for (; pdop(z.c[z.top], x[i]) && (z.top > -1) && (z.c[z.top] != '(');)
 							y->c[++(y->top)] = z.c[(z.top)--];
 					z.c[++(z.top)] = x[i++];				//将读到的操作符压入 z 中
 				}
