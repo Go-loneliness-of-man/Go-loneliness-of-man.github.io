@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <title></title>
+  <meta charset="UTF-8">
+  <style>
+    * {
+      margin: 0px;
+      padding: 0px;
+    }
+
+    /*最外层*/
+    #wt {
+      width: 800px;
+      margin: 50px auto;
+      height: 450px;
+      overflow:hidden;
+      position: relative;
+    }
+
+    #wt img {
+      width:800px;
+      position: absolute;
+      top: 0px;
+    }
+    #wt > a:nth-child(1) img{ right:0px; }
+    #wt > a:nth-child(2) img{ right:-800px; }
+    #wt > a:nth-child(3) img{ right:-1600px; }
+    #wt > a:nth-child(4) img{ right:-2400px; }
+    #wt > a:nth-child(5) img{ right:-3200px; }
+    #wt > a:nth-child(6) img{ right:-4000px; }
+    #wt > a:nth-child(7) img{ right:-4800px; }
+    #wt > a:nth-child(8) img{ right:-5600px; }
+
+    /*按钮样式*/
+    #wt #l, #wt #r {
+      position: absolute;
+      top: 125px;
+      border: solid 100px transparent;
+      width: 0px;
+      height: 0px;
+      cursor: pointer;
+    }
+    #wt #l { left: -70px; border-right: solid 50px rgba(100, 100, 100, 0.4); }
+    #wt #r { right: -70px; border-left: solid 50px rgba(100, 100, 100, 0.4); }
+    #wt #l:hover { border-right: solid 50px rgba(240, 240, 240, 0.7); }
+    #wt #r:hover { border-left: solid 50px rgba(240, 240, 240, 0.7); }
+  </style>
+</head>
+
+<body>
+  <div id="wt"><a href="#"><img src="1.PNG" title="1"></a><a href="#"><img src="2.PNG" title="2"></a><a href="#"><img src="3.PNG" title="3"></a><a href="#"><img src="4.PNG" title="4"></a><a href="#"><img src="5.PNG" title="5"></a><a href="#"><img src="6.PNG" title="6"></a><a href="#"><img src="7.PNG" title="7"></a><div id="l"></div><div id="r"></div></div>
+  <script>
+    function addLoad(func) {                                  //事件绑定处理函数
+      var old = window.onload;
+      if (typeof old != 'function') window.onload = func;     //判断是否已添加函数，若否便直接添加当前函数到 window.onload
+      else window.onload = function () { old(); func(); }     //已有函数，将当前函数添加到末尾
+    }
+
+    function lbt(img, l, r, tyc, tyd, w, f) {                 //封装轮播图，参数依次是图片、左右按钮、延迟秒、移动秒、图片宽度、轮播方向（1 代表左，0 代表右）
+      function left() {                                       //向左移动一次的动画
+        for (let i = 0; i < count; i++)                       //所有图片向左移动
+          img[i].style.animation = 'lb' + i + ' ' + tyd + 's linear 1 normal';
+      }
+
+      function lmw() {                                        //使动画停在末状态并更新数组位置
+        for (let i = 1; i < count; i++)                       //使各图片停在末状态
+          img[i].style.right = -(i - 1) * w + 'px';
+        img[0].style.right = -(count - 1) * w + 'px';         //在页面中移动第一张图片到末尾
+        img[count] = img[0];                                  //在数组中将第一个换到最后
+        for (let i = 0; i < count; i++)                       //更新数组位置信息
+          img[i] = img[i + 1];
+      }
+
+      function right() {                                      //向右移动一次的动画
+        img[count - 1].style.right = w + 'px';                //末尾图片移动到左边
+        img[count - 1].style.animation = 'lb1 ' + tyd + 's linear 1 normal';  //左边向右移动
+        for (let i = 0; i < count - 1; i++)                   //所有图片向右移动
+          img[i].style.animation = 'lb' + (i + 2) + ' ' + tyd + 's linear 1 normal';
+      }
+
+      function rmw() {                                        //使动画停在末状态并更新数组位置
+        for (let i = 0; i < count - 1; i++)                   //使图片停在末状态
+          img[i].style.right = -(i + 1) * w + 'px';
+        img[count - 1].style.right = '0px';                   //更新最后一张图的末位置
+        img[count] = img[count - 1];                          //准备将最后一个换到第一位
+        for (let i = count - 1; i > 0; i--)                   //更新数组位置信息
+          img[i] = img[i - 1];
+        img[0] = img[count];                                  //将最后一个换到第一位
+      }
+
+      function anclick() {                                    //绑定按钮点击事件
+        l.onclick = function () {
+          click.sj[++click.top] = 1;                          //事件入栈
+        };
+        r.onclick = function () {
+          click.sj[++click.top] = 0;                          //事件入栈
+        };
+      }
+
+      function qx() {                                         //若存在点击事件，取消默认轮播
+        e++;
+        if (click.top >= 0) {
+          clearTimeout(a);                                    //取消默认轮播
+          clearTimeout(b);
+          clearTimeout(c);
+          for(let i = e; i < d.length; i++)                   //取消此后的检测
+            clearTimeout(d[i]);
+          lb();                                               //立即执行点击事件
+        }
+      }
+
+      function lb() {                                         //轮播图主进程
+        if (click.top < 0) {                                  //没有点击事件
+           if (f) {                                           //判断轮播方向
+            a = setTimeout(left, tyc * 1000);                 //执行动画，获得取消号
+            b = setTimeout(lmw, tz * 1000);                   //更新末状态，获得取消号
+          }
+          else {
+            a = setTimeout(right, tyc * 1000);                //执行动画，获得取消号
+            b = setTimeout(rmw, tz * 1000);                   //更新末状态，获得取消号
+          }
+          e = 0;                                              //用于标记每个检测事件的超时调用的位置
+          for (let i = 0; i < tyc * 1000; i += 300)           //每 300ms 检测一次
+            d[i] = setTimeout(qx, i);                         //当存在点击事件时，取消默认轮播
+          c = setTimeout(lb, tz * 1000);                      //继续下一次轮播
+        }
+        else if (click.sj[click.top]) {                       //左按钮
+          left();                                             //执行动画
+          setTimeout(lmw, tyd * 1000);                        //更新末状态
+          click.top--;                                        //事件出栈
+          setTimeout(lb, tyd * 1000);                         //继续下一次轮播
+        }
+        else {                                                //右按钮
+          right();                                            //执行动画
+          setTimeout(rmw, tyd * 1000);                        //更新末状态
+          click.top--;                                        //事件出栈
+          setTimeout(lb, tyd * 1000);                         //继续下一次轮播
+        }
+      }
+
+      var tz = tyc + tyd, a, b, c, count = img.length, i;     //总秒数、默认超时调用号 a 和 b 和 c、图片数 count、循环变量 i
+      var d = [], e;                                          //检测点击事件的超时调用号
+      var click = Object();                                   //事件栈
+      var sheet = document.styleSheets[0];                    //获取样式表
+      for (i = 0, len = 0; i < count + 1; i++ , len++)          //生成动画样式以及位置信息
+        sheet.insertRule("@keyframes lb" + i + "{100%{right:" + ((1 - i) * w) + "px;}}", i);
+      img = Array.prototype.slice.call(img, 0);               //转换 nodelist 为 array，（nodelist 反映的是 DOM 节点的实时结构，是只读的，要想像数组一样操作必须先转换为 array）
+      click.top = -1; click.sj = Array();                     //初始化事件栈
+      addLoad(anclick);                                       //执行事件绑定
+      lb();                                                   //执行主进程
+    }
+
+    var img = document.getElementById("wt").getElementsByTagName('img');  //获取图片元素
+    var l = document.getElementById('l');                     //获取两边的按钮元素
+    var r = document.getElementById('r');
+    lbt(img, l, r, 1, 0.5, 800, 1);                           //执行轮播图进程
+
+    /*
+    记录：加入按钮点击后，容易造成超时调用间互相冲突的问题。解决办法是在每次默认轮播前判断是否存在点击事件，令点击事件优先级高于默认轮播，只要点击事件未全部执行完毕，便不进行默认轮播，用一个
+    对象模拟事件栈来保存点击事件，栈中 1 代表左，0 代表右，每次触发点击事件都会压栈，执行完毕再出栈。要注意的是，在默认轮播的延迟期间要不断检测是否存在点击事件（移动期间不检测），若存在，便
+    取消当前默认轮播的超时调用，避免与当前点击事件冲突。
+    */
+
+  </script>
+</body>
+
+</html>
